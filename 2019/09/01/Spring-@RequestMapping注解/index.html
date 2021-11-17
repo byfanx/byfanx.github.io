@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<html lang="zh_CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Spring-@RequestMapping注解 - byFan 驿站</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="@RequestMapping注解&nbsp;&nbs...">
+  <meta name="author" content="byFan">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/night-owl.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: '',
+        wechat: ''
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: true
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">Spring-@RequestMapping注解</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Copyright© 2019 - 2021 | <a target="_blank" href="http://byfan.xyz">byFan<a> .AllRightsReserved<p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Spring-@RequestMapping注解</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>九月 01, 2019</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>10802</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h2 id="1-基础用法"><a href="#1-基础用法" class="headerlink" title="1. 基础用法"></a>1. 基础用法</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@RequestMapping是配置web请求的映射，该注解可以在控制器类的级别和/或其中的方法的级别上使用。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在类的级别上的注解会将一个特定请求或者请求模式映射到一个控制器之上。之后还可以另外添加方法级别的注解来进一步值定到处理方法的映射关系。<br>下面是一个同时在类和方法上应用了@RequestMapping注解示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span>  <br><span class="hljs-meta">@RequestMapping(&quot;/home&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IndexController</span> </span>&#123;  <br>    <span class="hljs-meta">@RequestMapping(&quot;/&quot;)</span>  <br>    <span class="hljs-function">String <span class="hljs-title">get</span><span class="hljs-params">()</span> </span>&#123;  <br>        <span class="hljs-comment">//mapped to hostname:port/home/  </span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello from get&quot;</span>;  <br>    &#125;  <br>    <span class="hljs-meta">@RequestMapping(&quot;/index&quot;)</span>  <br>    <span class="hljs-function">String <span class="hljs-title">index</span><span class="hljs-params">()</span> </span>&#123;  <br>        <span class="hljs-comment">//mapped to hostname:port/home/index/  </span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello from index&quot;</span>;  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如上述代码所示，到/home的请求会由get()方法来处理，而到/home/index的请求会有index()方法处理。</p>
+<h2 id="2-处理多个URL"><a href="#2-处理多个URL" class="headerlink" title="2. 处理多个URL"></a>2. 处理多个URL</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以将多个请求映射到一个方法上面，只需要添加一个带有请求路径值列表的@RequestMapping注解就行了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span>  <br><span class="hljs-meta">@RequestMapping(&quot;/home&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IndexController</span> </span>&#123;  <br>  <br>    <span class="hljs-meta">@RequestMapping(value = &#123;  </span><br><span class="hljs-meta">        &quot;&quot;,  </span><br><span class="hljs-meta">        &quot;/page&quot;,  </span><br><span class="hljs-meta">        &quot;page*&quot;,  </span><br><span class="hljs-meta">        &quot;view/*,**/msg&quot;  </span><br><span class="hljs-meta">    &#125;)</span>  <br>    <span class="hljs-function">String <span class="hljs-title">indexMultipleMapping</span><span class="hljs-params">()</span> </span>&#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello from index multiple mapping.&quot;</span>;  <br>    &#125;  <br>&#125;  <br></code></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@RequestMapping支持通配符以及ANT风格的路径。上述示例代码中，以下的的URL都会由indexMultipleMapping()来处理:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js">localhost:<span class="hljs-number">8080</span>/home<br><span class="hljs-attr">localhost</span>:<span class="hljs-number">8080</span>/home/<br>localhost:<span class="hljs-number">8080</span>/home/page<br><span class="hljs-attr">localhost</span>:<span class="hljs-number">8080</span>/home/pageabc<br><span class="hljs-attr">localhost</span>:<span class="hljs-number">8080</span>/home/view/<br>localhost:<span class="hljs-number">8080</span>/home/view/view<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-处理动态URI"><a href="#3-处理动态URI" class="headerlink" title="3. 处理动态URI"></a>3. 处理动态URI</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@RequestMapping 注解可以同 @PathVaraible 注解一起使用，用来处理动态的 URI，URI 的值可以作为控制器中处理方法的参数。你也可以使用正则表达式来只处理可以匹配到正则表达式的动态 URI。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span>  <br><span class="hljs-meta">@RequestMapping(&quot;/home&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IndexController</span> </span>&#123;  <br>    <span class="hljs-meta">@RequestMapping(value = &quot;/fetch/&#123;id&#125;&quot;, method = RequestMethod.GET)</span>  <br>    <span class="hljs-function">String <span class="hljs-title">getDynamicUriValue</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String id)</span> </span>&#123;  <br>        System.out.println(<span class="hljs-string">&quot;ID is &quot;</span> + id);  <br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Dynamic URI parameter fetched&quot;</span>;  <br>    &#125;  <br>    <span class="hljs-meta">@RequestMapping(value = &quot;/fetch/&#123;id:[a-z]+&#125;/&#123;name&#125;&quot;, method = RequestMethod.GET)</span>  <br>    <span class="hljs-function">String <span class="hljs-title">getDynamicUriValueRegex</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;name&quot;)</span> String name)</span> </span>&#123;  <br>        System.out.println(<span class="hljs-string">&quot;Name is &quot;</span> + name);  <br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Dynamic URI parameter fetched using regex&quot;</span>;  <br>    &#125;  <br>&#125; <br></code></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这段代码中，方法 getDynamicUriValue() 会在发起到localhost:8080/home/fetch/10 的请求时执行。这里 getDynamicUriValue() 方法 id 参数也会动态地被填充为 10 这个值。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方法 getDynamicUriValueRegex() 会在发起到localhost:8080/home/fetch/category/shirt 的请求时执行。不过，如果发起的请求是 /home/fetch/10/shirt 的话，会抛出异常，因为这个URI并不能匹配正则表达式。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@PathVariable 同 @RequestParam的运行方式不同。你使用 @PathVariable 是为了从 URI 里取到查询参数值。换言之，你使用 @RequestParam 是为了从 URI 模板中获取参数值。 </p>
+<h2 id="4-带有-RequestParam参数"><a href="#4-带有-RequestParam参数" class="headerlink" title="4. 带有@RequestParam参数"></a>4. 带有@RequestParam参数</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@RequestParam 注解配合 @RequestMapping 一起使用，可以将请求的参数同处理方法的参数绑定在一起。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@RequestParam 注解使用的时候可以有一个值，也可以没有值。这个值指定了需要被映射到处理方法参数的请求参数, 代码如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span> <br><span class="hljs-meta">@RequestMapping(&quot;/home&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IndexController</span> </span>&#123;   <br>    <span class="hljs-meta">@RequestMapping(value = &quot;/id&quot;)</span>  <br>    <span class="hljs-function">String <span class="hljs-title">getIdByValue</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(&quot;id&quot;)</span> String personId)</span> </span>&#123;  <br>        System.out.println(<span class="hljs-string">&quot;ID is &quot;</span> + personId);  <br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Get ID from query string of URL with value element&quot;</span>;  <br>    &#125;  <br>    <span class="hljs-meta">@RequestMapping(value = &quot;/personId&quot;)</span>  <br>    <span class="hljs-function">String <span class="hljs-title">getId</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam</span> String personId)</span> </span>&#123;  <br>        System.out.println(<span class="hljs-string">&quot;ID is &quot;</span> + personId);  <br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Get ID from query string of URL without value element&quot;</span>;  <br>    &#125;  <br>&#125;  <br></code></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在代码的第5行，id这个请求参数被映射到了getIdByValue() 这个处理方法的参数 personId 上。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果请求参数和处理方法参数的名称一样的话，@RequestParam注解的value这个参数就可以省略掉了，如代码的第10行所示。</p>
+<p>@RequestParam注解的<strong>required</strong>这个参数定义了参数值是否是必须要传的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span>  <br><span class="hljs-meta">@RequestMapping(&quot;/home&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IndexController</span> </span>&#123;  <br>    <span class="hljs-meta">@RequestMapping(value = &quot;/name&quot;)</span>  <br>    <span class="hljs-function">String <span class="hljs-title">getName</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(value = &quot;person&quot;, required = false)</span> String personName)</span> </span>&#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Required element of request param&quot;</span>;  <br>    &#125;  <br>&#125;  <br></code></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这段代码中，因为 required 被指定为 false，所以 getName() 处理方法对于如下两个 URL 都会进行处理：</p>
+<blockquote>
+<p>/home/name/person=xyz<br>/home/name</p>
+</blockquote>
+<p>@RequestParam的<strong>defaultValue</strong>取值就是用来给取值为空的请求参数提供一个默认值的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span>  <br><span class="hljs-meta">@RequestMapping(&quot;/home&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IndexController</span> </span>&#123;  <br>    <span class="hljs-meta">@RequestMapping(value = &quot;/name&quot;)</span>  <br>    <span class="hljs-function">String <span class="hljs-title">getName</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(value = &quot;person&quot;, defaultValue = &quot;John&quot;)</span> String personName)</span> </span>&#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Required element of request param&quot;</span>;  <br>    &#125;  <br>&#125;  <br></code></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这段代码中，如果person这个请求参数为空，那么getName()处理方法就会接收”John”这个默认值作为其参数；如果person请求参数不为空，那么方法接收的personName参数就是person。</p>
+<h2 id="5-处理请求参数"><a href="#5-处理请求参数" class="headerlink" title="5. 处理请求参数"></a>5. 处理请求参数</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@RequestMapping直径二的params元素可以进一步缩小请求映射的定位范围。使用params元素，可以让多个处理方法处理到同一个URL的请求，而这些请求是不一样的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以用<code>myParams=myValue</code>这种格式来定义参数，也可以使用通配符来指定特定的参数值在请求中是不是受支持的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span>  <br><span class="hljs-meta">@RequestMapping(&quot;/home&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IndexController</span> </span>&#123;  <br>    <span class="hljs-meta">@RequestMapping(value = &quot;/fetch&quot;, params = &#123;  </span><br><span class="hljs-meta">        &quot;personId=10&quot;  </span><br><span class="hljs-meta">    &#125;)</span>  <br>    <span class="hljs-function">String <span class="hljs-title">getParams</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(&quot;personId&quot;)</span> String id)</span> </span>&#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Fetched parameter using params attribute = &quot;</span> + id;  <br>    &#125;  <br>    <span class="hljs-meta">@RequestMapping(value = &quot;/fetch&quot;, params = &#123;  </span><br><span class="hljs-meta">        &quot;personId=20&quot;  </span><br><span class="hljs-meta">    &#125;)</span>  <br>    <span class="hljs-function">String <span class="hljs-title">getParamsDifferent</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(&quot;personId&quot;)</span> String id)</span> </span>&#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Fetched parameter using params attribute = &quot;</span> + id;  <br>    &#125;  <br>&#125;  <br></code></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这段代码中，getParams() 和 getParamsDifferent() 两个方法都能处理相同的一个 URL (/home/fetch) ，但是会根据 params 元素的配置不同而决定具体来执行哪一个方法。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如，当 URL 是 /home/fetch?id=10 的时候, getParams() 会执行，因为 id 的值是10,。对于 localhost:8080/home/fetch?personId=20 这个URL, getParamsDifferent() 处理方法会得到执行，因为 id 值是 20。 </p>
+<h2 id="6-处理HTTP得各种方法"><a href="#6-处理HTTP得各种方法" class="headerlink" title="6. 处理HTTP得各种方法"></a>6. 处理HTTP得各种方法</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spring MVC的@RequestMapping注解能够处理 HTTP 请求的方法, 比如 GET, PUT, POST, DELETE 以及 PATCH。所有的请求默认都会是 HTTP\GET 类型的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了能将一个请求映射到一个特定的 HTTP 方法，你需要在 @RequestMapping 中使用<strong>method</strong>来声明 HTTP 请求所使用的方法类型，如下所示： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span>  <br><span class="hljs-meta">@RequestMapping(&quot;/home&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IndexController</span> </span>&#123;  <br>    <span class="hljs-meta">@RequestMapping(method = RequestMethod.GET)</span>  <br>    <span class="hljs-function">String <span class="hljs-title">get</span><span class="hljs-params">()</span> </span>&#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello from get&quot;</span>;  <br>    &#125;  <br>    <span class="hljs-meta">@RequestMapping(method = RequestMethod.DELETE)</span>  <br>    <span class="hljs-function">String <span class="hljs-title">delete</span><span class="hljs-params">()</span> </span>&#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello from delete&quot;</span>;  <br>    &#125;  <br>    <span class="hljs-meta">@RequestMapping(method = RequestMethod.POST)</span>  <br>    <span class="hljs-function">String <span class="hljs-title">post</span><span class="hljs-params">()</span> </span>&#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello from post&quot;</span>;  <br>    &#125;  <br>    <span class="hljs-meta">@RequestMapping(method = RequestMethod.PUT)</span>  <br>    <span class="hljs-function">String <span class="hljs-title">put</span><span class="hljs-params">()</span> </span>&#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello from put&quot;</span>;  <br>    &#125;  <br>    <span class="hljs-meta">@RequestMapping(method = RequestMethod.PATCH)</span>  <br>    <span class="hljs-function">String <span class="hljs-title">patch</span><span class="hljs-params">()</span> </span>&#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello from patch&quot;</span>;  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面得代码中，@RequestMapping注解中的method元素声明了HTTP请求方法的HTTP请求类型。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所有的请求处理方法都会处理从”/home”这个同一URL进来的请求，但是要看指定的HTTP方法是什么来决定用哪个方法来处理。例如一个POST类型的请求/home会交给post()方法来处理。</p>
+<h2 id="7-默认的处理方法"><a href="#7-默认的处理方法" class="headerlink" title="7. 默认的处理方法"></a>7. 默认的处理方法</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在控制器中，你可以有一个默认的处理方法，它可以在有一个向默认URL发起请求时被执行。下面时默认处理方法的示例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span>  <br><span class="hljs-meta">@RequestMapping(&quot;/home&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IndexController</span> </span>&#123;  <br>    <span class="hljs-meta">@RequestMapping()</span>  <br>    <span class="hljs-function">String  </span><br><span class="hljs-function">    <span class="hljs-title">default</span> <span class="hljs-params">()</span> </span>&#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;This is a default method for the class&quot;</span>;  <br>    &#125;  <br>&#125;  <br></code></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这段代码中，向/home发起的一个请求将会有default()来处理，因为注解没有指向任何值。</p>
+<h2 id="8-快捷方式"><a href="#8-快捷方式" class="headerlink" title="8. 快捷方式"></a>8. 快捷方式</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spring 4.3 引入了方法级注解的变体，也被叫做 @RequestMapping 的组合注解。组合注解可以更好的表达被注解方法的语义。它们所扮演的角色就是针对 @RequestMapping 的封装，而且成了定义端点的标准方法。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如，@GetMapping 是一个组合注解，它所扮演的是 @RequestMapping(method =RequestMethod.GET) 的一个快捷方式。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方法级别的注解变体有如下几个：</p>
+<ul>
+<li>@GetMapping</li>
+<li>@PostMapping</li>
+<li>@PutMapping</li>
+<li>@DeleteMapping</li>
+<li>@PatchMapping<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如下代码展示了如何使用组合注解。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span>  <br><span class="hljs-meta">@RequestMapping(&quot;/home&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IndexController</span> </span>&#123;  <br>    <span class="hljs-meta">@GetMapping(&quot;/person&quot;)</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-meta">@ResponseBody</span> ResponseEntity &lt; String &gt; getPerson() &#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResponseEntity &lt; String &gt; (<span class="hljs-string">&quot;Response from GET&quot;</span>, HttpStatus.OK);  <br>    &#125;  <br>    <span class="hljs-meta">@GetMapping(&quot;/person/&#123;id&#125;&quot;)</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-meta">@ResponseBody</span> ResponseEntity &lt; String &gt; getPersonById(<span class="hljs-meta">@PathVariable</span> String id) &#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResponseEntity &lt; String &gt; (<span class="hljs-string">&quot;Response from GET with id &quot;</span> + id, HttpStatus.OK);  <br>    &#125;  <br>    <span class="hljs-meta">@PostMapping(&quot;/person&quot;)</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-meta">@ResponseBody</span> ResponseEntity &lt; String &gt; postPerson() &#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResponseEntity &lt; String &gt; (<span class="hljs-string">&quot;Response from POST method&quot;</span>, HttpStatus.OK);  <br>    &#125;  <br>    <span class="hljs-meta">@PutMapping(&quot;/person&quot;)</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-meta">@ResponseBody</span> ResponseEntity &lt; String &gt; putPerson() &#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResponseEntity &lt; String &gt; (<span class="hljs-string">&quot;Response from PUT method&quot;</span>, HttpStatus.OK);  <br>    &#125;  <br>    <span class="hljs-meta">@DeleteMapping(&quot;/person&quot;)</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-meta">@ResponseBody</span> ResponseEntity &lt; String &gt; deletePerson() &#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResponseEntity &lt; String &gt; (<span class="hljs-string">&quot;Response from DELETE method&quot;</span>, HttpStatus.OK);  <br>    &#125;  <br>    <span class="hljs-meta">@PatchMapping(&quot;/person&quot;)</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-meta">@ResponseBody</span> ResponseEntity &lt; String &gt; patchPerson() &#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResponseEntity &lt; String &gt; (<span class="hljs-string">&quot;Response from PATCH method&quot;</span>, HttpStatus.OK);  <br>    &#125;  <br>&#125;  <br></code></pre></td></tr></table></figure>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这段代码中，每一个处理方法都使用 @RequestMapping 的组合变体进行了注解。尽管每个变体都可以使用带有方法属性的 @RequestMapping 注解来互换实现, 但组合变体仍然是一种最佳的实践 — 这主要是因为组合注解减少了在应用程序上要配置的元数据，并且代码也更易读。 </li>
+</ul>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>byFan</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2019/09/01/Spring-@RequestMapping%E6%B3%A8%E8%A7%A3/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2019&#x2F;09&#x2F;01&#x2F;Spring-@RequestMapping%E6%B3%A8%E8%A7%A3&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2019&#x2F;09&#x2F;01&#x2F;Spring-@RequestMapping%E6%B3%A8%E8%A7%A3&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2019/09/02/Spring%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1-@Scheduled%E6%B3%A8%E8%A7%A3/"><i class="iconfont iconleft"></i>Spring定时任务-@Scheduled注解</a>
+    <a></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RequestMapping%E6%B3%A8%E8%A7%A3"><span class="toc-text">@RequestMapping注解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95"><span class="toc-text">1. 基础用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%A4%84%E7%90%86%E5%A4%9A%E4%B8%AAURL"><span class="toc-text">2. 处理多个URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%A4%84%E7%90%86%E5%8A%A8%E6%80%81URI"><span class="toc-text">3. 处理动态URI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%B8%A6%E6%9C%89-RequestParam%E5%8F%82%E6%95%B0"><span class="toc-text">4. 带有@RequestParam参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%A4%84%E7%90%86%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0"><span class="toc-text">5. 处理请求参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%A4%84%E7%90%86HTTP%E5%BE%97%E5%90%84%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-text">6. 处理HTTP得各种方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E9%BB%98%E8%AE%A4%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95"><span class="toc-text">7. 默认的处理方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F"><span class="toc-text">8. 快捷方式</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=3257490363 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/FanBingyang "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:byfanx@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Copyright© 2019 - 2021 | <a target="_blank" href="http://byfan.xyz">byFan<a> .AllRightsReserved<p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

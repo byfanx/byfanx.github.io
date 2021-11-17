@@ -1,0 +1,408 @@
+
+
+<!DOCTYPE html>
+<html lang="zh_CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Python程序打包成exe文件 - byFan 驿站</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="&nbsp;&nbsp;&nbsp;&nbsp;&nb...">
+  <meta name="author" content="byFan">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/night-owl.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: '',
+        wechat: ''
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: true
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">Python程序打包成exe文件</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Copyright© 2019 - 2021 | <a target="_blank" href="http://byfan.xyz">byFan<a> .AllRightsReserved<p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Python程序打包成exe文件</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>二月 03, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3224</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="Python程序打包成exe文件"><a href="#Python程序打包成exe文件" class="headerlink" title="Python程序打包成exe文件"></a>Python程序打包成exe文件</h1><h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>PyInstaller</strong> 是一个十分有用的第三方库，可以用来打包 python 应用程序，打包完的程序就可以在没有安装 Python 解释器的机器上运行了。它能够在 Windows、Linux、 Mac OS X 等操作系统下将 Python 源文件打包，通过对源文件打包， Python 程序可以在没有安装 Python 的环境中运行，也可以作为一个 独立文件方便传递和管理。PyInstaller 支持 Python 2.7 / 3.4-3.7。可以在 Windows、Mac OS X 和 Linux 上使用，但是并不是跨平台的，而是说你要是希望打包成 .exe 文件，需要在 Windows 系统上运行 PyInstaller 进行打包工作。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;安装PyInstaller</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install pyintaller<br><span class="hljs-comment"># 或者</span><br>python -m pip install pyinstaller <br></code></pre></td></tr></table></figure>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;安装成功如下。</p>
+<p><img    class="lazyload" data-original="%E5%AE%89%E8%A3%85pyinstaller.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">安装成功</span></p>
+<h2 id="2-打包EXE"><a href="#2-打包EXE" class="headerlink" title="2. 打包EXE"></a>2. 打包EXE</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先进入cmd，进入到你的python文件的目录下,执行命令如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pyinstaller [参数] xxx.py<br></code></pre></td></tr></table></figure>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参数说明</p>
+<ul>
+<li><strong>-i：</strong>添加一个应用图标，ico文件。(只对Windows系统有效)。</li>
+<li><strong>-F：</strong>打包成单独的<code>.exe</code>文件。</li>
+<li><strong>-W：</strong>无控制台运行界面。</li>
+<li><strong>-D：</strong>创建一个目录，里面包含exe以及其他一下依赖性文件</li>
+<li>注：<strong>pyinstaller -h</strong>：查看参数。</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的是hello.py程序，执行下面操作。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pyinstaller -F hello.py<br></code></pre></td></tr></table></figure>
+
+<p><img    class="lazyload" data-original="%E6%89%93%E5%8C%85exe.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">打包exe</span></p>
+<p><strong>PyInstaller</strong>会对脚本进行解析，解析过程如下：</p>
+<p>1、在脚本目录生成hello.spec文件；</p>
+<p>2、创建一个build目录；</p>
+<p>3、写入一个日志文件和中间流程文件到build目录；</p>
+<p>4、创建dist目录；</p>
+<p>5、生成可执行文件到dist目录。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;执行完成之后就可以在dist目录下找到我们打包好的<code>exe</code>文件，双击就可以直接运行了。</p>
+<p><img    class="lazyload" data-original="%E8%BF%90%E8%A1%8C.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">运行</span></p>
+<h2 id="3-引入外部文件"><a href="#3-引入外部文件" class="headerlink" title="3. 引入外部文件"></a>3. 引入外部文件</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;按照以上步骤打包exe的话，当你的代码中需要调用一些图片和资源文件的，这是不会自动导入的，需要你自己手动复制进去才行。不然 exe 文件运行时命令窗口会报错找不到这个文件。</p>
+<p>导入方法：假设<code>hello.py</code>程序中需要引入一个<code>test.txt</code>文件，<code>test.txt</code>文件和<code>hello.py</code>文件位于同一路径下。首先我们运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pyi-makespec -F hello.py<br></code></pre></td></tr></table></figure>
+
+<p>此时会生成一个<code>.spec</code>，这个文件会告诉pyinstaller如何处理你的脚本，pyinstaller创建一个exe的文件就是依靠它里面的内容进行执行的。正常情况下是不需要修改这个<code>.spec</code>文件的，除非你需要打包一个 dll 或者 so 文件或者其他数据文件。</p>
+<p>接下来我们就修改这个<code>.spec</code>文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs spec">a = Analysis([&#x27;hello.py&#x27;],<br>             pathex=[&#x27;G:\\CodeSpace&#x27;],<br>             binaries=[],<br>             datas=[],   ### &lt;------ 修改<br></code></pre></td></tr></table></figure>
+
+<p>修改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs spec">a = Analysis([&#x27;hello.py&#x27;],<br>             pathex=[&#x27;G:\\CodeSpace&#x27;],<br>             binaries=[],<br>             datas=[(&#x27;test.txt&#x27;,&#x27;.&#x27;),],  ### &lt;-----修改此处添加外部文件<br></code></pre></td></tr></table></figure>
+
+<p>然后再生成<code>exe</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pyinstaller hello.spec<br></code></pre></td></tr></table></figure>
+
+<p>这样生成的<code>exe</code>文件就可以正常引入外部文件了。</p>
+<h2 id="4-注意事项"><a href="#4-注意事项" class="headerlink" title="4. 注意事项"></a>4. 注意事项</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1、直接运行最终的 .exe 程序，可能会出现<strong>一闪而过</strong>的情况，这种情况下要么是程序运行结束（比如直接打印的 helloWorld），要么程序出现错误退出了。这种情况下，建议在命令行 cmd 下运行 .exe 文件，这时就会有文本输出到窗口。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2、<code>-i</code> 是改变图标的，图标在不同情况下(比如资源管理器文件列表前面的图标、桌面、开始菜单等)需要不一样尺寸的图标。如果尺寸不合适的话，可能出现有的地方显示正确有的显示不正确的情况。Windows的图标大小尺寸有128*128、64*64、48*48、32*32、16*16，请正确选用。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3、写代码的时候应当有个良好的习惯，用什么函数导什么函数，不要上来 import 整个库，不然最后你会发现你一个 100KB 的代码打包出来有 500MB；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4、在引入外部文件时，如果需要引入多个文件，<code>.spec</code>文件修改如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs spec">a = Analysis([&#x27;hello.py&#x27;],<br>             pathex=[&#x27;G:\\CodeSpace&#x27;],<br>             binaries=[],<br>             datas=[(&#x27;test_1.txt&#x27;,&#x27;.&#x27;),(&#x27;test_2.txt&#x27;,&#x27;.&#x27;),(&#x27;XXX/test_3.txt,&#x27;.&#x27;),],<br></code></pre></td></tr></table></figure>
+
+<h2 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以上就是使用PyInstaller打包流程进行简单的介绍和使用，更多内容可以参见官方文档：<a target="_blank" rel="noopener" href="https://pyinstaller.readthedocs.io/">https://pyinstaller.readthedocs.io</a>。</p>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>byFan</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2020/02/03/Python%E7%A8%8B%E5%BA%8F%E6%89%93%E5%8C%85%E6%88%90exe%E6%96%87%E4%BB%B6/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2020&#x2F;02&#x2F;03&#x2F;Python%E7%A8%8B%E5%BA%8F%E6%89%93%E5%8C%85%E6%88%90exe%E6%96%87%E4%BB%B6&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2020&#x2F;02&#x2F;03&#x2F;Python%E7%A8%8B%E5%BA%8F%E6%89%93%E5%8C%85%E6%88%90exe%E6%96%87%E4%BB%B6&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2020/02/03/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E7%99%BB%E5%BD%95%E6%93%8D%E4%BD%9C/"><i class="iconfont iconleft"></i>微信小程序-登录操作</a>
+    <a href="/2019/12/23/SpringBoot%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/">SpringBoot项目部署到服务器<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python%E7%A8%8B%E5%BA%8F%E6%89%93%E5%8C%85%E6%88%90exe%E6%96%87%E4%BB%B6"><span class="toc-text">Python程序打包成exe文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">1. 准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%89%93%E5%8C%85EXE"><span class="toc-text">2. 打包EXE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E6%96%87%E4%BB%B6"><span class="toc-text">3. 引入外部文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">4. 注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">5、总结</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=3257490363 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/FanBingyang "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:byfanx@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Copyright© 2019 - 2021 | <a target="_blank" href="http://byfan.xyz">byFan<a> .AllRightsReserved<p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

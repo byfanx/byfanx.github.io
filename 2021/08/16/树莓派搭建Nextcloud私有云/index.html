@@ -1,0 +1,414 @@
+
+
+<!DOCTYPE html>
+<html lang="zh_CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>树莓派搭建Nextcloud私有云 - byFan 驿站</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="&nbsp;&nbsp;&nbsp;&nbsp;&nb...">
+  <meta name="author" content="byFan">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/night-owl.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: '',
+        wechat: ''
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: true
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">树莓派搭建Nextcloud私有云</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Copyright© 2019 - 2021 | <a target="_blank" href="http://byfan.xyz">byFan<a> .AllRightsReserved<p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">树莓派搭建Nextcloud私有云</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>八月 16, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>7034</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;距离树莓派入手时间已经半年多，由于时间问题，也一直没有部署过像样的东西，刚好最近入手了一块硬盘，所以就用树莓派加移动硬盘来搭建一个个人的私有云吧。这里以树莓派raspbain 10 buster系统为例，安装Nextcloud私有云。</p>
+<h1 id="1-树莓派换源"><a href="#1-树莓派换源" class="headerlink" title="1. 树莓派换源"></a>1. 树莓派换源</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于国内环境，软件的下载安装相对比较慢，所以更换安装源来提高下载速度，更换下载源后更新软件的速度相对比较慢，其中很快做其他的事情，自行怎么方便怎么来。</p>
+<h2 id="1-1-查看版本"><a href="#1-1-查看版本" class="headerlink" title="1.1 查看版本"></a>1.1 查看版本</h2><p>网上许多教程都不是基于最新的raspbain buster来进行更换的，这里需要注意一下，更换源之前先查看一下系统版本。</p>
+<p><img   class="lazyload" data-original="%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h2 id="1-2-修改源"><a href="#1-2-修改源" class="headerlink" title="1.2 修改源"></a>1.2 修改源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 备份并编辑source.listwenjian </span><br>$ cp /etc/apt/sources.list /etc/apt/sources.back.list<br>$ vim /etc/apt/sources.list<br><span class="hljs-comment"># 注释所有内容，添加以下内容</span><br>deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main non-free contrib<br>deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main non-free contrib<br><br><br><span class="hljs-comment"># 备份并编辑raspi.list文件</span><br>$ cp /etc/apt/sources.list.d/raspi.list /etc/apt/sources.list.d/raspi.back.list<br>$ vim /etc/apt/sources.list.d/raspi.list<br><span class="hljs-comment"># 注释所有内容，替换如下内容</span><br>deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main<br></code></pre></td></tr></table></figure>
+
+<h2 id="1-3-更新源和软件"><a href="#1-3-更新源和软件" class="headerlink" title="1.3 更新源和软件"></a>1.3 更新源和软件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt-get update<br>sudo apt-get upgrade -y<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这个更新过程比较慢，建议这段时间可以到nextcloud官网中同时下载安装包，或进行其他不使用apt-get操作。</p>
+</blockquote>
+<h1 id="2-安装软件"><a href="#2-安装软件" class="headerlink" title="2. 安装软件"></a>2. 安装软件</h1><h2 id="2-1-安装apache"><a href="#2-1-安装apache" class="headerlink" title="2.1 安装apache"></a>2.1 安装apache</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1.安装命令</span><br>sudo apt-get install apache2<br><br><span class="hljs-comment"># 2.启动apache2</span><br>systemctl start apache2<br><br><span class="hljs-comment"># 3.设置apache2开机自启</span><br>systemctl <span class="hljs-built_in">enable</span> apache2<br><br><span class="hljs-comment"># 附上其他命令</span><br><span class="hljs-comment"># 查看运行状态</span><br>systemctl status apache2<br><span class="hljs-comment"># 重启</span><br>systemctl restart apache2<br><span class="hljs-comment"># 停止</span><br>systemctl stop apache2<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-2-安装php"><a href="#2-2-安装php" class="headerlink" title="2.2 安装php"></a>2.2 安装php</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1.安装php</span><br>sudo apt-get install php libapache2-mod-php -y<br><br><span class="hljs-comment"># 2.安装其他组件</span><br>sudo apt-get -y install php-fpm php-cli php-json php-curl php-imap php-gd php-mysql php-xml php-zip php-intl php-imagick php-mbstring -y<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-3-安装mariadb"><a href="#2-3-安装mariadb" class="headerlink" title="2.3 安装mariadb"></a>2.3 安装mariadb</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1.安装</span><br>$ sudo apt-get install mariadb-server -y<br><br><span class="hljs-comment"># 2.开启远程登陆权限</span><br><span class="hljs-comment"># 2.1 切换目录</span><br>$ <span class="hljs-built_in">cd</span> /etc/mysql/mariadb.conf.d<br><span class="hljs-comment"># 2.2 找到修改权限的文件</span><br>$ grep -rn <span class="hljs-string">&quot;skip-networking&quot;</span> *<br><span class="hljs-comment"># 显示如下：在50-server.cnf文件的第26行</span><br>50-server.cnf:26:<span class="hljs-comment"># Instead of skip-networking the default is now to listen only on</span><br><span class="hljs-comment"># 2.3 编辑文件，注释掉  bind-address = 127.0.0.1</span><br>$ vim 50-server.cnf<br></code></pre></td></tr></table></figure>
+
+<p>接下来是修改数据库配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 直接回车 不需要输入密码</span><br>$ mysql -uroot -p<br><br><span class="hljs-comment"># oc_admin可替换成自定义的用户名，password可替换成自定义的密码</span><br>&gt; create database nextcloud;<br>&gt; CREATE USER <span class="hljs-string">&#x27;oc_admin&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;password&#x27;</span>;<br>&gt; GRANT ALL PRIVILEGES ON *.* TO <span class="hljs-string">&#x27;oc_admin&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span> WITH GRANT OPTION;<br><br>&gt; flush privileges;<br>&gt; CREATE USER <span class="hljs-string">&#x27;oc_admin&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;password&#x27;</span>;<br>&gt; GRANT ALL PRIVILEGES ON *.* TO <span class="hljs-string">&#x27;oc_admin&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> WITH GRANT OPTION;<br>&gt; flush privileges;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-4-安装Nextcloud"><a href="#2-4-安装Nextcloud" class="headerlink" title="2.4 安装Nextcloud"></a>2.4 安装Nextcloud</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nextcloud的安装包需要去官网进行下载，这里是<a target="_blank" rel="noopener" href="https://nextcloud.com/install/#instructions-server">下载地址</a>。需要下载<code>tar.bz2</code>包。</p>
+<p><img   class="lazyload" data-original="%E4%B8%8B%E8%BD%BDnextcloud.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>下载完成后，需要上传到树莓派的<code>/var/www/html/</code>目录下。然后执行下面命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1.解压文件</span><br>tar jxf nextcloud-21.0.0.tar.bz2<br><span class="hljs-comment"># 2.添加data目录和授权</span><br>chown -R root:root nextcloud<br><span class="hljs-comment"># 3.进入nextcloud文件夹</span><br><span class="hljs-built_in">cd</span> nextcloud<br><span class="hljs-comment"># 4.创建数据文件夹</span><br>mkdir data<br><span class="hljs-comment"># 5.添加权限和授权</span><br>chown -R www-data:www-data data config apps<br></code></pre></td></tr></table></figure>
+
+<h1 id="3-初始化Nextcloud"><a href="#3-初始化Nextcloud" class="headerlink" title="3. 初始化Nextcloud"></a>3. 初始化Nextcloud</h1><h2 id="3-1-初始化"><a href="#3-1-初始化" class="headerlink" title="3.1 初始化"></a>3.1 初始化</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;完成上面步骤，就可以进行初始化Nextcloud了，在电脑浏览器中输入地址：<code>树莓派ip:8080/nextcloud</code>。比如：<code>192.162.1.110:8080/nextcloud</code>。则可以打开nextcloud的登陆界面，选择用户名和密码，以及输入数据库用户名和密码，完成设置。如下：</p>
+<p><img   class="lazyload" data-original="%E5%88%9D%E5%A7%8B%E5%8C%96nextcloud.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<blockquote>
+<p>关于数据目录，这里先默认选择<code>/var/www/html/nextcloud/data</code>。至于使用挂载目录，后面会讲到。如果想在初始化时就更换为挂载目录，可直接查看<a href="#guazai">挂载外设</a>。</p>
+</blockquote>
+<p>如果你的初始化出现下面错误，说创建数据库用户失败。这是因为在第一次初始化nextcloud的时候会在<code>/var/www/html/nextcloud/config</code>中创建一个config.php文件，文件记录nextcloud的配置信息。如果是第一次初始化，config.php中记录的数据库用户名会变成起初连接数据库的用户名加1。这里只需要手动的把1删除，之后再重新进行初始化操作，便可完成。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-string">&#x27;dbname&#x27;</span> =&gt; <span class="hljs-string">&#x27;nextcloud&#x27;</span>,<br><span class="hljs-string">&#x27;dbhost&#x27;</span> =&gt; <span class="hljs-string">&#x27;localhost:3306&#x27;</span>,<br><span class="hljs-string">&#x27;dbport&#x27;</span> =&gt; <span class="hljs-string">&#x27;&#x27;</span>,<br><span class="hljs-string">&#x27;dbtavleprefix&#x27;</span> =&gt; <span class="hljs-string">&#x27;oc_&#x27;</span>,<br><span class="hljs-string">&#x27;mysql.utf8mb4&#x27;</span> =&gt; <span class="hljs-literal">true</span>,<br><span class="hljs-string">&#x27;dbuser&#x27;</span> =&gt; <span class="hljs-string">&#x27;oc_admin1&#x27;</span>,<br></code></pre></td></tr></table></figure>
+
+<p>如果登录出现不信任域名访问的错误，这是由于nextcloud的访问设置了白名单，所以在访问的时候需要添加白名单ip。编辑<code>config.php</code>文件，把要访问的ip或者域名添加进去。</p>
+<p><img   class="lazyload" data-original="%E4%B8%8D%E4%BF%A1%E4%BB%BB%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ nano /var/www/html/nextcloud/config/config.php<br><span class="hljs-string">&#x27;trusted_domains&#x27;</span> =&gt; <br>  array (<br>    0 =&gt; <span class="hljs-string">&#x27;192.168.1.110:8080&#x27;</span>,<br>    1 =&gt; <span class="hljs-string">&#x27;xxx.com&#x27;</span>,<br>  ),<br></code></pre></td></tr></table></figure>
+
+<p>之后再进行访问，就出现登陆页面，通过设置的用户名和密码进行登录即可。首页如下。</p>
+<p><img   class="lazyload" data-original="%E9%A6%96%E9%A1%B5.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h2 id="3-2-其他配置"><a href="#3-2-其他配置" class="headerlink" title="3.2 其他配置"></a>3.2 其他配置</h2><h3 id="3-2-1-文件上传大小限制"><a href="#3-2-1-文件上传大小限制" class="headerlink" title="3.2.1 文件上传大小限制"></a>3.2.1 文件上传大小限制</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1.编辑php.ini文件</span><br>$ vim /etc/php/7.3/apache2/php.ini<br><span class="hljs-comment"># 2.找到相关属性，按照下方修改</span><br>upload_max_filesize = 16G<br>post_max_size = 16G<br>max_input_time 3600<br>max_execution_time 3600<br><br><span class="hljs-comment"># 3.解决浏览器超时问题</span><br>$ a2dismod reqtimeout<br><span class="hljs-comment"># 4.重启apache2</span><br>$ systemctl restart apache2<br></code></pre></td></tr></table></figure>
+
+<p><span id="guazai"></span></p>
+<h3 id="3-2-2-挂载外设"><a href="#3-2-2-挂载外设" class="headerlink" title="3.2.2 挂载外设"></a>3.2.2 挂载外设</h3><p>挂载外设有两种情况，一是直接将硬盘挂载到数据目录<code>data</code>下面；二是将硬盘挂载到其他目录，把数据目录更换成挂载的目录。</p>
+<p><strong>1、硬盘挂载到数据目录<code>data</code>下面</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1.备份data数据</span><br>$ cp -r /var/www/html/nextcloud/data  /home/data<br><br><span class="hljs-comment"># 2.清空data目录</span><br>$ rm -v /var/www/html/nextcloud/data/*<br><br><span class="hljs-comment"># 3.查看接入的硬盘</span><br>$ fdisk -l<br>Device     Start        End    Sectors  Size Type<br>/dev/sda1     34      32767      32734   16M Microsoft reserved<br>/dev/sda2  32768 3907026943 3906994176  1.8T Microsoft basic data<br><br><span class="hljs-comment"># 4.查看硬盘的uuid和类型</span><br>$ blkid /dev/sda2<br>/dev/sda2: LABEL=<span class="hljs-string">&quot;pi&quot;</span> UUID=<span class="hljs-string">&quot;DBK3-5F1C&quot;</span> TYPE=<span class="hljs-string">&quot;exfat&quot;</span> PARTLABEL=<span class="hljs-string">&quot;Basic data partition&quot;</span> PARTUUID=<span class="hljs-string">&quot;51ejn2c4-f99f-46e5-a7cn-ca4m4e8db6bc&quot;</span><br> <span class="hljs-comment"># 5.挂载硬盘</span><br>$ mount -t exfat /dev/sda2 /var/www/html/nextcloud/data<br><span class="hljs-comment"># 取消挂载  umount /dev/sda2</span><br><br><span class="hljs-comment"># 6.开机自动挂载</span><br><span class="hljs-comment"># 6.1 编/etc/fstab文件 </span><br>$ vim /etc/fstab<br><span class="hljs-comment"># 6.2 添加以下内容，保存退出即可</span><br>UUID=<span class="hljs-string">&quot;DBK3-5F1C&quot;</span> /var/www/html/nextcloud/data exfat defaults,nofail 0 0<br><br><span class="hljs-comment"># 7.之后再将data文件夹下所有文件复制回来</span><br>$ cp -r  /home/data /var/www/html/nextcloud/data<br></code></pre></td></tr></table></figure>
+
+<p><strong>2、硬盘挂载到其他目录</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1.创建挂载目录</span><br>$ mkdir /home/nextcloud<br><span class="hljs-comment"># 添加授权</span><br>chown -R root:root /home/nextcloud<br><br><span class="hljs-comment"># 2.挂载目录</span><br>$ mount -t exfat /dev/sda2  /home/nextcloud<br><br><span class="hljs-comment"># 3.开机自动挂载</span><br><span class="hljs-comment"># 3.1 编/etc/fstab文件 </span><br>$ vim /etc/fstab<br><span class="hljs-comment"># 3.2 添加以下内容，保存退出即可</span><br>UUID=<span class="hljs-string">&quot;DBK3-5F1C&quot;</span> /var/www/html/nextcloud/data exfat defaults,nofail 0 0<br><br><span class="hljs-comment"># 4.将data文件夹复制到挂载目录</span><br>$ cp -r /var/www/html/nextcloud/data/  /home/nextcloud/<br><br><span class="hljs-comment"># 5.修改nextcloud配置文件</span><br>$ vim /var/www/html/nextcloud/config/config.php<br><span class="hljs-comment"># 将数据目录更改</span><br><span class="hljs-string">&#x27;datadirectory&#x27;</span> =&gt; <span class="hljs-string">&#x27;/home/nextcloud/data&#x27;</span><br><br><span class="hljs-comment"># 6.重启apache2</span><br>$ systemctl restart apache2<br><br><span class="hljs-comment"># 7.如果访问时出现目录没有权限的情况，编辑nextcloud配置文件</span><br>$ vim /var/www/html/nextcloud/config/config.php<br><span class="hljs-comment"># 添加下面内容，保存重启apache2服务即可</span><br><span class="hljs-string">&#x27;check_data_directory_permissions&#x27;</span> =&gt; <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="4-性能优化"><a href="#4-性能优化" class="headerlink" title="4. 性能优化"></a>4. 性能优化</h1><h2 id="4-1-配置redis"><a href="#4-1-配置redis" class="headerlink" title="4.1 配置redis"></a>4.1 配置redis</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1.安装redis</span><br>$ sudo apt-get install redis-server<br><br><span class="hljs-comment"># 2.修改redis配置</span><br>$ vim /etc/redis/redis.conf<br><span class="hljs-comment"># 修改daemonize 为 yes，取消以下内容的注释</span><br><span class="hljs-comment"># unixsocket /var/run/redis/redis-server.sock</span><br><span class="hljs-comment"># unixsocketperm 777</span><br><br><span class="hljs-comment"># 3.授权redis</span><br>$ usermod -g www-data redis<br>$ chown -R redis:www-data /var/run/redis<br>$ redis-server /etc/redis.conf<br><br><span class="hljs-comment"># 4.重启redis服务</span><br>$ service redis-server restart<br><br><span class="hljs-comment"># 5.安装apcu</span><br>$ sudo apt-get install php-apcu<br>$ sudo apt-get install php-redis<br><br><span class="hljs-comment"># 6.修改nextcloud的配置文件</span><br>$ vim /var/www/html/nextcloud/config/config.php<br><span class="hljs-comment"># 添加如下内容</span><br><span class="hljs-string">&#x27;memcache.local&#x27;</span> =&gt; <span class="hljs-string">&#x27;\OC\Memcache\APCu&#x27;</span>,<br><span class="hljs-string">&#x27;memcache.locking&#x27;</span> =&gt; <span class="hljs-string">&#x27;\OC\Memcache\Redis&#x27;</span>,<br><span class="hljs-string">&#x27;redis&#x27;</span> =&gt; <br>array (<br>    <span class="hljs-string">&#x27;host&#x27;</span> =&gt; <span class="hljs-string">&#x27;localhost&#x27;</span>,<br>    <span class="hljs-string">&#x27;port&#x27;</span> =&gt; 6379,<br>   ),<br>   <br><span class="hljs-comment"># 7.重启apache2服务</span><br>$ systemctl restart apache2<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-2-提高swap容量"><a href="#4-2-提高swap容量" class="headerlink" title="4.2 提高swap容量"></a>4.2 提高swap容量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1.修改配置文件</span><br>$ vim /etc/dphys-swapfile<br><span class="hljs-comment"># 修改字段CONF_SWPSIZE 值，默认为100，这里修改为 2048</span><br><br><span class="hljs-comment"># 2.重启swap</span><br>$ /etc/init.d/dphys-swapfile restart<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-3-提高sd卡速度"><a href="#4-3-提高sd卡速度" class="headerlink" title="4.3 提高sd卡速度"></a>4.3 提高sd卡速度</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1.修改配置文件</span><br>$ sudo vim /boot/config.txt<br><span class="hljs-comment"># 加入下面一行内容</span><br>dtparam=sd_overclock=100<br><br><span class="hljs-comment"># 2.安装hdparm</span><br>$ hdparm -tT /dev/mmcblk0<br></code></pre></td></tr></table></figure>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以上就是用树莓派搭建Nextcloud私有云的具体步骤，用来当作笔记防止下次忘记，后续有什么新的功能在陆续添加。这次就到这了！</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>byFan</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/08/16/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BANextcloud%E7%A7%81%E6%9C%89%E4%BA%91/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;16&#x2F;%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BANextcloud%E7%A7%81%E6%9C%89%E4%BA%91&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;16&#x2F;%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BANextcloud%E7%A7%81%E6%9C%89%E4%BA%91&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" rel="tag">树莓派</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/11/15/hello-world/"><i class="iconfont iconleft"></i>Hello World</a>
+    <a href="/2021/01/04/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/">树莓派安装系统和基础配置<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8D%A2%E6%BA%90"><span class="toc-text">1. 树莓派换源</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC"><span class="toc-text">1.1 查看版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E4%BF%AE%E6%94%B9%E6%BA%90"><span class="toc-text">1.2 修改源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%9B%B4%E6%96%B0%E6%BA%90%E5%92%8C%E8%BD%AF%E4%BB%B6"><span class="toc-text">1.3 更新源和软件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="toc-text">2. 安装软件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%AE%89%E8%A3%85apache"><span class="toc-text">2.1 安装apache</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E5%AE%89%E8%A3%85php"><span class="toc-text">2.2 安装php</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E5%AE%89%E8%A3%85mariadb"><span class="toc-text">2.3 安装mariadb</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E5%AE%89%E8%A3%85Nextcloud"><span class="toc-text">2.4 安装Nextcloud</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%88%9D%E5%A7%8B%E5%8C%96Nextcloud"><span class="toc-text">3. 初始化Nextcloud</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">3.1 初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%85%B6%E4%BB%96%E9%85%8D%E7%BD%AE"><span class="toc-text">3.2 其他配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6"><span class="toc-text">3.2.1 文件上传大小限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-%E6%8C%82%E8%BD%BD%E5%A4%96%E8%AE%BE"><span class="toc-text">3.2.2 挂载外设</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-text">4. 性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E9%85%8D%E7%BD%AEredis"><span class="toc-text">4.1 配置redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E6%8F%90%E9%AB%98swap%E5%AE%B9%E9%87%8F"><span class="toc-text">4.2 提高swap容量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E6%8F%90%E9%AB%98sd%E5%8D%A1%E9%80%9F%E5%BA%A6"><span class="toc-text">4.3 提高sd卡速度</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=3257490363 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/FanBingyang "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:byfanx@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Copyright© 2019 - 2021 | <a target="_blank" href="http://byfan.xyz">byFan<a> .AllRightsReserved<p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
