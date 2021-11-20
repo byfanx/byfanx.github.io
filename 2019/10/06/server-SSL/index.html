@@ -1,0 +1,544 @@
+
+
+<!DOCTYPE html>
+<html lang="zh_CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>服务器部署SSL证书 - byFan 驿站</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="&nbsp;&nbsp;&nbsp;&nbsp;&nb...">
+  <meta name="author" content="byFan">
+  <link rel="icon" href="/images/icons/byfan.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/byfan.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/byfan.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/byfan.png" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/byfan.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/night-owl.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/theme/alipay.jpg',
+        wechat: '/images/theme/wechatpay.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: true
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: true
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">服务器部署SSL证书</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Copyright © 2021 | <a target="_blank" href="http://byfan.xyz">byFan</a> .AllRightsReserved</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/cover/server-SSL.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">服务器部署SSL证书</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 06, 2019</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2019/10/06/server-SSL/" class="leancloud-counter" data-flag-title="服务器部署SSL证书"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2019/10/06/server-SSL/" class="leancloud-like" data-flag-title="服务器部署SSL证书"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4981</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+          <p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有时候项目需要服务器的协议是<code>https</code>协议，比如微信小程序的后台接口；这个时候就不得不把服务器协议修改为<code>https</code>。<code>https</code>和<code>http</code>有什么区别呢？区别就在于<code>https</code>比<code>http</code>多一个SSL证书，下面就是怎么获取SSL证书和怎么部署到服务器上。(唉，这也是当年自己踩了两个小时坑踩出来的啊！)</p></p>
+        
+        <h1 id="服务器部署SSL证书"><a href="#服务器部署SSL证书" class="headerlink" title="服务器部署SSL证书"></a>服务器部署SSL证书</h1><h2 id="1-获取SSL证书"><a href="#1-获取SSL证书" class="headerlink" title="1. 获取SSL证书"></a>1. 获取SSL证书</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因为当初我是服务器是在阿里云上租的，是<strong>Window Server</strong>所以SSL证书也是在阿里云上面获取的，当然，不要想着我会用钱去买这玩意，主要是太贵了，不过阿里云也算良心，能在上面免费获取一个一年的SSL证书。在这免费获取<a target="_blank" rel="noopener" href="https://www.aliyun.com/product/cas?spm=5176.12825654.eofdhaal5.19.3dbd2c4ayD5k2Q&aly_as=nsmL9Pxx">阿里云SSL证书</a>，打开连接之后选择<strong>证书对比</strong>，里面有一个免费证书可以立即购买，阿里云免费证书是<em>Symantec</em>颁发的。购买之后在SSL证书控制台进行查看自己的证书，然后提交审核，有时很几分钟就审核完了，有时候要好几天，这就要看运气了。审核通过之后在SSL证书列表最后面点击下载，然后选择自己对应的服务器类型。下载下来的是一个压缩包。</p>
+<h2 id="2-部署到Tomcat"><a href="#2-部署到Tomcat" class="headerlink" title="2. 部署到Tomcat"></a>2. 部署到Tomcat</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下载的压缩包里面有两个文件，一个是<code>.pfx</code>文件，这个就是我们的SSL证书；一个是<code>.txt</code>文件，这个是证书所对应的密码。此时SSL证书就到手了，接下来就可以进行部署了。将我们下载的证书部署到Tomcat上，首先需要通过Java jdk将<strong>pfx</strong>证书转换为<strong>jks</strong>证书，先将我们的<strong>prx</strong>证书放到jdk的bin目录下。然后通过cmd打开命令行窗口，进入到jdk的bin目录下，假设我们的证书是<strong>a.pfx</strong>，输入以下命令：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">keytool -importkeystore -srckeystore a.pfx -destkeystore a.jks -srcstoretype PKCS12 -deststoretype JKS<br></code></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回车后输入JKS证书密码和PFX证书密码，强烈推荐将JKS密码与PFX证书密码相同，否则可能会导致Tomcat启动失败。<br>运行截图如下：<br><img   class="lazyload" data-original="jks.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<blockquote>
+<p><strong>注意</strong>: pfx文件必须放到你的jdk的 bin目录下面哦，并且它生成的jks文件也会在此目录下面的哦。</p>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有了jks文件之后，下面就是对Tomcat的操作了，首先将刚刚获得的<strong>jks</strong>文件放到Tomcat的<strong>conf</strong>目录下，然后打开Tomcat的<strong>server.xml</strong>文件，也是在conf目录下，需要修改以下三个地方。<br>1.把</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">Connector</span> <span class="hljs-attr">port</span>=<span class="hljs-string">&quot;8080&quot;</span> <span class="hljs-attr">protocol</span>=<span class="hljs-string">&quot;HTTP/1.1&quot;</span> <span class="hljs-attr">address</span>=<span class="hljs-string">&quot;0.0.0.0&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">connectionTimeout</span>=<span class="hljs-string">&quot;20000&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">redirectPort</span>=<span class="hljs-string">&quot;8443&quot;</span>  /&gt;</span><br></code></pre></td></tr></table></figure>
+<p>改成</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">Connector</span> <span class="hljs-attr">port</span>=<span class="hljs-string">&quot;80&quot;</span> <span class="hljs-attr">protocol</span>=<span class="hljs-string">&quot;HTTP/1.1&quot;</span> <span class="hljs-attr">address</span>=<span class="hljs-string">&quot;0.0.0.0&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">connectionTimeout</span>=<span class="hljs-string">&quot;20000&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">redirectPort</span>=<span class="hljs-string">&quot;443&quot;</span>  /&gt;</span><br></code></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其中第一个80端口是为HTTP(HyperText Transport Protocol)即超文本传输协议开放的，此为上网冲浪使用次数最多的协议，第二个443端口是SSL的专用端口，HTTPS监听的端口是443端口。<br>2.把</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">Connector</span> <span class="hljs-attr">port</span>=<span class="hljs-string">&quot;8009&quot;</span> <span class="hljs-attr">protocol</span>=<span class="hljs-string">&quot;AJP/1.3&quot;</span> <span class="hljs-attr">redirectPort</span>=<span class="hljs-string">&quot;8443&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+<p>改成</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">Connector</span> <span class="hljs-attr">port</span>=<span class="hljs-string">&quot;8009&quot;</span> <span class="hljs-attr">protocol</span>=<span class="hljs-string">&quot;AJP/1.3&quot;</span> <span class="hljs-attr">redirectPort</span>=<span class="hljs-string">&quot;443&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+<p>使用443端口的理由同上。<br>3.把</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--</span><br><span class="hljs-comment">&lt;Connector port=&quot;443&quot; protocol=&quot;org.apache.coyote.http11.Http11NioProtocol&quot;</span><br><span class="hljs-comment">               maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot;&gt;</span><br><span class="hljs-comment">        &lt;SSLHostConfig&gt;</span><br><span class="hljs-comment">            &lt;Certificate certificateKeystoreFile=&quot;conf/localhost-rsa.jks&quot;</span><br><span class="hljs-comment">                    type=&quot;RSA&quot; /&gt;</span><br><span class="hljs-comment">        &lt;/SSLHostConfig&gt;</span><br><span class="hljs-comment">    &lt;/Connector&gt;</span><br><span class="hljs-comment">--&gt;</span><br></code></pre></td></tr></table></figure>
+<p>改成</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">Connector</span> <span class="hljs-attr">port</span>=<span class="hljs-string">&quot;443&quot;</span> <span class="hljs-attr">protocol</span>=<span class="hljs-string">&quot;org.apache.coyote.http11.Http11NioProtocol&quot;</span></span><br><span class="hljs-tag">               <span class="hljs-attr">maxThreads</span>=<span class="hljs-string">&quot;150&quot;</span> <span class="hljs-attr">SSLEnabled</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">SSLHostConfig</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">Certificate</span> <span class="hljs-attr">certificateKeystoreFile</span>=<span class="hljs-string">&quot;conf/a.jks&quot;</span></span><br><span class="hljs-tag">                     <span class="hljs-attr">certificateKeystorePassword</span>=<span class="hljs-string">&quot;IBdiYc8W&quot;</span></span><br><span class="hljs-tag">                     <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;RSA&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">SSLHostConfig</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">Connector</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先去掉注释，然后certificateKeystoreFile属性是让你告诉服务器需要哪个SSL证书，后面就填复制过去的那个jks文件的名字（记得带上jks后缀），然后加上certificateKeystorePassword这个属性，后面的属性值填秘钥。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;到这，关于server.xml文件的配置就完成了。</p>
+<h2 id="3-部署到Nginx"><a href="#3-部署到Nginx" class="headerlink" title="3. 部署到Nginx"></a>3. 部署到Nginx</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在阿里云下载的压缩包里面有两个文件，一个是<code>.pem</code>文件，一个是<code>.key</code>文件。<a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/ssl/apply">腾讯云的免费证书</a>是<em>TrustAsia</em>颁发的，下载的压缩包里面有两个文件，一个是<code>.crt</code>文件，一个是<code>.key</code>文件。二者只是证书颁发商不同，实际都是可以满足需求的。这里选用的是阿里云申请的证书，进入到nginx的安装目录下，在<code>conf</code>目录下创建<code>cert</code>目录，然后将解压之后的文件放到该目录下。</p>
+<p><img   class="lazyload" data-original="nginxSSL.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;打开<code>nginx.conf</code>配置文件，添加以下配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs json">server &#123;<br><br>        listen 443 ssl;  #新版本启用SSL功能。<br>    	# ssl on;   旧版本设置为on开启ssl功能<br>        server_name example.com;  # 替换成你的域名<br>        ssl_certificate cert/2837922_example.com.pem;   #替换成你的pem/crt文件名称<br>        ssl_certificate_key cert/2837922_example.com.key;   #替换成你的key文件名称<br>        ssl_session_timeout 5m;<br>        ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;  #使用此加密套件。<br>        ssl_protocols TLSv1 TLSv1<span class="hljs-number">.1</span> TLSv1<span class="hljs-number">.2</span>;   #使用该协议进行配置。<br>        ssl_prefer_server_ciphers on;  <br><br><br>        # listen       <span class="hljs-number">80</span>;<br>        # server_name  localhost;<br><br>        #charset koi8-r;<br><br>        #access_log  logs/host.access.log  main;<br><br>        location / &#123;<br>            root   html;<br>            index  index.html index.htm;<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后重启nginx服务器即可通过https访问服务器。</p>
+<p>也可以使用全站加密，对于用户不知道网站可以进行 https 访问的情况下，让服务器自动把 http 的请求重定向到 https。在<code>nginx.conf</code>文件中添加以下配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs json">server &#123;<br>        listen       80;<br>        server_name  example.com;#替换成你的域名<br><br><br>        location / &#123;<br>            # 配置请求转发，将http的请求转发到https上面<br>            rewrite ^(.*)$ https:<span class="hljs-comment">//example.com/$1 permanent;#替换成你的域名</span><br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-附加：开启SSL443端口"><a href="#4-附加：开启SSL443端口" class="headerlink" title="4. 附加：开启SSL443端口"></a>4. 附加：开启SSL443端口</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有时候我们完成以上工作之后，启动服务器依然没有办法访问到，这可能是因为云服务器的SSL端口没有打开。<br>1.打开”控制面板”–&gt;”系统和安全”–&gt;”Windows防火墙”</p>
+<p>2.选择打开活关闭防火墙<br><img    class="lazyload" data-original="1.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    title="开启防火墙"><span class="image-caption">开启防火墙</span></p>
+<p>3.启用Windows防火墙<br><img    class="lazyload" data-original="2.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    title="启用防火墙"><span class="image-caption">启用防火墙</span></p>
+<p>4.选择”高级设置”<br><img    class="lazyload" data-original="3.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    title="高级设置"><span class="image-caption">高级设置</span></p>
+<p>5.依次点击”入站规则”–&gt;”新建规则”</p>
+<p>6.选择”端口”，然后”下一步”<br><img    class="lazyload" data-original="4.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    title="新建规则"><span class="image-caption">新建规则</span></p>
+<p>7.选择”特定本地端口”，然后再后面的框中填入443(当然选择所有本地端口也可以开启443端口，但是端口全部开放可能会造成一定隐患，不建议)，然后”下一步”<br><img   class="lazyload" data-original="5.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>8.选择”允许连接”，继续”下一步”<br><img   class="lazyload" data-original="6.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>9.默认三个全部勾选，下一步<br><img   class="lazyload" data-original="7.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>10.填写规则名称，建议填一个容易辨识的名字，描述可填可不填，点击完成<br><img   class="lazyload" data-original="8.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>11.此时端口启用成功<br><img   class="lazyload" data-original="9.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;至此，所有配置和部署就已经全部完成了，接下来就可以通过<strong>https</strong>访问网站了。<br><img    class="lazyload" data-original="10.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">https访问</span></p>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>byFan</li>
+    <li><strong>本文链接：</strong><a href="http://byfan.xyz/2019/10/06/server-SSL/index.html" title="http:&#x2F;&#x2F;byfan.xyz&#x2F;2019&#x2F;10&#x2F;06&#x2F;server-SSL&#x2F;index.html">http:&#x2F;&#x2F;byfan.xyz&#x2F;2019&#x2F;10&#x2F;06&#x2F;server-SSL&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/theme/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2019/10/22/springboot-create/"><i class="iconfont iconleft"></i>SpootBoot-项目搭建</a>
+    <a href="/2019/09/03/mybatis-knowPoints/">Mybatis小知识点<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2SSL%E8%AF%81%E4%B9%A6"><span class="toc-text">服务器部署SSL证书</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%8E%B7%E5%8F%96SSL%E8%AF%81%E4%B9%A6"><span class="toc-text">1. 获取SSL证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%83%A8%E7%BD%B2%E5%88%B0Tomcat"><span class="toc-text">2. 部署到Tomcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%83%A8%E7%BD%B2%E5%88%B0Nginx"><span class="toc-text">3. 部署到Nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%99%84%E5%8A%A0%EF%BC%9A%E5%BC%80%E5%90%AFSSL443%E7%AB%AF%E5%8F%A3"><span class="toc-text">4. 附加：开启SSL443端口</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=3257490363 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/byfanx/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:byfanx@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Copyright © 2021 | <a target="_blank" href="http://byfan.xyz">byFan</a> .AllRightsReserved</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
+  
+  
+    <div class="fab fab-daovoice">
+      <i class="iconfont iconcomment"></i>
+    </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'IrYj5VESYg1Yvn7gIpcCDtX3-gzGzoHsz',
+      appKey: '8Uzol1hPs1jvKhXzfs2pEGGq',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const Counter = AV.Object.extend("Counter");
+    const Like = AV.Object.extend("Like");
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-counter").each(async (e) => {
+        const url = $(".leancloud-counter").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-counter").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud-counter").length === 1 ? $(".leancloud-counter").attr('id').trim() : 'http://byfan.xyz';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    const showLike = (Like) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-like").each(async (e) => {
+        const url = $(".leancloud-like").eq(e).attr('id').trim();
+        const query = new AV.Query("Like");
+        query.equalTo("path", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-like").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addLike = (Like) => {
+      const url = $(".leancloud-like").length === 1 ? $(".leancloud-like").attr('id').trim() : 'http://byfan.xyz';
+      var query = new Like;
+      query.save({
+        path: url,
+        nickName: 'Anonymous'
+      });
+      $(".leancloud-like").addClass('islike');
+      $(".fab-like").children(".iconfont").removeClass("iconheart").addClass("iconheart-fill").css("color", "#eb3223");
+      ZHAOO.zui.message({ text: '爱你哦~', type: 'success' });
+      setTimeout(() => showLike(Like), 1000);
+    }
+
+    const handleLikeClick = () => {
+      const isLike = $(".leancloud-like").length === 1 && $(".leancloud-like").hasClass('islike') ? true : false;
+      if (isLike) {
+        ZHAOO.zui.message({ text: '小心心不可以收回呢~', type: 'warning' });
+      } else {
+        addLike(Like);
+      }
+    }
+
+    $(function () {
+      addCount(Counter);
+      showCount(Counter);
+      showLike(Like);
+      $(".fab-like").on("click", function () {
+        handleLikeClick();
+      });
+    });
+
+  });
+</script>
+
+
+
+  
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", "https://widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "aa2a9e05"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
