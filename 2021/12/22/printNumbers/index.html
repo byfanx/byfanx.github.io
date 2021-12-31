@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>数组-数组奇偶排序 - byFan 驿站</title>
+  <title>数组-构建并打印数组 - byFan 驿站</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
@@ -152,7 +152,7 @@
         <i class="iconfont iconsearch j-navbar-search"></i>
       
     </div>
-    <div class="center">数组-数组奇偶排序</div>
+    <div class="center">数组-构建并打印数组</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -194,61 +194,74 @@
     <section class="head">
   <img   class="lazyload" data-original="/images/cover/one_question_per_day.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">数组-数组奇偶排序</h1>
+    <h1 class="head-title">数组-构建并打印数组</h1>
     <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十二月 15, 2021</span>
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十二月 22, 2021</span>
       
         <span class="post-info-item">
-          <i class="iconfont iconeye"></i><span id="/2021/12/15/exchange/" class="leancloud-counter" data-flag-title="数组-数组奇偶排序"></span>
+          <i class="iconfont iconeye"></i><span id="/2021/12/22/printNumbers/" class="leancloud-counter" data-flag-title="数组-构建并打印数组"></span>
         </span>
         <span class="post-info-item">
-          <i class="iconfont iconheart"></i><span id="/2021/12/15/exchange/" class="leancloud-like" data-flag-title="数组-数组奇偶排序"></span>
+          <i class="iconfont iconheart"></i><span id="/2021/12/22/printNumbers/" class="leancloud-like" data-flag-title="数组-构建并打印数组"></span>
         </span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1311</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2477</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
         
-          <p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于数组奇偶排序的题目，且听我细细道来。</p></p>
+          <p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于构建并打印数组的题目，且听我细细道来。</p></p>
         
-        <h1 id="数组-奇偶排序"><a href="#数组-奇偶排序" class="headerlink" title="数组 - 奇偶排序"></a>数组 - 奇偶排序</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有奇数位于数组的前半部分，所有偶数位于数组的后半部分。</p>
+        <h1 id="数组-构建并打印数组"><a href="#数组-构建并打印数组" class="headerlink" title="数组 - 构建并打印数组"></a>数组 - 构建并打印数组</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。</p>
 <p><strong>示例：</strong></p>
 <blockquote>
-<p>输入：nums =[1,2,3,4]</p>
-<p>输出：[1,3,2,4]</p>
-<p>注：[3,1,2,4] 也是正确的答案之一。</p>
+<p>输入：n=1</p>
+<p>输出：[1,2,3,4,5,6,7,8,9]</p>
 </blockquote>
 <p><strong>提示：</strong></p>
 <blockquote>
-<p>1 &lt;= nums.length &lt;= 50000</p>
-<p>1 &lt;= nums[i] &lt;= 10000</p>
+<ol>
+<li>用返回一个整数列表来代替打印。</li>
+<li>n 为正整数。</li>
+</ol>
 </blockquote>
-<h2 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这道题只是对数组内元素的一个奇偶排序，首先可以想到的就是双指针，从前后来分别扫描元素。首先指定前指针 <code>left</code> 和后指针 <code>right</code>，然后前指针定位偶数，后指针定位奇数，定位到之后将两个值互换，直到数组遍历完成。</p>
+<h2 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h2><h3 id="2-1-思路一"><a href="#2-1-思路一" class="headerlink" title="2.1 思路一"></a>2.1 思路一</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先根据输入的数字求出要打印的范围，然后再从1开始打印到最大的数字。</p>
 <p><strong>复杂度：</strong></p>
 <ul>
-<li>时间复杂度：O(n)。</li>
-<li>空间复杂度：O(1)。</li>
+<li>时间复杂度：O(10^n)。</li>
+<li>空间复杂度：O(10^n)。</li>
 </ul>
-<h2 id="3-算法流程"><a href="#3-算法流程" class="headerlink" title="3. 算法流程"></a>3. 算法流程</h2><ol>
-<li>初始化前指针 left = 0，后指针 right = nums.length - 1。</li>
-<li>当 left &lt; right 时表示该数组还未遍历完成，则继续进行奇数和偶数的交换。</li>
-<li>当 nums[left] 为奇数时，则 left++，直到找到不为奇数的下标为止。</li>
-<li>当 nums[right] 为偶数时，则 right–，直到找到不为偶数的下标为止。</li>
-<li>交换 nums[left] 和 nums[right]，继续下一轮交换。</li>
-<li>数组遍历完成之后，返回 nums，即为交换后的结果</li>
+<h3 id="2-2-思路二"><a href="#2-2-思路二" class="headerlink" title="2.2 思路二"></a>2.2 思路二</h3><p>本题的题意是希望考察大数的计算，因为int数组有可能会有益出，所以用字符串可以保证一定不会溢出。但是呢，由于规定的返回值是int数组，所以其实从返回值上来看，是一定不会溢出的，比较矛盾。这里给出思路二只是学习一下如何用字符串处理大数即可，不用特别纠结溢出这件事上。和思路一一样，先求出数字范围，然后从1开始打印到最大的数字，只不过这里用的是字符串去处理。</p>
+<ul>
+<li>时间复杂度：O(10^n)。</li>
+<li>空间复杂度：O(10^n)。</li>
+</ul>
+<h2 id="3-算法流程"><a href="#3-算法流程" class="headerlink" title="3. 算法流程"></a>3. 算法流程</h2><h3 id="3-1-思路一流程"><a href="#3-1-思路一流程" class="headerlink" title="3.1 思路一流程"></a>3.1 思路一流程</h3><ol>
+<li>初始化sum=1。</li>
+<li>循环遍历乘10，让sum变为边界值。</li>
+<li>新建res数组，长度大小为sum-1。</li>
+<li>从1开始存入res，知道sum-1。</li>
 </ol>
-<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><p><strong>Java</strong>代码实现如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span>[] exchange(<span class="hljs-keyword">int</span>[] nums) &#123;<br>    <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">int</span> right = nums.length - <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (left &lt; right)&#123;<br>        <span class="hljs-comment">// 前指针一直寻找偶数</span><br>        <span class="hljs-keyword">while</span> (left&lt;right &amp;&amp; (nums[left]%<span class="hljs-number">2</span>!=<span class="hljs-number">0</span>))&#123;<br>            left++;<br>        &#125;<br>        <span class="hljs-comment">// 后指针一直寻找奇数</span><br>        <span class="hljs-keyword">while</span> (left&lt;right &amp;&amp; (nums[right]%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>))&#123;<br>            right--;<br>        &#125;<br>        <span class="hljs-keyword">int</span> tmp = nums[left];<br>        nums[left] = nums[right];<br>        nums[right] = tmp;<br>    &#125;<br>    <span class="hljs-keyword">return</span> nums;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="3-2-思路二流程"><a href="#3-2-思路二流程" class="headerlink" title="3.2 思路二流程"></a>3.2 思路二流程</h3><ol>
+<li>初始化返回数组res，长度为最大值减一。</li>
+<li>初始化字符串sb，使其初始值为n个”0”。</li>
+<li>递增sb，使用字符去递增，递增过程中需要判断是否进位，存在进位则进位出加一，直到达到最大值为止，结束循环。</li>
+<li>每次获取到一个值之后，遍历前方多余的”0”，将多余的”0”去掉，然后转换为int存到结果数组中。</li>
+</ol>
+<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><h3 id="4-1-思路一代码"><a href="#4-1-思路一代码" class="headerlink" title="4.1 思路一代码"></a>4.1 思路一代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span>[] printNumbers(<span class="hljs-keyword">int</span> n)&#123;<br>    <span class="hljs-keyword">int</span> sum = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        sum *= <span class="hljs-number">10</span>;<br>    &#125;<br>    <span class="hljs-keyword">int</span>[] res = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[sum - <span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;sum-<span class="hljs-number">1</span>; i++)&#123;<br>        res[i] = i + <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2-思路二代码"><a href="#4-2-思路二代码" class="headerlink" title="4.2 思路二代码"></a>4.2 思路二代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span>[] printNumbers_2(<span class="hljs-keyword">int</span> n)&#123;<br>    <span class="hljs-keyword">int</span>[] res = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[(<span class="hljs-keyword">int</span>)Math.pow(<span class="hljs-number">10</span>,n) - <span class="hljs-number">1</span>];<br>    StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();<br>    <span class="hljs-comment">// 初始化字符串为n个&quot;0&quot;</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;n; i++)&#123;<br>        sb.append(<span class="hljs-string">&#x27;0&#x27;</span>);<br>    &#125;<br>    <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (!increment(sb))&#123;<br>        <span class="hljs-keyword">int</span> index = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (index&lt;sb.length() &amp;&amp; sb.charAt(index)==<span class="hljs-string">&#x27;0&#x27;</span>)&#123;<br>            index++;<br>        &#125;<br>        <span class="hljs-comment">// 从当前位置开始截取到最后，作为目标数存入</span><br>        res[count] = Integer.parseInt(sb.toString().substring(index));<br>        count++;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br><br><span class="hljs-comment">// 数字字符串加一的操作</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">increment</span><span class="hljs-params">(StringBuilder sb)</span></span>&#123;<br>    <span class="hljs-keyword">boolean</span> isCarry = <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=sb.length()-<span class="hljs-number">1</span>; i&gt;=<span class="hljs-number">0</span>; i--)&#123;<br>        <span class="hljs-comment">// 数字字符+1</span><br>        <span class="hljs-keyword">char</span> s = (<span class="hljs-keyword">char</span>) (sb.charAt(i)+<span class="hljs-number">1</span>);<br>        <span class="hljs-comment">// 判断是否进位</span><br>        <span class="hljs-keyword">if</span> (s&gt;<span class="hljs-string">&#x27;9&#x27;</span>)&#123;<br>            <span class="hljs-comment">// 进位则当前位置到最后替换成0</span><br>            sb.replace(i,i+<span class="hljs-number">1</span>,<span class="hljs-string">&quot;0&quot;</span>);<br>            <span class="hljs-comment">// 当前是否是第0个，是就不能进位</span><br>            <span class="hljs-keyword">if</span> (i == <span class="hljs-number">0</span>)&#123;<br>                isCarry = <span class="hljs-keyword">true</span>;<br>            &#125;<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 如果不进位，则当前位置到最后替换成加一后的字符</span><br>            sb.replace(i,i+<span class="hljs-number">1</span>,String.valueOf(s));<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br><br>    &#125;<br>    <span class="hljs-keyword">return</span> isCarry;<br>&#125;<br></code></pre></td></tr></table></figure>
       </section>
       <section class="extra">
         
           <ul class="copyright">
   
     <li><strong>本文作者：</strong>byFan</li>
-    <li><strong>本文链接：</strong><a href="http://byfan.xyz/2021/12/15/exchange/index.html" title="http:&#x2F;&#x2F;byfan.xyz&#x2F;2021&#x2F;12&#x2F;15&#x2F;exchange&#x2F;index.html">http:&#x2F;&#x2F;byfan.xyz&#x2F;2021&#x2F;12&#x2F;15&#x2F;exchange&#x2F;index.html</a></li>
+    <li><strong>本文链接：</strong><a href="http://byfan.xyz/2021/12/22/printNumbers/index.html" title="http:&#x2F;&#x2F;byfan.xyz&#x2F;2021&#x2F;12&#x2F;22&#x2F;printNumbers&#x2F;index.html">http:&#x2F;&#x2F;byfan.xyz&#x2F;2021&#x2F;12&#x2F;22&#x2F;printNumbers&#x2F;index.html</a></li>
     <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
   
 </ul>
@@ -269,8 +282,8 @@
 
         
   <nav class="nav">
-    <a href="/2021/12/16/findContinuousSequence/"><i class="iconfont iconleft"></i>数组-寻找连续序列</a>
-    <a href="/2021/12/14/constructArr/">数组-构建数组<i class="iconfont iconright"></i></a>
+    <a href="/2021/12/23/replaceSpace/"><i class="iconfont iconleft"></i>字符串-替换字符串中空格</a>
+    <a href="/2021/12/22/JavaGetHostInfo/">Java获取主机信息<i class="iconfont iconright"></i></a>
   </nav>
 
       </section>
@@ -283,7 +296,7 @@
           
   <aside class="toc-wrap">
     <h3 class="toc-title">文章目录：</h3>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E7%BB%84-%E5%A5%87%E5%81%B6%E6%8E%92%E5%BA%8F"><span class="toc-text">数组 - 奇偶排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-text">1. 题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text">2. 解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="toc-text">3. 算法流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">4. 代码实现</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E7%BB%84-%E6%9E%84%E5%BB%BA%E5%B9%B6%E6%89%93%E5%8D%B0%E6%95%B0%E7%BB%84"><span class="toc-text">数组 - 构建并打印数组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-text">1. 题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text">2. 解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%80%9D%E8%B7%AF%E4%B8%80"><span class="toc-text">2.1 思路一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%80%9D%E8%B7%AF%E4%BA%8C"><span class="toc-text">2.2 思路二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="toc-text">3. 算法流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%80%9D%E8%B7%AF%E4%B8%80%E6%B5%81%E7%A8%8B"><span class="toc-text">3.1 思路一流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%80%9D%E8%B7%AF%E4%BA%8C%E6%B5%81%E7%A8%8B"><span class="toc-text">3.2 思路二流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">4. 代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%80%9D%E8%B7%AF%E4%B8%80%E4%BB%A3%E7%A0%81"><span class="toc-text">4.1 思路一代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%80%9D%E8%B7%AF%E4%BA%8C%E4%BB%A3%E7%A0%81"><span class="toc-text">4.2 思路二代码</span></a></li></ol></li></ol></li></ol>
   </aside>
 
         

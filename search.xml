@@ -735,6 +735,158 @@
       </tags>
   </entry>
   <entry>
+    <title>字符串-左旋转字符串</title>
+    <url>/2021/12/24/reverseLeftString/</url>
+    <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于左旋转字符串的题目，且听我细细道来。</p>
+<span id="more"></span>
+
+<h1 id="字符串-左旋转字符串"><a href="#字符串-左旋转字符串" class="headerlink" title="字符串 - 左旋转字符串"></a>字符串 - 左旋转字符串</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。</p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<p>示例1:</p>
+<p>输入：s = “abcdefg”, k = 2</p>
+<p>输出：”cdefgab”</p>
+<p>示例2:</p>
+<p>输入：s = “lrloseumgh”, k = 6</p>
+<p>输出：”umghlrlose”</p>
+</blockquote>
+<p><strong>提示：</strong></p>
+<blockquote>
+<p>1 &lt;= k &lt; s.length &lt;= 10000</p>
+</blockquote>
+<h2 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于这种字符串旋转，最主要的还是遍历字符串再次拼接，本题是旋转指定长度的字符串，可以在原字符串从需要旋转的位置n开始向后遍历，并且保存到结果字符串中，然后再从原字符串的初始位置遍历到位置n，继续添加到结果字符串中。</p>
+<p><strong>复杂度：</strong></p>
+<ul>
+<li>时间复杂度：O(n)。</li>
+<li>空间复杂度：O(n)。</li>
+</ul>
+<h2 id="3-算法流程"><a href="#3-算法流程" class="headerlink" title="3. 算法流程"></a>3. 算法流程</h2><ol>
+<li>初始化结果字符串sb，获取字符串长度len。</li>
+<li>从下标n开始遍历，遍历到字符串s结尾，将区间<code>[n,len]</code>的字符添加到sb中。</li>
+<li>从下标0开始遍历，遍历到下标n的位置，将区间<code>[0,n]</code>的字符添加到sb中。</li>
+</ol>
+<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">reverseLeftString</span><span class="hljs-params">(String str,<span class="hljs-keyword">int</span> k)</span></span>&#123;<br>    StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=k;i&lt;str.length();i++)&#123;<br>        <span class="hljs-keyword">char</span> c = str.charAt(i);<br>        sb.append(c);<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;k; i++)&#123;<br>        <span class="hljs-keyword">char</span> c = str.charAt(i);<br>        sb.append(c);<br>    &#125;<br>    <span class="hljs-keyword">return</span> sb.toString();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>每日一题</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>字符串-替换字符串中空格</title>
+    <url>/2021/12/23/replaceSpace/</url>
+    <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于替换字符串中空格的题目，且听我细细道来。</p>
+<span id="more"></span>
+
+<h1 id="字符串-替换字符串中空格"><a href="#字符串-替换字符串中空格" class="headerlink" title="字符串 - 替换字符串中空格"></a>字符串 - 替换字符串中空格</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请实现一个函数，把字符串 s 中的每个空格替换成”%20”。</p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<p>输入：”We are happy.”</p>
+<p>输出：”We%20are%20happy.”</p>
+</blockquote>
+<p><strong>提示：</strong></p>
+<blockquote>
+<p>0 &lt;= s 的长度 &lt;= 10000</p>
+</blockquote>
+<h2 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;看到这个题目是不是觉得，这么简单也算是题？直接调用一首库函数，简单粗暴。当然了，题目肯定是不希望我们这么做的，所以我们还是自己动手换个方法实现一下比较好。最简单的思路就是增加的新的字符串，遍历原来的字符串，如果是非空格则将原来的字符直接拼接到新字符串后面，如果是空格则将<code>%20</code>拼接到新字符串后面。</p>
+<p><strong>复杂度：</strong></p>
+<ul>
+<li>时间复杂度：O(n)。</li>
+<li>空间复杂度：O(n)。</li>
+</ul>
+<h2 id="3-算法流程"><a href="#3-算法流程" class="headerlink" title="3. 算法流程"></a>3. 算法流程</h2><ol>
+<li>创建新的字符串。</li>
+<li>遍历原字符串，判断当前字符是否是空格，是空格则将<code>%20</code>拼接到新字符串后面。</li>
+<li>不是空格则直接拼接到新字符串后面。</li>
+<li>直到遍历完整个字符串，返回新字符串。</li>
+</ol>
+<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">replaceSpace</span><span class="hljs-params">(String str)</span></span>&#123;<br>    StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;str.length();i++)&#123;<br>        <span class="hljs-keyword">char</span> c = str.charAt(i);<br>        <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27; &#x27;</span>)&#123;<br>            sb.append(<span class="hljs-string">&quot;%20&quot;</span>);<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            sb.append(c);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> sb.toString();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>每日一题</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>字符串-翻转单词顺序</title>
+    <url>/2021/12/31/reverseWords/</url>
+    <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于翻转单词顺序的题目，且听我细细道来。</p>
+<span id="more"></span>
+
+<h1 id="字符串-翻转单词顺序"><a href="#字符串-翻转单词顺序" class="headerlink" title="字符串 - 翻转单词顺序"></a>字符串 - 翻转单词顺序</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。例如输入字符串 “I am a student. “，则输出 “student. a am I”。</p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<p>示例1:</p>
+<p>输入：”the sky is blue”</p>
+<p>输出：”blue is sky the”</p>
+<p>示例2:</p>
+<p>输入：”  hello world!  “</p>
+<p>输出：”world! hello”</p>
+<p>解释：输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。</p>
+<p>示例3:</p>
+<p>输入：”a  good    example”</p>
+<p>输出：”example good a”</p>
+<p>解释: 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。</p>
+</blockquote>
+<p><strong>提示：</strong></p>
+<blockquote>
+<ol>
+<li>无空格字符构成一个单词。</li>
+<li>输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。</li>
+<li>如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。</li>
+</ol>
+</blockquote>
+<h2 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h2><h3 id="2-1-思路一"><a href="#2-1-思路一" class="headerlink" title="2.1 思路一"></a>2.1 思路一</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;还是老套路，遍历字符串。题目说无空格字符构成一个单词，所以在遍历字符串的时候只需要遇到空格则代表一个单词的结束，字符串的前后也会有空格，为了减少无用遍历，在真正遍历之前先去除两端空格。每遍历一个单词就把它加入到返回结果的前面。在返回前去除返回结果两端空格。</p>
+<h3 id="2-2-思路二"><a href="#2-2-思路二" class="headerlink" title="2.2 思路二"></a>2.2 思路二</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本质还是遍历字符串，只不过这个使用的是双指针去进行遍历。还是先将开头和结尾处多余的空格去掉，从后向前遍历，通过前后指针锁定单词，跳过中间空格，最终将整个句子中的单词反转。</p>
+<p><strong>复杂度：</strong></p>
+<ul>
+<li>时间复杂度：O(n)。</li>
+<li>空间复杂度：O(n)。</li>
+</ul>
+<h2 id="3-算法流程"><a href="#3-算法流程" class="headerlink" title="3. 算法流程"></a>3. 算法流程</h2><h3 id="3-1-思路一流程"><a href="#3-1-思路一流程" class="headerlink" title="3.1 思路一流程"></a>3.1 思路一流程</h3><ol>
+<li>初始化返回结果<code>res=&quot;&quot;</code>和临时单词变量<code>word=&quot;&quot;</code>，先去除两端空格，然后依次遍历字符串中的字符。</li>
+<li>如果该字符不是空格，就添加到word里面。</li>
+<li>如果该字符是空格，证明至少扫描完一个单词，此时判断档次是否为空，因为存在多个空格的情况。如果不为空则加在返回结果前，中间用空格连接，之后继续遍历。</li>
+<li>遍历完字符之后，再次判断单词word是否为空，不为空则加在返回结果前，中间用空格连接。</li>
+<li>最后将拼接好的字符串res去除两端空格返回即可。</li>
+</ol>
+<h3 id="3-2-思路二流程"><a href="#3-2-思路二流程" class="headerlink" title="3.2 思路二流程"></a>3.2 思路二流程</h3><ol>
+<li>首先将原始字符串去掉开头和结尾的空格得到<code>tmp</code>字符串，便于之后直接从单词处理开始。</li>
+<li>初始化单词起始位置<code>start=tmp.length-1</code>和单词结尾指针<code>end=tmp.length-1</code>，位置在字符串结尾处。</li>
+<li>初始化结果字符串res为空字符串。</li>
+<li>当<code>start&gt;=0</code>时说明字符串未遍历结束，作为循环条件。</li>
+<li>在<code>tmp[start]</code>位置，如果不为空格，说明还没有获取到完成的单词，<code>start--</code>。</li>
+<li>在获取到完成单词之后，截取<code>[start+1,end+1]</code>这一段字符串加入结果字符串中，因为是从后向前扫描单词的，所以可以之际加到res后面，通过空格连接。</li>
+<li>在<code>tmp[start]</code>位置，如果为空格，说明还没有到下一个单词结尾，则<code>start--</code>。</li>
+<li>到单词结尾位置之后，<code>end=start</code>，往复进行上述流程，将单词全部反转。</li>
+<li>最后将结果字符串res去掉两端多余空格返回即可。</li>
+</ol>
+<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><h3 id="4-1-思路一代码"><a href="#4-1-思路一代码" class="headerlink" title="4.1 思路一代码"></a>4.1 思路一代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">reverseWords</span><span class="hljs-params">(String str)</span></span>&#123;<br>    str = str.trim();<br>    String res = <span class="hljs-string">&quot;&quot;</span>;<br>    String word = <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;str.length();i++)&#123;<br>        <span class="hljs-keyword">char</span> c = str.charAt(i);<br>        <span class="hljs-keyword">if</span> (c!=<span class="hljs-string">&#x27; &#x27;</span>)&#123;<br>            word += c;<br>        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!word.equals(<span class="hljs-string">&quot;&quot;</span>))&#123;<br>            res = word + <span class="hljs-string">&quot; &quot;</span> + res;<br>            word = <span class="hljs-string">&quot;&quot;</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (!word.equals(<span class="hljs-string">&quot;&quot;</span>))&#123;<br>        res = word + <span class="hljs-string">&quot; &quot;</span> + res;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res.trim();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2-思路二代码"><a href="#4-2-思路二代码" class="headerlink" title="4.2 思路二代码"></a>4.2 思路二代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">reverseWords</span><span class="hljs-params">(String str)</span></span>&#123;<br>    String tmp = str.trim();<br>    <span class="hljs-keyword">int</span> start = tmp.length()-<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">int</span> end = tmp.length()-<span class="hljs-number">1</span>;<br>    String res = <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-keyword">while</span> (start &gt;= <span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-keyword">while</span> (start&gt;=<span class="hljs-number">0</span> &amp;&amp; tmp.charAt(start)!=<span class="hljs-string">&#x27; &#x27;</span>)&#123;<br>            start--;<br>        &#125;<br>        res += tmp.substring(start+<span class="hljs-number">1</span>,end+<span class="hljs-number">1</span>) + <span class="hljs-string">&quot; &quot;</span>;<br>        <span class="hljs-keyword">while</span> (start&gt;=<span class="hljs-number">0</span> &amp;&amp; tmp.charAt(start)==<span class="hljs-string">&#x27; &#x27;</span>)&#123;<br>            start--;<br>        &#125;<br>        end = start;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res.trim();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>每日一题</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>微信小程序-数据操作</title>
     <url>/2020/02/06/wechatApp-dataOpe/</url>
     <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;微信小程序的前端的开发和我们开发网页一样，也是想通过自定的<code>js</code>方法请后台请求到数据，然后渲染到页面上进行显示，不过微信小程序对于数据的操作和网页前端不一样，像数据的赋值、页面之间数据的传递等具体的数据操作是怎么样实现的呢？这篇文章就来简单的介绍一下。</p>
@@ -877,7 +1029,7 @@
   </entry>
   <entry>
     <title>数组-数组奇偶排序</title>
-    <url>/2021/12/15/Exchange/</url>
+    <url>/2021/12/15/exchange/</url>
     <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于数组奇偶排序的题目，且听我细细道来。</p>
 <span id="more"></span>
 
@@ -909,6 +1061,73 @@
 </ol>
 <h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><p><strong>Java</strong>代码实现如下：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span>[] exchange(<span class="hljs-keyword">int</span>[] nums) &#123;<br>    <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">int</span> right = nums.length - <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (left &lt; right)&#123;<br>        <span class="hljs-comment">// 前指针一直寻找偶数</span><br>        <span class="hljs-keyword">while</span> (left&lt;right &amp;&amp; (nums[left]%<span class="hljs-number">2</span>!=<span class="hljs-number">0</span>))&#123;<br>            left++;<br>        &#125;<br>        <span class="hljs-comment">// 后指针一直寻找奇数</span><br>        <span class="hljs-keyword">while</span> (left&lt;right &amp;&amp; (nums[right]%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>))&#123;<br>            right--;<br>        &#125;<br>        <span class="hljs-keyword">int</span> tmp = nums[left];<br>        nums[left] = nums[right];<br>        nums[right] = tmp;<br>    &#125;<br>    <span class="hljs-keyword">return</span> nums;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>每日一题</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数组-寻找数组中缺少的数字</title>
+    <url>/2021/12/21/missingNumber/</url>
+    <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于寻找数组中缺少的数字的题目，且听我细细道来。</p>
+<span id="more"></span>
+
+<h1 id="数组-寻找数组中缺少的数字"><a href="#数组-寻找数组中缺少的数字" class="headerlink" title="数组 - 寻找数组中缺少的数字"></a>数组 - 寻找数组中缺少的数字</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个长度为 n-1 的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围 0～n-1 之内。在范围 0～n-1 内的 n 个数字中有且只有一个数字不在该数组中，请找出这个数字。</p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<p>示例1：</p>
+<p>输入：[0,1,3]</p>
+<p>输出：2</p>
+<p>示例2：</p>
+<p>输入：[0,1,2,3,4,5,6,7,9]</p>
+<p>输出：8</p>
+</blockquote>
+<p><strong>提示：</strong></p>
+<blockquote>
+<p>1 &lt;= 数组长度 &lt;= 10000</p>
+</blockquote>
+<h2 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h2><h3 id="2-1-思路一"><a href="#2-1-思路一" class="headerlink" title="2.1 思路一"></a>2.1 思路一</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本题给的数组数字范围都是在<code>0~n-1</code>之间的，那么很容易想到的就是比较当前数字和当前在数组内的角标是否相同，因为如果不缺数字的话数组的内容是和角标一一对应的。所以在遍历数组时，如果当前数字和角标不同，那么则证明当前角标对应的数字缺失，返回即可。</p>
+<h3 id="2-2-思路二"><a href="#2-2-思路二" class="headerlink" title="2.2 思路二"></a>2.2 思路二</h3><p>本题数组内的数数字如果不缺少的话，是一个连续的数组，那么可以通过前后两个数之差来判断是否缺少。顺序情况下差值应该是1，所以当差值大于1，则表示缺少数字，缺少的是前一个数加一。</p>
+<h3 id="2-3-思路三"><a href="#2-3-思路三" class="headerlink" title="2.3 思路三"></a>2.3 思路三</h3><p>本题给的数组既然是一个顺序递增的，同样也是查找数字，那么就可以用二分法来处理。因为数组从0增序存储，所以如果不确实则数组数字与数组索引相对应。缺失的部分等于“右子数组的首位元素”。</p>
+<ul>
+<li>左子数组：<code>nums[i] == i</code>，数字与数组索引相等，则前半部分没有缺失，在右半部分查找。</li>
+<li>右子数字：<code>nums[i] != i</code>，数字与数组索引不相等，则缺失数字在左半部分。</li>
+</ul>
+<p><strong>复杂度：</strong></p>
+<ul>
+<li>时间复杂度：O(logn)。</li>
+<li>空间复杂度：O(1)。</li>
+</ul>
+<h2 id="3-算法流程"><a href="#3-算法流程" class="headerlink" title="3. 算法流程"></a>3. 算法流程</h2><h3 id="3-1-思路一流程"><a href="#3-1-思路一流程" class="headerlink" title="3.1 思路一流程"></a>3.1 思路一流程</h3><ol>
+<li>遍历数组，比较当前数字和当前索引。</li>
+<li>如果当前数字和索引不相等，则返回当前索引。</li>
+</ol>
+<h3 id="3-2-思路二流程"><a href="#3-2-思路二流程" class="headerlink" title="3.2 思路二流程"></a>3.2 思路二流程</h3><ol>
+<li>如果第一个数不等于0，则代表缺少0，返回0。</li>
+<li>否则初始化当前数字<code>pre=nums[0]</code>。</li>
+<li>从第二位开始遍历数组，遍历的当前数与pre差值大于1，则代表缺失数为pre+1。</li>
+<li>如果当前数与pre差值不大于1，pre等于当前数，继续遍历。</li>
+</ol>
+<h3 id="3-3-思路三流程"><a href="#3-3-思路三流程" class="headerlink" title="3.3 思路三流程"></a>3.3 思路三流程</h3><ol>
+<li>首先初始化二分查找的左边界<code>left = 0</code>和右边界<code>right = nums.length-1</code>。</li>
+<li>当左边界不大于右边界时进行查找。</li>
+<li>计算中间位置<code>mid = (left + right) / 2</code>。</li>
+<li>如果 <code>nums[mid] == mid</code> ，则缺失的元素，即右子数组的首位元素在 <code>[mid + 1, right]</code> 中间，令<code> left = mid + 1</code>。</li>
+<li>如果 <code>nums[mid] != mid</code> ，则缺失的元素，即右子数组的首位元素在<code> [left, mid - 1]</code> 中间，令 <code>right = mid - 1</code>。</li>
+</ol>
+<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><h3 id="4-1-思路一代码"><a href="#4-1-思路一代码" class="headerlink" title="4.1 思路一代码"></a>4.1 思路一代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">missingNumber</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span></span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;nums.length;i++)&#123;<br>        <span class="hljs-keyword">if</span> (nums[i] != i)&#123;<br>            <span class="hljs-keyword">return</span> i;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> nums.length;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2-思路二代码"><a href="#4-2-思路二代码" class="headerlink" title="4.2 思路二代码"></a>4.2 思路二代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">missingNumber</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span></span>&#123;<br>    <span class="hljs-keyword">if</span> (nums[<span class="hljs-number">0</span>] != <span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-keyword">int</span> pre = nums[<span class="hljs-number">0</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;nums.length;i++)&#123;<br>        <span class="hljs-keyword">if</span> (nums[i] - pre &gt; <span class="hljs-number">1</span>)&#123;<br>            <span class="hljs-keyword">return</span> pre+<span class="hljs-number">1</span>;<br>        &#125;<br>        pre = nums[i];<br>    &#125;<br>    <span class="hljs-keyword">return</span> nums.length;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-3-思路三代码"><a href="#4-3-思路三代码" class="headerlink" title="4.3 思路三代码"></a>4.3 思路三代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">missingNumber</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> left=<span class="hljs-number">0</span>,right=nums.length-<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (left &lt; right)&#123;<br>        <span class="hljs-keyword">int</span> mid = (left + right) / <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">if</span> (nums[mid] == mid)&#123;<br>            left = mid + <span class="hljs-number">1</span>;<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            right = mid - <span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> left;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -1055,8 +1274,112 @@
       </tags>
   </entry>
   <entry>
+    <title>数组-旋转数组中查找最小值</title>
+    <url>/2021/12/20/minRotateArray/</url>
+    <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于旋转数组中查找最小值的题目，且听我细细道来。</p>
+<span id="more"></span>
+
+<h1 id="数组-旋转数组中查找最小值"><a href="#数组-旋转数组中查找最小值" class="headerlink" title="数组 - 旋转数组中查找最小值"></a>数组 - 旋转数组中查找最小值</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一个旋转，该数组的最小值为1。</p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<p>示例1：</p>
+<p>输入：[3,4,5,1,2]</p>
+<p>输出：1</p>
+<p>示例2：</p>
+<p>输入：[2,2,2,0,1]</p>
+<p>输出：0</p>
+</blockquote>
+<h2 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先，数组是一个有序数组的旋转数组，从这个条件可以看出，输入的数组是有大小规律的，只是分成了两部分相同规律的。既然是有序数组，那么就可以使用二分查找利用存在的规律来查找结果。</p>
+<p><strong>复杂度：</strong></p>
+<ul>
+<li>时间复杂度：O(logn)。</li>
+<li>空间复杂度：O(1)。</li>
+</ul>
+<h2 id="3-算法流程"><a href="#3-算法流程" class="headerlink" title="3. 算法流程"></a>3. 算法流程</h2><ol>
+<li>初始化下标 <code>left=0</code> 和 <code>right=nums.length-1</code>。当<code>left&lt;right</code>时，证明查找还没有结束。</li>
+<li>每次计算中见下标 <code>mid = (right + left) / 2</code>，这里的除法时取整运算，不能出现小数。</li>
+<li>当<code>nums[mid] &lt; nums[right]</code>时，说明最小值在<code>[left, mid]</code>区间中，则令<code>right = mid</code>，用于下一轮计算。</li>
+<li>当 <code>nums[mid] &gt; nums[right]</code> 时，说明最小值在 <code>[mid, right] </code>区间中，则令 <code>left = mid + 1</code>，用于下一轮计算。</li>
+<li>当 <code>nums[mid] == nums[right]</code> 时，无法判断最小值在哪个区间之中，此时让 <code>right--</code>，缩小区间范围，在下一轮进行判断。</li>
+<li>最后返回<code>nums[left]</code>的值。</li>
+</ol>
+<blockquote>
+<p>问：为什么是 <code>right--</code>缩小范围而不是<code>left++</code>？</p>
+<p>答：因为数组是升序的额，所以最小值一定靠近左侧，而不是右侧。</p>
+<p>比如，当存在 [1,2,2,2,2] 这种情况时，left = 0，right = 4，mid = 2，数值满足 numbers[mid] == numbers[right] 这个条件，如果 left++，则找不到最小值</p>
+</blockquote>
+<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">minRotateArray</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> left=<span class="hljs-number">0</span>,right= nums.length-<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (left &lt; right)&#123;<br>        <span class="hljs-keyword">int</span> mid = (left + right) / <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">if</span> (nums[mid] &lt; nums[right])&#123;<br>            right = mid;<br>        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[mid] &gt; nums[right])&#123;<br>            left = mid;<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            right--;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> nums[left];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>每日一题</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数组-构建并打印数组</title>
+    <url>/2021/12/22/printNumbers/</url>
+    <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于构建并打印数组的题目，且听我细细道来。</p>
+<span id="more"></span>
+
+<h1 id="数组-构建并打印数组"><a href="#数组-构建并打印数组" class="headerlink" title="数组 - 构建并打印数组"></a>数组 - 构建并打印数组</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。</p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<p>输入：n=1</p>
+<p>输出：[1,2,3,4,5,6,7,8,9]</p>
+</blockquote>
+<p><strong>提示：</strong></p>
+<blockquote>
+<ol>
+<li>用返回一个整数列表来代替打印。</li>
+<li>n 为正整数。</li>
+</ol>
+</blockquote>
+<h2 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h2><h3 id="2-1-思路一"><a href="#2-1-思路一" class="headerlink" title="2.1 思路一"></a>2.1 思路一</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先根据输入的数字求出要打印的范围，然后再从1开始打印到最大的数字。</p>
+<p><strong>复杂度：</strong></p>
+<ul>
+<li>时间复杂度：O(10^n)。</li>
+<li>空间复杂度：O(10^n)。</li>
+</ul>
+<h3 id="2-2-思路二"><a href="#2-2-思路二" class="headerlink" title="2.2 思路二"></a>2.2 思路二</h3><p>本题的题意是希望考察大数的计算，因为int数组有可能会有益出，所以用字符串可以保证一定不会溢出。但是呢，由于规定的返回值是int数组，所以其实从返回值上来看，是一定不会溢出的，比较矛盾。这里给出思路二只是学习一下如何用字符串处理大数即可，不用特别纠结溢出这件事上。和思路一一样，先求出数字范围，然后从1开始打印到最大的数字，只不过这里用的是字符串去处理。</p>
+<ul>
+<li>时间复杂度：O(10^n)。</li>
+<li>空间复杂度：O(10^n)。</li>
+</ul>
+<h2 id="3-算法流程"><a href="#3-算法流程" class="headerlink" title="3. 算法流程"></a>3. 算法流程</h2><h3 id="3-1-思路一流程"><a href="#3-1-思路一流程" class="headerlink" title="3.1 思路一流程"></a>3.1 思路一流程</h3><ol>
+<li>初始化sum=1。</li>
+<li>循环遍历乘10，让sum变为边界值。</li>
+<li>新建res数组，长度大小为sum-1。</li>
+<li>从1开始存入res，知道sum-1。</li>
+</ol>
+<h3 id="3-2-思路二流程"><a href="#3-2-思路二流程" class="headerlink" title="3.2 思路二流程"></a>3.2 思路二流程</h3><ol>
+<li>初始化返回数组res，长度为最大值减一。</li>
+<li>初始化字符串sb，使其初始值为n个”0”。</li>
+<li>递增sb，使用字符去递增，递增过程中需要判断是否进位，存在进位则进位出加一，直到达到最大值为止，结束循环。</li>
+<li>每次获取到一个值之后，遍历前方多余的”0”，将多余的”0”去掉，然后转换为int存到结果数组中。</li>
+</ol>
+<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><h3 id="4-1-思路一代码"><a href="#4-1-思路一代码" class="headerlink" title="4.1 思路一代码"></a>4.1 思路一代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span>[] printNumbers(<span class="hljs-keyword">int</span> n)&#123;<br>    <span class="hljs-keyword">int</span> sum = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        sum *= <span class="hljs-number">10</span>;<br>    &#125;<br>    <span class="hljs-keyword">int</span>[] res = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[sum - <span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;sum-<span class="hljs-number">1</span>; i++)&#123;<br>        res[i] = i + <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2-思路二代码"><a href="#4-2-思路二代码" class="headerlink" title="4.2 思路二代码"></a>4.2 思路二代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span>[] printNumbers_2(<span class="hljs-keyword">int</span> n)&#123;<br>    <span class="hljs-keyword">int</span>[] res = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[(<span class="hljs-keyword">int</span>)Math.pow(<span class="hljs-number">10</span>,n) - <span class="hljs-number">1</span>];<br>    StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();<br>    <span class="hljs-comment">// 初始化字符串为n个&quot;0&quot;</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;n; i++)&#123;<br>        sb.append(<span class="hljs-string">&#x27;0&#x27;</span>);<br>    &#125;<br>    <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (!increment(sb))&#123;<br>        <span class="hljs-keyword">int</span> index = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (index&lt;sb.length() &amp;&amp; sb.charAt(index)==<span class="hljs-string">&#x27;0&#x27;</span>)&#123;<br>            index++;<br>        &#125;<br>        <span class="hljs-comment">// 从当前位置开始截取到最后，作为目标数存入</span><br>        res[count] = Integer.parseInt(sb.toString().substring(index));<br>        count++;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br><br><span class="hljs-comment">// 数字字符串加一的操作</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">increment</span><span class="hljs-params">(StringBuilder sb)</span></span>&#123;<br>    <span class="hljs-keyword">boolean</span> isCarry = <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=sb.length()-<span class="hljs-number">1</span>; i&gt;=<span class="hljs-number">0</span>; i--)&#123;<br>        <span class="hljs-comment">// 数字字符+1</span><br>        <span class="hljs-keyword">char</span> s = (<span class="hljs-keyword">char</span>) (sb.charAt(i)+<span class="hljs-number">1</span>);<br>        <span class="hljs-comment">// 判断是否进位</span><br>        <span class="hljs-keyword">if</span> (s&gt;<span class="hljs-string">&#x27;9&#x27;</span>)&#123;<br>            <span class="hljs-comment">// 进位则当前位置到最后替换成0</span><br>            sb.replace(i,i+<span class="hljs-number">1</span>,<span class="hljs-string">&quot;0&quot;</span>);<br>            <span class="hljs-comment">// 当前是否是第0个，是就不能进位</span><br>            <span class="hljs-keyword">if</span> (i == <span class="hljs-number">0</span>)&#123;<br>                isCarry = <span class="hljs-keyword">true</span>;<br>            &#125;<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 如果不进位，则当前位置到最后替换成加一后的字符</span><br>            sb.replace(i,i+<span class="hljs-number">1</span>,String.valueOf(s));<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br><br>    &#125;<br>    <span class="hljs-keyword">return</span> isCarry;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>每日一题</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数组-构建数组</title>
-    <url>/2021/12/14/ConstructArr/</url>
+    <url>/2021/12/14/constructArr/</url>
     <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于数组构建的题目，且听我细细道来。</p>
 <span id="more"></span>
 
@@ -1456,8 +1779,12 @@
 <p>通过下面方法还可以获得CPU时间间隔内的使用率和总使用率。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getCpuInfo</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        SystemInfo systemInfo = <span class="hljs-keyword">new</span> SystemInfo();<br>        CentralProcessor processor = systemInfo.getHardware().getProcessor();<br>        <span class="hljs-comment">// 获取系统范围的cpu负载技计数</span><br>        <span class="hljs-keyword">long</span>[] prevTicks = processor.getSystemCpuLoadTicks();<br>        <span class="hljs-comment">// 睡眠1s</span><br>        TimeUnit.SECONDS.sleep(<span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">long</span>[] ticks = processor.getSystemCpuLoadTicks();<br>        <span class="hljs-comment">// 具有良好优先级的用户级别</span><br>        <span class="hljs-keyword">long</span> nice = ticks[CentralProcessor.TickType.NICE.getIndex()] - prevTicks[CentralProcessor.TickType.NICE.getIndex()];<br>        <span class="hljs-comment">// 硬件服务</span><br>        <span class="hljs-keyword">long</span> irq = ticks[CentralProcessor.TickType.IRQ.getIndex()] - prevTicks[CentralProcessor.TickType.IRQ.getIndex()];<br>        <span class="hljs-comment">// 软服务使用</span><br>        <span class="hljs-keyword">long</span> softirq = ticks[CentralProcessor.TickType.SOFTIRQ.getIndex()] - prevTicks[CentralProcessor.TickType.SOFTIRQ.getIndex()];<br>        <span class="hljs-comment">// 管理程序使用</span><br>        <span class="hljs-keyword">long</span> steal = ticks[CentralProcessor.TickType.STEAL.getIndex()] - prevTicks[CentralProcessor.TickType.STEAL.getIndex()];<br>        <span class="hljs-comment">// 系统使用</span><br>        <span class="hljs-keyword">long</span> cSys = ticks[CentralProcessor.TickType.SYSTEM.getIndex()] - prevTicks[CentralProcessor.TickType.SYSTEM.getIndex()];<br>        <span class="hljs-comment">// 用户使用</span><br>        <span class="hljs-keyword">long</span> user = ticks[CentralProcessor.TickType.USER.getIndex()] - prevTicks[CentralProcessor.TickType.USER.getIndex()];<br>        <span class="hljs-comment">// 等待使用</span><br>        <span class="hljs-keyword">long</span> iowait = ticks[CentralProcessor.TickType.IOWAIT.getIndex()] - prevTicks[CentralProcessor.TickType.IOWAIT.getIndex()];<br>        <span class="hljs-comment">// 空闲使用</span><br>        <span class="hljs-keyword">long</span> idle = ticks[CentralProcessor.TickType.IDLE.getIndex()] - prevTicks[CentralProcessor.TickType.IDLE.getIndex()];<br>        <span class="hljs-keyword">long</span> totalCpu = user + nice + cSys + idle + iowait + irq + softirq + steal;<br>        <span class="hljs-keyword">double</span> sysRate = cSys * <span class="hljs-number">1.0</span> / totalCpu;<br>        <span class="hljs-keyword">double</span> userRate = user * <span class="hljs-number">1.0</span> / totalCpu;<br>        <span class="hljs-keyword">double</span> waitRate = cSys * <span class="hljs-number">1.0</span> / totalCpu;<br>        <span class="hljs-keyword">double</span> idleRate = cSys * <span class="hljs-number">1.0</span> / totalCpu;<br>        <span class="hljs-keyword">double</span> betweenRate = processor.getSystemCpuLoadBetweenTicks();<br>        <span class="hljs-keyword">double</span> cpuLoad = processor.getSystemCpuLoad();<br>        System.out.println(<span class="hljs-string">&quot;cpu系统使用率:&quot;</span> + <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##%&quot;</span>).format(sysRate));<br>        System.out.println(<span class="hljs-string">&quot;cpu用户使用率:&quot;</span> + <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##%&quot;</span>).format(userRate));<br>        System.out.println(<span class="hljs-string">&quot;cpu当前等待率:&quot;</span> + <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##%&quot;</span>).format(waitRate));<br>        System.out.println(<span class="hljs-string">&quot;cpu当前空闲率:&quot;</span> + <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##%&quot;</span>).format(idleRate));<br>        <span class="hljs-comment">// 获取cpu最近(时间间隔内)使用率</span><br>        System.out.println(<span class="hljs-string">&quot;CPU load: &quot;</span>+ <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##%&quot;</span>).format(betweenRate) +<span class="hljs-string">&quot;(counting ticks)&quot;</span>);<br>        <span class="hljs-comment">// 获取cpu使用率</span><br>        System.out.println(<span class="hljs-string">&quot;CPU load: &quot;</span>+ <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##%&quot;</span>).format(cpuLoad) +<span class="hljs-string">&quot;(OS MXBean)&quot;</span>);<br>    &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="3-获取内存信息"><a href="#3-获取内存信息" class="headerlink" title="3. 获取内存信息"></a>3. 获取内存信息</h2><h3 id="3-1-获取主机内存"><a href="#3-1-获取主机内存" class="headerlink" title="3.1 获取主机内存"></a>3.1 获取主机内存</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取内存信息可以使用<strong>OperatingSystemMXBean</strong> 来获取。内存信息可以获取到的有<strong>内存总量</strong>和<strong>可用内存</strong>，通过这两个值在计算出内存已经使用的量和内存的使用率。获取内存信息同样也可以使用<strong>oshi</strong>包中的<strong>SystemInfo</strong>类进行获取。但是测试时获取的数据没有<strong>OperatingSystemMXBean</strong>获取的更精确。</p>
+<h2 id="3-获取内存信息"><a href="#3-获取内存信息" class="headerlink" title="3. 获取内存信息"></a>3. 获取内存信息</h2><h3 id="3-1-获取主机内存"><a href="#3-1-获取主机内存" class="headerlink" title="3.1 获取主机内存"></a>3.1 获取主机内存</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取内存信息可以使用<strong>OperatingSystemMXBean</strong> 来获取。内存信息可以获取到的有<strong>内存总量</strong>和<strong>可用内存</strong>，通过这两个值在计算出内存已经使用的量和内存的使用率，测试时在Linux获取的数据不太精确，只获取到的空闲内存，获取不到可用内存。获取内存信息同样也可以使用<strong>oshi</strong>包中的<strong>SystemInfo</strong>类进行获取，这个获取的还是挺准确的。</p>
+<p><strong>OperatingSystemMXBean</strong>获取：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getMemInfo</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        OperatingSystemMXBean osmxb = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();<br>        <span class="hljs-comment">// 总内存，单位：字节</span><br>            <span class="hljs-keyword">long</span> total = osmxb.getTotalPhysicalMemorySize();<br>            <span class="hljs-comment">// 空闲内存，单位：字节</span><br>            <span class="hljs-keyword">long</span> free = osmxb.getFreePhysicalMemorySize();<br>            <span class="hljs-comment">// 可用内存，单位：字节</span><br>            <span class="hljs-keyword">long</span> usable = osmxb.getFreePhysicalMemorySize();<br>            <span class="hljs-comment">// 已使用内存，单位：字节</span><br>            <span class="hljs-keyword">long</span> used = total - free;<br>            <span class="hljs-comment">// 内存使用率</span><br>            <span class="hljs-keyword">double</span> useRate = used * <span class="hljs-number">1.0</span> / total;<br>            System.out.println(<span class="hljs-string">&quot;总共内存：&quot;</span> + <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##&quot;</span>).format(total*<span class="hljs-number">1.0</span> / Math.pow(<span class="hljs-number">1024</span>,<span class="hljs-number">3</span>)) + <span class="hljs-string">&quot;G&quot;</span>);<br>            System.out.println(<span class="hljs-string">&quot;空闲内存：&quot;</span> + <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##&quot;</span>).format(free*<span class="hljs-number">1.0</span> / Math.pow(<span class="hljs-number">1024</span>,<span class="hljs-number">3</span>)) + <span class="hljs-string">&quot;G&quot;</span>);<br>            System.out.println(<span class="hljs-string">&quot;已用内存：&quot;</span> + <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##&quot;</span>).format(used*<span class="hljs-number">1.0</span> / Math.pow(<span class="hljs-number">1024</span>,<span class="hljs-number">3</span>)) + <span class="hljs-string">&quot;G&quot;</span>);<br>            System.out.println(<span class="hljs-string">&quot;可用内存：&quot;</span> + <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##&quot;</span>).format(usable*<span class="hljs-number">1.0</span> / Math.pow(<span class="hljs-number">1024</span>,<span class="hljs-number">3</span>)) + <span class="hljs-string">&quot;G&quot;</span>);<br>            System.out.println(<span class="hljs-string">&quot;内存使用率：&quot;</span> + <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##%&quot;</span>).format(useRate * <span class="hljs-number">100.0</span>));<br><br>    &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>oshi.SystemInfo</strong>获取：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getMemInfo</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        SystemInfo systemInfo = <span class="hljs-keyword">new</span> SystemInfo();<br>        GlobalMemory memory = systemInfo.getHardware().getMemory();<br>        <span class="hljs-comment">// 总内存，单位：字节</span><br>        <span class="hljs-keyword">long</span> total = memory.getTotal();<br>        <span class="hljs-comment">// 可用内存，单位：字节</span><br>        <span class="hljs-keyword">long</span> usable = memory.getAvailable()；<br>        <span class="hljs-comment">// 已使用内存，单位：字节</span><br>        <span class="hljs-keyword">long</span> used = total - usable;<br>        <span class="hljs-comment">// 内存使用率</span><br>        <span class="hljs-keyword">double</span> useRate = used * <span class="hljs-number">1.0</span> / total;<br>        System.out.println(<span class="hljs-string">&quot;总共内存：&quot;</span> + <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##&quot;</span>).format(total*<span class="hljs-number">1.0</span> / Math.pow(<span class="hljs-number">1024</span>,<span class="hljs-number">3</span>)) + <span class="hljs-string">&quot;G&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;已用内存：&quot;</span> + <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##&quot;</span>).format(used*<span class="hljs-number">1.0</span> / Math.pow(<span class="hljs-number">1024</span>,<span class="hljs-number">3</span>)) + <span class="hljs-string">&quot;G&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;可用内存：&quot;</span> + <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##&quot;</span>).format(usable*<span class="hljs-number">1.0</span> / Math.pow(<span class="hljs-number">1024</span>,<span class="hljs-number">3</span>)) + <span class="hljs-string">&quot;G&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;内存使用率：&quot;</span> + <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##%&quot;</span>).format(useRate * <span class="hljs-number">100.0</span>));<br>    &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="3-2-获取JVM内存"><a href="#3-2-获取JVM内存" class="headerlink" title="3.2 获取JVM内存"></a>3.2 获取JVM内存</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取<code>JVM</code>的内存信息需要使用<strong>MemoryMXBean</strong>接口中的<strong>MemoryUsage</strong>类。JVM信息主要是在系统运行时对JVM的使用情况。包括初始的内存大小、最大可用的内存以及当前已经使用的内存大小。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getJvmMemInfo</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();<br>        <span class="hljs-comment">// 椎内存使用情况</span><br>        MemoryUsage memoryUsage = memoryMXBean.getHeapMemoryUsage();<br>        <span class="hljs-comment">// jvm初始总内存，单位：字节</span><br>        <span class="hljs-keyword">long</span> initTotalMemorySize = memoryUsage.getInit();<br>        <span class="hljs-comment">// jvm最大可用内存，单位：字节</span><br>        <span class="hljs-keyword">long</span> free = osmxb.getFreePhysicalMemorySize();<br>        <span class="hljs-comment">// jvm已使用的内存，单位：字节</span><br>        <span class="hljs-keyword">long</span> usable = osmxb.getFreePhysicalMemorySize();<br>        <br>        System.out.println(<span class="hljs-string">&quot;jvm初始总内存：&quot;</span> + <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##&quot;</span>).format(total*<span class="hljs-number">1.0</span> / Math.pow(<span class="hljs-number">1024</span>,<span class="hljs-number">3</span>)) + <span class="hljs-string">&quot;G&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;jvm最大可用内存：&quot;</span> + <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##&quot;</span>).format(free*<span class="hljs-number">1.0</span> / Math.pow(<span class="hljs-number">1024</span>,<span class="hljs-number">3</span>)) + <span class="hljs-string">&quot;G&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;jvm已使用的内存：&quot;</span> + <span class="hljs-keyword">new</span> DecimalFormat(<span class="hljs-string">&quot;#.##&quot;</span>).format(used*<span class="hljs-number">1.0</span> / Math.pow(<span class="hljs-number">1024</span>,<span class="hljs-number">3</span>)) + <span class="hljs-string">&quot;G&quot;</span>);<br><br>    &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>

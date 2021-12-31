@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>数组-数组奇偶排序 - byFan 驿站</title>
+  <title>字符串-翻转单词顺序 - byFan 驿站</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
@@ -152,7 +152,7 @@
         <i class="iconfont iconsearch j-navbar-search"></i>
       
     </div>
-    <div class="center">数组-数组奇偶排序</div>
+    <div class="center">字符串-翻转单词顺序</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -194,61 +194,86 @@
     <section class="head">
   <img   class="lazyload" data-original="/images/cover/one_question_per_day.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">数组-数组奇偶排序</h1>
+    <h1 class="head-title">字符串-翻转单词顺序</h1>
     <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十二月 15, 2021</span>
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十二月 31, 2021</span>
       
         <span class="post-info-item">
-          <i class="iconfont iconeye"></i><span id="/2021/12/15/exchange/" class="leancloud-counter" data-flag-title="数组-数组奇偶排序"></span>
+          <i class="iconfont iconeye"></i><span id="/2021/12/31/reverseWords/" class="leancloud-counter" data-flag-title="字符串-翻转单词顺序"></span>
         </span>
         <span class="post-info-item">
-          <i class="iconfont iconheart"></i><span id="/2021/12/15/exchange/" class="leancloud-like" data-flag-title="数组-数组奇偶排序"></span>
+          <i class="iconfont iconheart"></i><span id="/2021/12/31/reverseWords/" class="leancloud-like" data-flag-title="字符串-翻转单词顺序"></span>
         </span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1311</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2769</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
         
-          <p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于数组奇偶排序的题目，且听我细细道来。</p></p>
+          <p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于翻转单词顺序的题目，且听我细细道来。</p></p>
         
-        <h1 id="数组-奇偶排序"><a href="#数组-奇偶排序" class="headerlink" title="数组 - 奇偶排序"></a>数组 - 奇偶排序</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有奇数位于数组的前半部分，所有偶数位于数组的后半部分。</p>
+        <h1 id="字符串-翻转单词顺序"><a href="#字符串-翻转单词顺序" class="headerlink" title="字符串 - 翻转单词顺序"></a>字符串 - 翻转单词顺序</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。例如输入字符串 “I am a student. “，则输出 “student. a am I”。</p>
 <p><strong>示例：</strong></p>
 <blockquote>
-<p>输入：nums =[1,2,3,4]</p>
-<p>输出：[1,3,2,4]</p>
-<p>注：[3,1,2,4] 也是正确的答案之一。</p>
+<p>示例1:</p>
+<p>输入：”the sky is blue”</p>
+<p>输出：”blue is sky the”</p>
+<p>示例2:</p>
+<p>输入：”  hello world!  “</p>
+<p>输出：”world! hello”</p>
+<p>解释：输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。</p>
+<p>示例3:</p>
+<p>输入：”a  good    example”</p>
+<p>输出：”example good a”</p>
+<p>解释: 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。</p>
 </blockquote>
 <p><strong>提示：</strong></p>
 <blockquote>
-<p>1 &lt;= nums.length &lt;= 50000</p>
-<p>1 &lt;= nums[i] &lt;= 10000</p>
+<ol>
+<li>无空格字符构成一个单词。</li>
+<li>输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。</li>
+<li>如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。</li>
+</ol>
 </blockquote>
-<h2 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这道题只是对数组内元素的一个奇偶排序，首先可以想到的就是双指针，从前后来分别扫描元素。首先指定前指针 <code>left</code> 和后指针 <code>right</code>，然后前指针定位偶数，后指针定位奇数，定位到之后将两个值互换，直到数组遍历完成。</p>
+<h2 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h2><h3 id="2-1-思路一"><a href="#2-1-思路一" class="headerlink" title="2.1 思路一"></a>2.1 思路一</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;还是老套路，遍历字符串。题目说无空格字符构成一个单词，所以在遍历字符串的时候只需要遇到空格则代表一个单词的结束，字符串的前后也会有空格，为了减少无用遍历，在真正遍历之前先去除两端空格。每遍历一个单词就把它加入到返回结果的前面。在返回前去除返回结果两端空格。</p>
+<h3 id="2-2-思路二"><a href="#2-2-思路二" class="headerlink" title="2.2 思路二"></a>2.2 思路二</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本质还是遍历字符串，只不过这个使用的是双指针去进行遍历。还是先将开头和结尾处多余的空格去掉，从后向前遍历，通过前后指针锁定单词，跳过中间空格，最终将整个句子中的单词反转。</p>
 <p><strong>复杂度：</strong></p>
 <ul>
 <li>时间复杂度：O(n)。</li>
-<li>空间复杂度：O(1)。</li>
+<li>空间复杂度：O(n)。</li>
 </ul>
-<h2 id="3-算法流程"><a href="#3-算法流程" class="headerlink" title="3. 算法流程"></a>3. 算法流程</h2><ol>
-<li>初始化前指针 left = 0，后指针 right = nums.length - 1。</li>
-<li>当 left &lt; right 时表示该数组还未遍历完成，则继续进行奇数和偶数的交换。</li>
-<li>当 nums[left] 为奇数时，则 left++，直到找到不为奇数的下标为止。</li>
-<li>当 nums[right] 为偶数时，则 right–，直到找到不为偶数的下标为止。</li>
-<li>交换 nums[left] 和 nums[right]，继续下一轮交换。</li>
-<li>数组遍历完成之后，返回 nums，即为交换后的结果</li>
+<h2 id="3-算法流程"><a href="#3-算法流程" class="headerlink" title="3. 算法流程"></a>3. 算法流程</h2><h3 id="3-1-思路一流程"><a href="#3-1-思路一流程" class="headerlink" title="3.1 思路一流程"></a>3.1 思路一流程</h3><ol>
+<li>初始化返回结果<code>res=&quot;&quot;</code>和临时单词变量<code>word=&quot;&quot;</code>，先去除两端空格，然后依次遍历字符串中的字符。</li>
+<li>如果该字符不是空格，就添加到word里面。</li>
+<li>如果该字符是空格，证明至少扫描完一个单词，此时判断档次是否为空，因为存在多个空格的情况。如果不为空则加在返回结果前，中间用空格连接，之后继续遍历。</li>
+<li>遍历完字符之后，再次判断单词word是否为空，不为空则加在返回结果前，中间用空格连接。</li>
+<li>最后将拼接好的字符串res去除两端空格返回即可。</li>
 </ol>
-<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><p><strong>Java</strong>代码实现如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span>[] exchange(<span class="hljs-keyword">int</span>[] nums) &#123;<br>    <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">int</span> right = nums.length - <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (left &lt; right)&#123;<br>        <span class="hljs-comment">// 前指针一直寻找偶数</span><br>        <span class="hljs-keyword">while</span> (left&lt;right &amp;&amp; (nums[left]%<span class="hljs-number">2</span>!=<span class="hljs-number">0</span>))&#123;<br>            left++;<br>        &#125;<br>        <span class="hljs-comment">// 后指针一直寻找奇数</span><br>        <span class="hljs-keyword">while</span> (left&lt;right &amp;&amp; (nums[right]%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>))&#123;<br>            right--;<br>        &#125;<br>        <span class="hljs-keyword">int</span> tmp = nums[left];<br>        nums[left] = nums[right];<br>        nums[right] = tmp;<br>    &#125;<br>    <span class="hljs-keyword">return</span> nums;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="3-2-思路二流程"><a href="#3-2-思路二流程" class="headerlink" title="3.2 思路二流程"></a>3.2 思路二流程</h3><ol>
+<li>首先将原始字符串去掉开头和结尾的空格得到<code>tmp</code>字符串，便于之后直接从单词处理开始。</li>
+<li>初始化单词起始位置<code>start=tmp.length-1</code>和单词结尾指针<code>end=tmp.length-1</code>，位置在字符串结尾处。</li>
+<li>初始化结果字符串res为空字符串。</li>
+<li>当<code>start&gt;=0</code>时说明字符串未遍历结束，作为循环条件。</li>
+<li>在<code>tmp[start]</code>位置，如果不为空格，说明还没有获取到完成的单词，<code>start--</code>。</li>
+<li>在获取到完成单词之后，截取<code>[start+1,end+1]</code>这一段字符串加入结果字符串中，因为是从后向前扫描单词的，所以可以之际加到res后面，通过空格连接。</li>
+<li>在<code>tmp[start]</code>位置，如果为空格，说明还没有到下一个单词结尾，则<code>start--</code>。</li>
+<li>到单词结尾位置之后，<code>end=start</code>，往复进行上述流程，将单词全部反转。</li>
+<li>最后将结果字符串res去掉两端多余空格返回即可。</li>
+</ol>
+<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><h3 id="4-1-思路一代码"><a href="#4-1-思路一代码" class="headerlink" title="4.1 思路一代码"></a>4.1 思路一代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">reverseWords</span><span class="hljs-params">(String str)</span></span>&#123;<br>    str = str.trim();<br>    String res = <span class="hljs-string">&quot;&quot;</span>;<br>    String word = <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;str.length();i++)&#123;<br>        <span class="hljs-keyword">char</span> c = str.charAt(i);<br>        <span class="hljs-keyword">if</span> (c!=<span class="hljs-string">&#x27; &#x27;</span>)&#123;<br>            word += c;<br>        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!word.equals(<span class="hljs-string">&quot;&quot;</span>))&#123;<br>            res = word + <span class="hljs-string">&quot; &quot;</span> + res;<br>            word = <span class="hljs-string">&quot;&quot;</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (!word.equals(<span class="hljs-string">&quot;&quot;</span>))&#123;<br>        res = word + <span class="hljs-string">&quot; &quot;</span> + res;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res.trim();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2-思路二代码"><a href="#4-2-思路二代码" class="headerlink" title="4.2 思路二代码"></a>4.2 思路二代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">reverseWords</span><span class="hljs-params">(String str)</span></span>&#123;<br>    String tmp = str.trim();<br>    <span class="hljs-keyword">int</span> start = tmp.length()-<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">int</span> end = tmp.length()-<span class="hljs-number">1</span>;<br>    String res = <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-keyword">while</span> (start &gt;= <span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-keyword">while</span> (start&gt;=<span class="hljs-number">0</span> &amp;&amp; tmp.charAt(start)!=<span class="hljs-string">&#x27; &#x27;</span>)&#123;<br>            start--;<br>        &#125;<br>        res += tmp.substring(start+<span class="hljs-number">1</span>,end+<span class="hljs-number">1</span>) + <span class="hljs-string">&quot; &quot;</span>;<br>        <span class="hljs-keyword">while</span> (start&gt;=<span class="hljs-number">0</span> &amp;&amp; tmp.charAt(start)==<span class="hljs-string">&#x27; &#x27;</span>)&#123;<br>            start--;<br>        &#125;<br>        end = start;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res.trim();<br>&#125;<br></code></pre></td></tr></table></figure>
       </section>
       <section class="extra">
         
           <ul class="copyright">
   
     <li><strong>本文作者：</strong>byFan</li>
-    <li><strong>本文链接：</strong><a href="http://byfan.xyz/2021/12/15/exchange/index.html" title="http:&#x2F;&#x2F;byfan.xyz&#x2F;2021&#x2F;12&#x2F;15&#x2F;exchange&#x2F;index.html">http:&#x2F;&#x2F;byfan.xyz&#x2F;2021&#x2F;12&#x2F;15&#x2F;exchange&#x2F;index.html</a></li>
+    <li><strong>本文链接：</strong><a href="http://byfan.xyz/2021/12/31/reverseWords/index.html" title="http:&#x2F;&#x2F;byfan.xyz&#x2F;2021&#x2F;12&#x2F;31&#x2F;reverseWords&#x2F;index.html">http:&#x2F;&#x2F;byfan.xyz&#x2F;2021&#x2F;12&#x2F;31&#x2F;reverseWords&#x2F;index.html</a></li>
     <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
   
 </ul>
@@ -265,12 +290,12 @@
 </section>
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" rel="tag">每日一题</a></li></ul> 
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" rel="tag">每日一题</a></li></ul> 
 
         
   <nav class="nav">
-    <a href="/2021/12/16/findContinuousSequence/"><i class="iconfont iconleft"></i>数组-寻找连续序列</a>
-    <a href="/2021/12/14/constructArr/">数组-构建数组<i class="iconfont iconright"></i></a>
+    <a></a>
+    <a href="/2021/12/24/reverseLeftString/">字符串-左旋转字符串<i class="iconfont iconright"></i></a>
   </nav>
 
       </section>
@@ -283,7 +308,7 @@
           
   <aside class="toc-wrap">
     <h3 class="toc-title">文章目录：</h3>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E7%BB%84-%E5%A5%87%E5%81%B6%E6%8E%92%E5%BA%8F"><span class="toc-text">数组 - 奇偶排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-text">1. 题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text">2. 解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="toc-text">3. 算法流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">4. 代码实现</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2-%E7%BF%BB%E8%BD%AC%E5%8D%95%E8%AF%8D%E9%A1%BA%E5%BA%8F"><span class="toc-text">字符串 - 翻转单词顺序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-text">1. 题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text">2. 解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%80%9D%E8%B7%AF%E4%B8%80"><span class="toc-text">2.1 思路一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%80%9D%E8%B7%AF%E4%BA%8C"><span class="toc-text">2.2 思路二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="toc-text">3. 算法流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%80%9D%E8%B7%AF%E4%B8%80%E6%B5%81%E7%A8%8B"><span class="toc-text">3.1 思路一流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%80%9D%E8%B7%AF%E4%BA%8C%E6%B5%81%E7%A8%8B"><span class="toc-text">3.2 思路二流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">4. 代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%80%9D%E8%B7%AF%E4%B8%80%E4%BB%A3%E7%A0%81"><span class="toc-text">4.1 思路一代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%80%9D%E8%B7%AF%E4%BA%8C%E4%BB%A3%E7%A0%81"><span class="toc-text">4.2 思路二代码</span></a></li></ol></li></ol></li></ol>
   </aside>
 
         
