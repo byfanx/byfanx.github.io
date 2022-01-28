@@ -494,6 +494,49 @@
       </tags>
   </entry>
   <entry>
+    <title>SpringBoot整合JavaMail发送邮件</title>
+    <url>/2022/01/27/SpringBoot-JavaMail/</url>
+    <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在SpringBoot项目的开发中，遇到过发送邮件的功能，如果用原始写法的话需要配置大量的东西，现在可以可以直接用SpringBoot整合的JavaMail来做这件事。</p>
+<span id="more"></span>
+
+<h1 id="SpringBoot整合JavaMail发送邮件"><a href="#SpringBoot整合JavaMail发送邮件" class="headerlink" title="SpringBoot整合JavaMail发送邮件"></a>SpringBoot整合JavaMail发送邮件</h1><h2 id="1-前提了解"><a href="#1-前提了解" class="headerlink" title="1. 前提了解"></a>1. 前提了解</h2><p>在整合之前呢，需要先简单了解一下相关协议，这里有三个：</p>
+<ul>
+<li><p>SMTP（Simple Mail Transfer Protocol）：简单邮件传输协议，用于<strong>发送</strong>电子邮件的传输协议。</p>
+</li>
+<li><p>POP3（Post Office Protocol 3）：用于<strong>接收</strong>电子邮件的标准协议。</p>
+</li>
+<li><p>IMAP（Internet Mail Access Protocol）：互联网消息协议，是POP3的替代协议。</p>
+</li>
+</ul>
+<p>对于我们开发而言，一般用的最多的就是发送邮件。</p>
+<h2 id="2-导入相关坐标"><a href="#2-导入相关坐标" class="headerlink" title="2. 导入相关坐标"></a>2. 导入相关坐标</h2><p>因为SpringBoot已经整合了JavaMail，所以这里版本号可以省略不写，使用SpringBoot默认的就行。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-mail<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="3-配置文件"><a href="#3-配置文件" class="headerlink" title="3. 配置文件"></a>3. 配置文件</h2><p>在<code>application.properties</code>或者<code>application.yml</code>中配置相关信息，这里用的是<code>application.yml</code>文件格式。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">mail:</span><br>    <span class="hljs-attr">host:</span> <span class="hljs-string">smtp.163.com</span>			<span class="hljs-comment"># 邮箱服务器</span><br>    <span class="hljs-attr">username:</span> <span class="hljs-string">test@163.com</span>		<span class="hljs-comment"># 用户名					</span><br>    <span class="hljs-attr">password:</span> <span class="hljs-string">s4ty34fg75nu985</span>	<span class="hljs-comment"># 邮箱的授权码，而不是邮箱密码</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>邮箱的授权码获取方式见文章末尾的<a href="#fulu">附录</a>。</p>
+</blockquote>
+<h2 id="4-编写代码"><a href="#4-编写代码" class="headerlink" title="4. 编写代码"></a>4. 编写代码</h2><h3 id="4-1-发送简单邮件"><a href="#4-1-发送简单邮件" class="headerlink" title="4.1 发送简单邮件"></a>4.1 发送简单邮件</h3><p>编写测试方法，首先通过注解注入<code>JavaMailSender</code>对象，然后就可以通过该类进行邮件发送的操作。代码如下。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 注入实体类</span><br><span class="hljs-meta">@Autowired</span><br><span class="hljs-keyword">private</span> JavaMailSender mailSender;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 发送简单邮件</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> from 发送者  xxx@163.com</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> to 接收者    xxx@163.com</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> subject 邮件标题</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> context 邮件正文</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sendSimpleMail</span><span class="hljs-params">(String from, String to, String subject, String context)</span></span>&#123;<br>    SimpleMailMessage message = <span class="hljs-keyword">new</span> SimpleMailMessage();<br>    <span class="hljs-comment">// 设置发送者</span><br>    message.setFrom(from);<br>    <span class="hljs-comment">// 下面这种发送方式，就是在邮箱后面通过括号加一个昵称，在邮件列表中可以显示收件人为昵称，而不是直接显示邮箱</span><br>    <span class="hljs-comment">// message.setFrom(from + &quot;(byfan)&quot;);</span><br><br>    <span class="hljs-comment">// 设置接收者</span><br>    message.setTo(to);<br>    <span class="hljs-comment">// 设置标题</span><br>    message.setSubject(subject);<br>    <span class="hljs-comment">// 设置正文</span><br>    message.setText(context);<br>    <span class="hljs-comment">// 设置发送时间，可用于定时发送</span><br>    <span class="hljs-comment">// message.setSentDate(new Date());</span><br><br>    <span class="hljs-comment">// 发送邮件</span><br>    mailSender.send(message);<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2-发送多部件邮件"><a href="#4-2-发送多部件邮件" class="headerlink" title="4.2 发送多部件邮件"></a>4.2 发送多部件邮件</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 注入实体类</span><br><span class="hljs-meta">@Autowired</span><br><span class="hljs-keyword">private</span> JavaMailSender mailSender;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 发送简单邮件</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> from 发送者  xxx@163.com</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> to 接收者    xxx@163.com</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> subject 邮件标题</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> context 邮件正文 eg:&lt;a href=&#x27;https://byfan.xyz&#x27;&gt;点击进入byFan驿站&lt;/a&gt;</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> isHtml 是否解析正文为html</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> files 附件列表</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sendMimeMail</span><span class="hljs-params">(String from, String to, String subject, String context, <span class="hljs-keyword">boolean</span> isHtml, File[] files)</span></span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 定义是否有附件的标识</span><br>        <span class="hljs-keyword">boolean</span> isFile = <span class="hljs-keyword">false</span>;<br>        MimeMessage message = mailSender.createMimeMessage();<br>        <span class="hljs-keyword">if</span> (files.length &gt; <span class="hljs-number">0</span>)&#123;<br>            isFile = <span class="hljs-keyword">true</span>;<br>        &#125;<br>        <span class="hljs-comment">// 第二个参数可不传，默认是false不带附件</span><br>        MimeMessageHelper helper = <span class="hljs-keyword">new</span> MimeMessageHelper(message,isFile);<br>        <span class="hljs-comment">// 设置发送者</span><br>        helper.setFrom(from);<br>        <span class="hljs-comment">// 下面这种发送方式，就是在邮箱后面通过括号加一个昵称，在邮件列表中可以显示收件人为昵称，而不是直接显示邮箱</span><br>        <span class="hljs-comment">// message.setFrom(from + &quot;(byfan)&quot;);</span><br><br>        <span class="hljs-comment">// 设置接收者</span><br>        helper.setTo(to);<br>        <span class="hljs-comment">// 设置标题</span><br>        helper.setSubject(subject);<br>        <span class="hljs-comment">// 设置正文,第二个参数可不传，默认是false不解析html</span><br>        helper.setText(context,isHtml);<br><br>        <span class="hljs-comment">// 添加附件</span><br>        <span class="hljs-keyword">if</span> (isFile)&#123;<br>            <span class="hljs-keyword">for</span> (File file : files)&#123;<br>                <span class="hljs-comment">// 第一个参数：附件文件名，可自定义；第二个参数：附件文件</span><br>                helper.addAttachment(file.getName(), file);<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">// 设置发送时间，可用于定时发送</span><br>        <span class="hljs-comment">// message.setSentDate(new Date());</span><br><br>        <span class="hljs-comment">// 发送邮件</span><br>        mailSender.send(message);<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><span id="fulu"></span></p>
+<h2 id="附录：获取邮箱授权码"><a href="#附录：获取邮箱授权码" class="headerlink" title="附录：获取邮箱授权码"></a>附录：获取邮箱授权码</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取邮箱授权码这里也以163邮箱为例，其他邮箱获取授权码的步骤也都差不都，可做参考。首先登录到163邮箱网页版。在上面导航栏中找到设置，点击<strong>设置</strong>，然后点击<strong>POP3/SMTP/IMAP</strong>。进入到操作页面之后，在<strong>开启服务</strong>项里面，点击<strong>IMAP/SMTP</strong>后面的<strong>开启</strong>，弹窗提示需要发送短信进行验证，按照提示发送完成之后，点击<strong>我已发送</strong>，则会弹窗显示当前授权码，<strong>该授权码只显示一次，记得保存备份。</strong></p>
+<p><img src="image-20220127173751861.png"></p>
+<p><img src="image-20220127174246154.png"></p>
+]]></content>
+      <categories>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringBoot项目部署到服务器</title>
     <url>/2019/12/23/springboot-deploy-server/</url>
     <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在之前的博客当中，写了一些关于SpringBoot的使用，今天主要写的就是怎么样将自己写的SpringBoot项目部署到云服务器上。只有将项目部署到了服务器上，项目才能一直运行，并且只要在有互联网就能随时随地的的访问项目。</p>
@@ -819,7 +862,7 @@
   </entry>
   <entry>
     <title>字符串-翻转单词顺序</title>
-    <url>/2021/12/31/reverseWords/</url>
+    <url>/2021/12/25/reverseWords/</url>
     <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于翻转单词顺序的题目，且听我细细道来。</p>
 <span id="more"></span>
 
