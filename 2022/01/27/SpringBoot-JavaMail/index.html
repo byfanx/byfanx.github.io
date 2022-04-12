@@ -1,0 +1,529 @@
+
+
+<!DOCTYPE html>
+<html lang="zh_CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SpringBoot整合JavaMail发送邮件 - byFan 驿站</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="&nbsp;&nbsp;&nbsp;&nbsp;&nb...">
+  <meta name="author" content="byFan">
+  <link rel="icon" href="/images/icons/byfan.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/byfan.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/byfan.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/byfan.png" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/byfan.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/night-owl.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/theme/alipay.jpg',
+        wechat: '/images/theme/wechatpay.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: true
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: true
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">SpringBoot整合JavaMail发送邮件</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Copyright © 2019 - 2021 | <a target="_blank" href="http://byfan.xyz">byFan</a> .AllRightsReserved</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/cover/SpringBoot-JavaMail.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">SpringBoot整合JavaMail发送邮件</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>一月 27, 2022</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2022/01/27/SpringBoot-JavaMail/" class="leancloud-counter" data-flag-title="SpringBoot整合JavaMail发送邮件"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2022/01/27/SpringBoot-JavaMail/" class="leancloud-like" data-flag-title="SpringBoot整合JavaMail发送邮件"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3505</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+          <p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在SpringBoot项目的开发中，遇到过发送邮件的功能，如果用原始写法的话需要配置大量的东西，现在可以可以直接用SpringBoot整合的JavaMail来做这件事。</p></p>
+        
+        <h1 id="SpringBoot整合JavaMail发送邮件"><a href="#SpringBoot整合JavaMail发送邮件" class="headerlink" title="SpringBoot整合JavaMail发送邮件"></a>SpringBoot整合JavaMail发送邮件</h1><h2 id="1-前提了解"><a href="#1-前提了解" class="headerlink" title="1. 前提了解"></a>1. 前提了解</h2><p>在整合之前呢，需要先简单了解一下相关协议，这里有三个：aaaaaa</p>
+<ul>
+<li><p>SMTP（Simple Mail Transfer Protocol）：简单邮件传输协议，用于<strong>发送</strong>电子邮件的传输协议。</p>
+</li>
+<li><p>POP3（Post Office Protocol 3）：用于<strong>接收</strong>电子邮件的标准协议。</p>
+</li>
+<li><p>IMAP（Internet Mail Access Protocol）：互联网消息协议，是POP3的替代协议。</p>
+</li>
+</ul>
+<p>对于我们开发而言，一般用的最多的就是发送邮件。</p>
+<h2 id="2-导入相关坐标"><a href="#2-导入相关坐标" class="headerlink" title="2. 导入相关坐标"></a>2. 导入相关坐标</h2><p>因为SpringBoot已经整合了JavaMail，所以这里版本号可以省略不写，使用SpringBoot默认的就行。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-mail<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="3-配置文件"><a href="#3-配置文件" class="headerlink" title="3. 配置文件"></a>3. 配置文件</h2><p>在<code>application.properties</code>或者<code>application.yml</code>中配置相关信息，这里用的是<code>application.yml</code>文件格式。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">mail:</span><br>    <span class="hljs-attr">host:</span> <span class="hljs-string">smtp.163.com</span>			<span class="hljs-comment"># 邮箱服务器</span><br>    <span class="hljs-attr">username:</span> <span class="hljs-string">test@163.com</span>		<span class="hljs-comment"># 用户名					</span><br>    <span class="hljs-attr">password:</span> <span class="hljs-string">s4ty34fg75nu985</span>	<span class="hljs-comment"># 邮箱的授权码，而不是邮箱密码</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>邮箱的授权码获取方式见文章末尾的<a href="#fulu">附录</a>。</p>
+</blockquote>
+<h2 id="4-编写代码"><a href="#4-编写代码" class="headerlink" title="4. 编写代码"></a>4. 编写代码</h2><h3 id="4-1-发送简单邮件"><a href="#4-1-发送简单邮件" class="headerlink" title="4.1 发送简单邮件"></a>4.1 发送简单邮件</h3><p>编写测试方法，首先通过注解注入<code>JavaMailSender</code>对象，然后就可以通过该类进行邮件发送的操作。代码如下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 注入实体类</span><br><span class="hljs-meta">@Autowired</span><br><span class="hljs-keyword">private</span> JavaMailSender mailSender;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 发送简单邮件</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> from 发送者  xxx@163.com</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> to 接收者    xxx@163.com</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> subject 邮件标题</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> context 邮件正文</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sendSimpleMail</span><span class="hljs-params">(String from, String to, String subject, String context)</span></span>&#123;<br>    SimpleMailMessage message = <span class="hljs-keyword">new</span> SimpleMailMessage();<br>    <span class="hljs-comment">// 设置发送者</span><br>    message.setFrom(from);<br>    <span class="hljs-comment">// 下面这种发送方式，就是在邮箱后面通过括号加一个昵称，在邮件列表中可以显示收件人为昵称，而不是直接显示邮箱</span><br>    <span class="hljs-comment">// message.setFrom(from + &quot;(byfan)&quot;);</span><br><br>    <span class="hljs-comment">// 设置接收者</span><br>    message.setTo(to);<br>    <span class="hljs-comment">// 设置标题</span><br>    message.setSubject(subject);<br>    <span class="hljs-comment">// 设置正文</span><br>    message.setText(context);<br>    <span class="hljs-comment">// 设置发送时间，可用于定时发送</span><br>    <span class="hljs-comment">// message.setSentDate(new Date());</span><br><br>    <span class="hljs-comment">// 发送邮件</span><br>    mailSender.send(message);<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2-发送多部件邮件"><a href="#4-2-发送多部件邮件" class="headerlink" title="4.2 发送多部件邮件"></a>4.2 发送多部件邮件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 注入实体类</span><br><span class="hljs-meta">@Autowired</span><br><span class="hljs-keyword">private</span> JavaMailSender mailSender;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 发送简单邮件</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> from 发送者  xxx@163.com</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> to 接收者    xxx@163.com</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> subject 邮件标题</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> context 邮件正文 eg:&lt;a href=&#x27;https://byfan.xyz&#x27;&gt;点击进入byFan驿站&lt;/a&gt;</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> isHtml 是否解析正文为html</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> files 附件列表</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sendMimeMail</span><span class="hljs-params">(String from, String to, String subject, String context, <span class="hljs-keyword">boolean</span> isHtml, File[] files)</span></span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 定义是否有附件的标识</span><br>        <span class="hljs-keyword">boolean</span> isFile = <span class="hljs-keyword">false</span>;<br>        MimeMessage message = mailSender.createMimeMessage();<br>        <span class="hljs-keyword">if</span> (files.length &gt; <span class="hljs-number">0</span>)&#123;<br>            isFile = <span class="hljs-keyword">true</span>;<br>        &#125;<br>        <span class="hljs-comment">// 第二个参数可不传，默认是false不带附件</span><br>        MimeMessageHelper helper = <span class="hljs-keyword">new</span> MimeMessageHelper(message,isFile);<br>        <span class="hljs-comment">// 设置发送者</span><br>        helper.setFrom(from);<br>        <span class="hljs-comment">// 下面这种发送方式，就是在邮箱后面通过括号加一个昵称，在邮件列表中可以显示收件人为昵称，而不是直接显示邮箱</span><br>        <span class="hljs-comment">// message.setFrom(from + &quot;(byfan)&quot;);</span><br><br>        <span class="hljs-comment">// 设置接收者</span><br>        helper.setTo(to);<br>        <span class="hljs-comment">// 设置标题</span><br>        helper.setSubject(subject);<br>        <span class="hljs-comment">// 设置正文,第二个参数可不传，默认是false不解析html</span><br>        helper.setText(context,isHtml);<br><br>        <span class="hljs-comment">// 添加附件</span><br>        <span class="hljs-keyword">if</span> (isFile)&#123;<br>            <span class="hljs-keyword">for</span> (File file : files)&#123;<br>                <span class="hljs-comment">// 第一个参数：附件文件名，可自定义；第二个参数：附件文件</span><br>                helper.addAttachment(file.getName(), file);<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">// 设置发送时间，可用于定时发送</span><br>        <span class="hljs-comment">// message.setSentDate(new Date());</span><br><br>        <span class="hljs-comment">// 发送邮件</span><br>        mailSender.send(message);<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><span id="fulu"></span></p>
+<h2 id="附录：获取邮箱授权码"><a href="#附录：获取邮箱授权码" class="headerlink" title="附录：获取邮箱授权码"></a>附录：获取邮箱授权码</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取邮箱授权码这里也以163邮箱为例，其他邮箱获取授权码的步骤也都差不都，可做参考。首先登录到163邮箱网页版。在上面导航栏中找到设置，点击<strong>设置</strong>，然后点击<strong>POP3/SMTP/IMAP</strong>。进入到操作页面之后，在<strong>开启服务</strong>项里面，点击<strong>IMAP/SMTP</strong>后面的<strong>开启</strong>，弹窗提示需要发送短信进行验证，按照提示发送完成之后，点击<strong>我已发送</strong>，则会弹窗显示当前授权码，<strong>该授权码只显示一次，记得保存备份。</strong></p>
+<p><img   class="lazyload" data-original="image-20220127173751861.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="image-20220127174246154.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>byFan</li>
+    <li><strong>本文链接：</strong><a href="http://byfan.xyz/2022/01/27/SpringBoot-JavaMail/index.html" title="http:&#x2F;&#x2F;byfan.xyz&#x2F;2022&#x2F;01&#x2F;27&#x2F;SpringBoot-JavaMail&#x2F;index.html">http:&#x2F;&#x2F;byfan.xyz&#x2F;2022&#x2F;01&#x2F;27&#x2F;SpringBoot-JavaMail&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/theme/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2022/01/28/Syncthing-P2P/"><i class="iconfont iconleft"></i>Syncthing-P2P文件同步工具的使用</a>
+    <a href="/2021/12/25/reverseWords/">字符串-翻转单词顺序<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot%E6%95%B4%E5%90%88JavaMail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6"><span class="toc-text">SpringBoot整合JavaMail发送邮件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%89%8D%E6%8F%90%E4%BA%86%E8%A7%A3"><span class="toc-text">1. 前提了解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AF%BC%E5%85%A5%E7%9B%B8%E5%85%B3%E5%9D%90%E6%A0%87"><span class="toc-text">2. 导入相关坐标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">3. 配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81"><span class="toc-text">4. 编写代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%8F%91%E9%80%81%E7%AE%80%E5%8D%95%E9%82%AE%E4%BB%B6"><span class="toc-text">4.1 发送简单邮件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%8F%91%E9%80%81%E5%A4%9A%E9%83%A8%E4%BB%B6%E9%82%AE%E4%BB%B6"><span class="toc-text">4.2 发送多部件邮件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95%EF%BC%9A%E8%8E%B7%E5%8F%96%E9%82%AE%E7%AE%B1%E6%8E%88%E6%9D%83%E7%A0%81"><span class="toc-text">附录：获取邮箱授权码</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=3257490363 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/byfanx/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:byfanx@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Copyright © 2019 - 2021 | <a target="_blank" href="http://byfan.xyz">byFan</a> .AllRightsReserved</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
+  
+  
+    <div class="fab fab-daovoice">
+      <i class="iconfont iconcomment"></i>
+    </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'IrYj5VESYg1Yvn7gIpcCDtX3-gzGzoHsz',
+      appKey: '8Uzol1hPs1jvKhXzfs2pEGGq',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const Counter = AV.Object.extend("Counter");
+    const Like = AV.Object.extend("Like");
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-counter").each(async (e) => {
+        const url = $(".leancloud-counter").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-counter").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud-counter").length === 1 ? $(".leancloud-counter").attr('id').trim() : 'http://byfan.xyz';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    const showLike = (Like) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-like").each(async (e) => {
+        const url = $(".leancloud-like").eq(e).attr('id').trim();
+        const query = new AV.Query("Like");
+        query.equalTo("path", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-like").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addLike = (Like) => {
+      const url = $(".leancloud-like").length === 1 ? $(".leancloud-like").attr('id').trim() : 'http://byfan.xyz';
+      var query = new Like;
+      query.save({
+        path: url,
+        nickName: 'Anonymous'
+      });
+      $(".leancloud-like").addClass('islike');
+      $(".fab-like").children(".iconfont").removeClass("iconheart").addClass("iconheart-fill").css("color", "#eb3223");
+      ZHAOO.zui.message({ text: '爱你哦~', type: 'success' });
+      setTimeout(() => showLike(Like), 1000);
+    }
+
+    const handleLikeClick = () => {
+      const isLike = $(".leancloud-like").length === 1 && $(".leancloud-like").hasClass('islike') ? true : false;
+      if (isLike) {
+        ZHAOO.zui.message({ text: '小心心不可以收回呢~', type: 'warning' });
+      } else {
+        addLike(Like);
+      }
+    }
+
+    $(function () {
+      addCount(Counter);
+      showCount(Counter);
+      showLike(Like);
+      $(".fab-like").on("click", function () {
+        handleLikeClick();
+      });
+    });
+
+  });
+</script>
+
+
+
+  
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", "https://widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "aa2a9e05"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
