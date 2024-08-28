@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>树莓派安装系统和基础配置 - byFan 驿站</title>
+  <title>树莓派安装系统和基础配置 - 北夜极星驿站</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
@@ -181,7 +181,7 @@
         <a href="/about/ " class="underline "> 关于</a>
       </li></ul>
     
-      <div class="menu-copyright"><p>Copyright © 2019 - 2021 | <a target="_blank" href="http://byfan.xyz">byFan</a> .AllRightsReserved</p></div>
+      <div class="menu-copyright"><p>Copyright © 2019 - 2021 | <a target="_blank" href="http://byfan.xyz">byFan</a> .AllRightsReserved</p> | <a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备2022022801号-1</a></div>
     
   </div>
 </nav>
@@ -205,7 +205,7 @@
           <i class="iconfont iconheart"></i><span id="/2021/01/04/raspberry/" class="leancloud-like" data-flag-title="树莓派安装系统和基础配置"></span>
         </span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>10590</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>11264</span>
     </div>
   </div>
 </section>
@@ -244,6 +244,10 @@
 <li>默认账户：<strong>pi</strong></li>
 <li>默认密码：<strong>raspberry</strong></li>
 </ul>
+<blockquote>
+<p>更新于2022-08-22</p>
+<p>⚠️<strong>注意：</strong>树莓派官方系统在2022-04-04更新的版本中，RaspberryOS取消了原来默认的用户<code>pi</code>，第一次开机时强制创建用户，如果连接有显示器的话可以直接进行创建，如果没有显示器而是通过SSH则需要提前配置。详情见新版初始化用户名！</p>
+</blockquote>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果是通过网线和笔记本电脑进行连接的，那么先依次打开<em>控制面板</em>–&gt;<em>网络和Internet</em>–&gt;<em>网络连接</em>。找到当前笔记本连接的WIFI网络右键查看<strong>属性</strong>。选择<strong>共享</strong>标签，勾选“允许其他用户通过此计算机的Internet连接来连接” ，选择连接树莓派的<strong>以太网</strong>，然后确定保存配置。</p>
 <p><img   class="lazyload" data-original="%E5%85%B1%E4%BA%AB%E7%BD%91%E7%BB%9C.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <p>然后打开电脑<strong>cmd</strong>命令行，输入<code>ipconfig</code>查看当前笔记本IP，然后找到<strong>无线局域网适配器 本地连接* 11</strong>，查看这个下面的<strong>IPv4 地址</strong>。这里的是<code>192.168.137.1</code>，记住这个ip，后面要用。</p>
@@ -253,6 +257,15 @@
 <p>如果在192.168.137.*开头的接口地址下没有显示动态地址，或者说动态地址不是当前树莓派的地址，那么你很幸运，需要挨个去测试到底哪个才是树莓派的IP地址。</p>
 </blockquote>
 <p><img   class="lazyload" data-original="%E6%9F%A5%E7%9C%8Bip.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h4 id="新版初始化用户名"><a href="#新版初始化用户名" class="headerlink" title="新版初始化用户名"></a>新版初始化用户名</h4><p>在给内存卡写入镜像之后，可以在boot分区中创建一个<strong>userconf.txt</strong>文件，填写用户名和密码的密文进行默认配置，密码的密文生成命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;mypassword&#x27;</span> | openssl passwd -6 -stdin<br></code></pre></td></tr></table></figure>
+
+<p>假如用原来默认的<code>raspberry</code>计算密文：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;raspberry&#x27;</span> | openssl passwd -6 -stdin<br><span class="hljs-comment"># 输出如下：</span><br>$6$XBxJ9en9Oc4cmfQY<span class="hljs-variable">$Ri3ZrEihamWFr29aEbhi</span>.LpGpE5FF9GIQSBxxijT8EOun6pVQsrKDrWoqdaRiCrunD9XTn2EM8ZrMZr8Oigow.<br></code></pre></td></tr></table></figure>
+
+<p>然后将用户名和密码的密文拼接，写入<strong>userconf.txt</strong>中，然后内存卡插入树莓派开机即可使用刚刚创建的用户名和密码进行登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># userconf.txt</span><br><span class="hljs-comment"># 用户名:密码的密文</span><br>pi:$6$XBxJ9en9Oc4cmfQY<span class="hljs-variable">$Ri3ZrEihamWFr29aEbhi</span>.LpGpE5FF9GIQSBxxijT8EOun6pVQsrKDrWoqdaRiCrunD9XTn2EM8ZrMZr8Oigow.<br></code></pre></td></tr></table></figure>
+
 <h3 id="2-2-2-WIFI连接"><a href="#2-2-2-WIFI连接" class="headerlink" title="2.2.2 WIFI连接"></a>2.2.2 WIFI连接</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果当前手边没有可用的网线，也可以使用WIFI的的形式进行树莓派的网络连接。将内存卡插到电脑上，在<strong>boot</strong>盘的根目录下创建<code>wpa_supplicant.conf</code>文件，下入下列内容进行保存。可以配置多个wifi网络，树莓派会根据设置的<code>priority</code>优先等级进行连接，数字越大等级越高，同等级的则从上至下依次选择。连接成功之后去查看wifi管理页面，找到一个连接设备名为<strong>raspberrypi</strong>的设备，这个对应的IP地址就是树莓派的IP地址。然后就可以通过该IP进行ssh连接到树莓派。</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs json">country=CN<br>ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev<br>update_config=<span class="hljs-number">1</span><br>network=&#123;<br>	ssid=<span class="hljs-attr">&quot;wifi_1&quot;</span>  			<span class="hljs-comment">//第1个wifi的名字</span><br>    	scan_ssid=1			<span class="hljs-comment">//如果你的无线接入点是隐藏的，那么这个就是必须的(选填)</span><br>	psk=<span class="hljs-attr">&quot;wifi_1password&quot;</span>    	<span class="hljs-comment">//第1个wifi的密码</span><br>	key_mgmt=WPA-PSK		<span class="hljs-comment">//认证密钥管理协议，也就是你的加密类型(选填)</span><br>    	priority=5			<span class="hljs-comment">//连接的优先等级，数字越大优先度越高</span><br>&#125;<br> <br>network=&#123;<br>	ssid=<span class="hljs-attr">&quot;wifi_2&quot;</span>   		 <span class="hljs-comment">//第2个wifi的名字</span><br>	psk=<span class="hljs-attr">&quot;wifi_2password&quot;</span>     	<span class="hljs-comment">//第2个wifi的密码</span><br>	key_mgmt=WPA-PSK		<br>    	priority=4<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -282,7 +295,7 @@
 <blockquote>
 <p><strong>注意！注意！注意！</strong>树莓派一般都连接到一个局域网之中就不会随意更换了，如果你要让树莓派连接另外的网络，需要<strong>连接原来的网络</strong>，先将<strong>固定IP的配置取消</strong>掉，然后<strong>再连接新的网络</strong>，否则可能会出现连不上网的情况。</p>
 </blockquote>
-<h1 id="3-树莓派的基础配置"><a href="#3-树莓派的基础配置" class="headerlink" title="3. 树莓派的基础配置"></a>3. 树莓派的基础配置</h1><h2 id="3-1-更改软件源"><a href="#3-1-更改软件源" class="headerlink" title="3.1 更改软件源"></a>3.1 更改软件源</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在开始树莓派的各种 DIY 之前，我们还需要做一件很重要的事情更换软件源。&nbsp;软件源是指 debian 系操作系统的应用程序安装包仓库，很多的软件都会这收录到这个仓库里面。而树莓派的 raspberrypi 操作系统也是基于 debian 的，所以树莓派也有自己的软件源，用来收录各种树莓派应用程序。默认情况下，树莓派软件源地址是 <a href="https://link.zhihu.com/?target=http://archive.raspbian.org/">http://archive.raspbian.org/</a>，位于欧洲，在国内访问是非常慢的，经常只有几 k 每秒的下载速率。所以我们在玩转树莓派之前，强烈推荐替换成国内的软件源。树莓派的所有软件源地址可以从这里找到<a href="https://link.zhihu.com/?target=https://www.raspbian.org/RaspbianMirrors">https://www.raspbian.org/RaspbianMi…</a></p>
+<h1 id="3-树莓派的基础配置"><a href="#3-树莓派的基础配置" class="headerlink" title="3. 树莓派的基础配置"></a>3. 树莓派的基础配置</h1><h2 id="3-1-更改软件源"><a href="#3-1-更改软件源" class="headerlink" title="3.1 更改软件源"></a>3.1 更改软件源</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在开始树莓派的各种 DIY 之前，我们还需要做一件很重要的事情更换软件源。&nbsp;软件源是指 debian 系操作系统的应用程序安装包仓库，很多的软件都会这收录到这个仓库里面。而树莓派的 raspberrypi 操作系统也是基于 debian 的，所以树莓派也有自己的软件源，用来收录各种树莓派应用程序。默认情况下，树莓派软件源地址是 <a href="https://link.zhihu.com/?target=http://archive.raspbian.org/">http://archive.raspbian.org/</a>，位于欧洲，在国内访问是非常慢的，经常只有几 k 每秒的下载速率。所以我们在玩转树莓派之前，强烈推荐替换成国内的软件源。树莓派的所有软件源地址可以从这里找到<a target="_blank" rel="noopener" href="https://www.raspbian.org/RaspbianMirrors">https://www.raspbian.org/RaspbianMirrors</a></p>
 <p>在这找一个国内的就行，比如清华大学的（下图表格的第一行）。</p>
 <p><img   class="lazyload" data-original="%E6%9F%A5%E6%89%BE%E8%BD%AF%E4%BB%B6%E6%BA%90.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <p>然后输入命令<code>sudo nano /etc/apt/sources.list</code>并回车，进入编辑。如下图所示，把原来的内容注释掉（最前面加 # 号）。</p>
@@ -434,7 +447,7 @@
           <i class="iconfont  iconmail"></i>
       </a></div>
   
-    <div class="footer-copyright"><p>Copyright © 2019 - 2021 | <a target="_blank" href="http://byfan.xyz">byFan</a> .AllRightsReserved</p></div>
+    <div class="footer-copyright"><p>Copyright © 2019 - 2021 | <a target="_blank" href="http://byfan.xyz">byFan</a> .AllRightsReserved</p> | <a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备2022022801号-1</a></div>
   
 </footer>
   
