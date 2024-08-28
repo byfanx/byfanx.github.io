@@ -1,0 +1,569 @@
+
+
+<!DOCTYPE html>
+<html lang="zh_CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>验证IP地址 - byFan 驿站</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="&nbsp;&nbsp;&nbsp;&nbsp;&nb...">
+  <meta name="author" content="byFan">
+  <link rel="icon" href="/images/icons/byfan.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/byfan.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/byfan.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/byfan.png" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/byfan.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/night-owl.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/theme/alipay.jpg',
+        wechat: '/images/theme/wechatpay.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: true
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: true
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">验证IP地址</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Copyright © 2019 - 2021 | <a target="_blank" href="http://byfan.xyz">byFan</a> .AllRightsReserved</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/cover/one_question_per_day.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">验证IP地址</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>五月 29, 2022</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2022/05/29/validate-ip-address/" class="leancloud-counter" data-flag-title="验证IP地址"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2022/05/29/validate-ip-address/" class="leancloud-like" data-flag-title="验证IP地址"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4315</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+          <p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于验证IP地址的题目，且听我细细道来。</p></p>
+        
+        <h1 id="验证IP地址"><a href="#验证IP地址" class="headerlink" title="验证IP地址"></a>验证IP地址</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给定一个字符串queryIP。如果是有效的 IPv4 地址，返回 “IPv4” ；如果是有效的 IPv6 地址，返回 “IPv6” ；如果不是上述类型的 IP 地址，返回 “Neither” 。</p>
+<p>有效的IPv4地址 是 “x1.x2.x3.x4” 形式的IP地址。 其中 0 &lt;= x<del>i</del>&lt;= 255 且 x<del>i</del> 不能包含 前导零。</p>
+<p>例如:“192.168.1.1”、 “192.168.1.0” 为有效IPv4地址， “192.168.01.1” 为无效IPv4地址; “192.168.1.00” 、 “<a href="mailto:&#49;&#x39;&#50;&#x2e;&#x31;&#54;&#56;&#64;&#49;&#x2e;&#49;">&#49;&#x39;&#50;&#x2e;&#x31;&#54;&#56;&#64;&#49;&#x2e;&#49;</a>” 为无效IPv4地址。</p>
+<p>一个有效的IPv6地址是一个格式为“x1:x2:x3:x4:x5:x6:x7:x8” 的IP地址，其中: 1 &lt;= x<del>i</del>.length &lt;= 4, xi是一个 十六进制字符串 ，可以包含数字、小写英文字母( ‘a’ 到 ‘f’ )和大写英文字母( ‘A’ 到 ‘F’ )。,在xi中允许前导零。</p>
+<p>例如 “2001:0db8:85a3:0000:0000:8a2e:0370:7334” 和 “2001:db8:85a3:0:0:8A2E:0370:7334” 是有效的 IPv6 地址，而 “2001:0db8:85a3::8A2E:037j:7334” 和 “02001:0db8:85a3:0000:0000:8a2e:0370:7334” 是无效的 IPv6 地址。</p>
+<p><strong>示例一：</strong></p>
+<blockquote>
+<p>输入：queryIP = “172.16.254.1”</p>
+<p>输出：”IPv4”</p>
+<p>解释：有效的 IPv4 地址，返回 “IPv4”</p>
+</blockquote>
+<p><strong>示例二：</strong></p>
+<blockquote>
+<p>输入：queryIP = “2001:0db8:85a3:0:0:8A2E:0370:7334”</p>
+<p>输出：”IPv6”</p>
+<p>解释：有效的 IPv6 地址，返回 “IPv6”</p>
+</blockquote>
+<p><strong>示例三：</strong></p>
+<blockquote>
+<p>输入：queryIP = “256.256.256.256”</p>
+<p>输出：”Neither”</p>
+<p>解释：既不是 IPv4 地址，又不是 IPv6 地址</p>
+</blockquote>
+<p><strong>提示：</strong></p>
+<blockquote>
+<ol>
+<li>queryIP 仅由英文字母，数字，字符 ‘<code>.</code>‘ 和 ‘<code>:</code>‘ 组成。</li>
+</ol>
+</blockquote>
+<h2 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h2><h3 id="2-1-思路一"><a href="#2-1-思路一" class="headerlink" title="2.1 思路一"></a>2.1 思路一</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们首先查找给定的字符串 queryIP 中是否包含符号 <code>.</code>。如果包含，那么我们需要判断其是否为 IPv4 地址；如果不包含，我们则判断其是否为 IPv6 地址。</p>
+<p>对于IPv4而言，它包含四个由<code>.</code>分割的部分组成，且不能以<code>.</code>开头或者结尾。首先以<code>.</code>将其分割，判断是否是四个部分；然后以此判断每一个部分是否合法。IPv4的每一个部分的长度为1～3之间，全部是由数字组成，且最每部分的数字不包含前导0，范围在[0,255]之间。</p>
+<p>对于IPv6而言，它包含八个由<code>:</code>分割的部分组成，且不能以<code>:</code>开头或者结尾。首先以<code>:</code>将其分割，判断是否是八个部分；然后以此判断每一个部分是否合法。IPv6的每一个部分的长度为1～4之间，是由数字[1,9]、字母[a,f]和[A,F]组成。</p>
+<p><strong>复杂度：</strong></p>
+<ul>
+<li>时间复杂度：<strong>O(n)</strong> ，其中 n 是字符串 queryIP 的长度。我们只需要遍历字符串常数次。</li>
+<li>空间复杂度：<strong>O(1)</strong> 。</li>
+</ul>
+<h2 id="3-算法流程"><a href="#3-算法流程" class="headerlink" title="3. 算法流程"></a>3. 算法流程</h2><h3 id="3-1-思路一流程"><a href="#3-1-思路一流程" class="headerlink" title="3.1 思路一流程"></a>3.1 思路一流程</h3><ol>
+<li><p>queryIP 长度小于1，直接返回 Neither</p>
+</li>
+<li><p>查找 queryIP 中是否包含符号 <code>.</code>。</p>
+</li>
+<li><p>如果包含<code>.</code>，则按照IPv4规则处理</p>
+<ol>
+<li>首先判断 queryIP 不能以<code>.</code>开头或者结尾，否则返回 Neither。</li>
+<li>将 queryIP 以 <code>.</code> 分割，分割后的的部分不是 4 个部分，返回 Neither。</li>
+<li>然后遍历切割后的每一部分，长度在[1,3]之间，且不含前导0。否则返回 Neither。</li>
+<li>判断每一部分中的每一个字符是否是在[0,9]之间，否则返回 Neither。</li>
+<li>最后判断当前部分数字不能大于255，否则返回 Neither。</li>
+<li>满足上述所有条件，返回IPv4。</li>
+</ol>
+</li>
+<li><p>如果不包含<code>.</code>，则按照IPv6规则处理</p>
+<ol>
+<li>首先判断 queryIP 不能<code>:</code>开头或者结尾，否则返回 Neither。</li>
+<li>将 queryIP 以 <code>:</code> 分割，分割后的的部分不是 8 个部分，返回 Neither。</li>
+<li>然后遍历切割后的每一部分，长度在[1,4]之间，否则返回 Neither。</li>
+<li>判断每一部分中的每一个字符是否是在[0,9]或者[a,f]或者[A,F]之间，否则返回 Neither。</li>
+<li>满足上述所有条件，返回IPv6。</li>
+</ol>
+</li>
+</ol>
+<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><h3 id="4-1-思路一代码"><a href="#4-1-思路一代码" class="headerlink" title="4.1 思路一代码"></a>4.1 思路一代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">validIPAddress</span><span class="hljs-params">(String queryIP)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (queryIP.length() &lt; <span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (queryIP.indexOf(<span class="hljs-string">&#x27;.&#x27;</span>) &gt; <span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-keyword">if</span> (queryIP.charAt(<span class="hljs-number">0</span>) == <span class="hljs-string">&#x27;.&#x27;</span> || queryIP.charAt(queryIP.length()-<span class="hljs-number">1</span>) == <span class="hljs-string">&#x27;.&#x27;</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>        &#125;<br>        String[] split = queryIP.split(<span class="hljs-string">&quot;\\.&quot;</span>);<br>        <span class="hljs-keyword">if</span> (split.length != <span class="hljs-number">4</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (String str : split)&#123;<br>            <span class="hljs-keyword">if</span> (str.length() &lt; <span class="hljs-number">1</span> || str.length() &gt; <span class="hljs-number">3</span> || (str.length() &gt; <span class="hljs-number">1</span> &amp;&amp; str.charAt(<span class="hljs-number">0</span>) == <span class="hljs-string">&#x27;0&#x27;</span>))&#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>            &#125;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;str.length();i++)&#123;<br>                <span class="hljs-keyword">char</span> c = str.charAt(i);<br>                <span class="hljs-keyword">if</span> (!(c &gt;= <span class="hljs-string">&#x27;0&#x27;</span> &amp;&amp; c &lt;= <span class="hljs-string">&#x27;9&#x27;</span>))&#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (Integer.parseInt(str) &gt; <span class="hljs-number">255</span>)&#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;IPv4&quot;</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">if</span> (queryIP.charAt(<span class="hljs-number">0</span>) == <span class="hljs-string">&#x27;:&#x27;</span> || queryIP.charAt(queryIP.length()-<span class="hljs-number">1</span>) == <span class="hljs-string">&#x27;:&#x27;</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>        &#125;<br>        String[] split = queryIP.split(<span class="hljs-string">&quot;:&quot;</span>);<br>        <span class="hljs-keyword">if</span> (split.length != <span class="hljs-number">8</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (String str : split)&#123;<br>            <span class="hljs-keyword">if</span> (str.length() &lt; <span class="hljs-number">1</span> || str.length() &gt; <span class="hljs-number">4</span>)&#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>            &#125;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;str.length();i++)&#123;<br>                <span class="hljs-keyword">char</span> c = str.charAt(i);<br>                <span class="hljs-keyword">if</span> (!(c &gt;= <span class="hljs-string">&#x27;0&#x27;</span> &amp;&amp; c &lt;= <span class="hljs-string">&#x27;9&#x27;</span>) &amp;&amp; !(c &gt;= <span class="hljs-string">&#x27;a&#x27;</span> &amp;&amp; c &lt;= <span class="hljs-string">&#x27;f&#x27;</span>) &amp;&amp; !(c &gt;= <span class="hljs-string">&#x27;A&#x27;</span> &amp;&amp; c &lt;= <span class="hljs-string">&#x27;F&#x27;</span>))&#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;IPv6&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>题目LeetCode<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/validate-ip-address/">链接</a>。</p>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>byFan</li>
+    <li><strong>本文链接：</strong><a href="http://byfan.xyz/2022/05/29/validate-ip-address/index.html" title="http:&#x2F;&#x2F;byfan.xyz&#x2F;2022&#x2F;05&#x2F;29&#x2F;validate-ip-address&#x2F;index.html">http:&#x2F;&#x2F;byfan.xyz&#x2F;2022&#x2F;05&#x2F;29&#x2F;validate-ip-address&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/theme/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" rel="tag">每日一题</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2022/05/29/remove-outermost-parentheses/"><i class="iconfont iconleft"></i>字符串-删除最外层的括号</a>
+    <a href="/2022/05/27/wordDistance/">数组-单词距离<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81IP%E5%9C%B0%E5%9D%80"><span class="toc-text">验证IP地址</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-text">1. 题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text">2. 解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%80%9D%E8%B7%AF%E4%B8%80"><span class="toc-text">2.1 思路一</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="toc-text">3. 算法流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%80%9D%E8%B7%AF%E4%B8%80%E6%B5%81%E7%A8%8B"><span class="toc-text">3.1 思路一流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">4. 代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%80%9D%E8%B7%AF%E4%B8%80%E4%BB%A3%E7%A0%81"><span class="toc-text">4.1 思路一代码</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=3257490363 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/byfanx/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:byfanx@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Copyright © 2019 - 2021 | <a target="_blank" href="http://byfan.xyz">byFan</a> .AllRightsReserved</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
+  
+  
+    <div class="fab fab-daovoice">
+      <i class="iconfont iconcomment"></i>
+    </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'IrYj5VESYg1Yvn7gIpcCDtX3-gzGzoHsz',
+      appKey: '8Uzol1hPs1jvKhXzfs2pEGGq',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const Counter = AV.Object.extend("Counter");
+    const Like = AV.Object.extend("Like");
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-counter").each(async (e) => {
+        const url = $(".leancloud-counter").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-counter").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud-counter").length === 1 ? $(".leancloud-counter").attr('id').trim() : 'http://byfan.xyz';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    const showLike = (Like) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-like").each(async (e) => {
+        const url = $(".leancloud-like").eq(e).attr('id').trim();
+        const query = new AV.Query("Like");
+        query.equalTo("path", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-like").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addLike = (Like) => {
+      const url = $(".leancloud-like").length === 1 ? $(".leancloud-like").attr('id').trim() : 'http://byfan.xyz';
+      var query = new Like;
+      query.save({
+        path: url,
+        nickName: 'Anonymous'
+      });
+      $(".leancloud-like").addClass('islike');
+      $(".fab-like").children(".iconfont").removeClass("iconheart").addClass("iconheart-fill").css("color", "#eb3223");
+      ZHAOO.zui.message({ text: '爱你哦~', type: 'success' });
+      setTimeout(() => showLike(Like), 1000);
+    }
+
+    const handleLikeClick = () => {
+      const isLike = $(".leancloud-like").length === 1 && $(".leancloud-like").hasClass('islike') ? true : false;
+      if (isLike) {
+        ZHAOO.zui.message({ text: '小心心不可以收回呢~', type: 'warning' });
+      } else {
+        addLike(Like);
+      }
+    }
+
+    $(function () {
+      addCount(Counter);
+      showCount(Counter);
+      showLike(Like);
+      $(".fab-like").on("click", function () {
+        handleLikeClick();
+      });
+    });
+
+  });
+</script>
+
+
+
+  
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", "https://widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "aa2a9e05"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

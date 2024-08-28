@@ -1427,10 +1427,10 @@
 <h2 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h2><h3 id="2-1-思路一"><a href="#2-1-思路一" class="headerlink" title="2.1 思路一"></a>2.1 思路一</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先根据输入的数字求出要打印的范围，然后再从1开始打印到最大的数字。</p>
 <p><strong>复杂度：</strong></p>
 <ul>
-<li>时间复杂度：O(10^n)。</li>
-<li>空间复杂度：O(10^n)。</li>
+<li>时间复杂度：O(10^n^)。</li>
+<li>空间复杂度：O(10^n^)。</li>
 </ul>
-<h3 id="2-2-思路二"><a href="#2-2-思路二" class="headerlink" title="2.2 思路二"></a>2.2 思路二</h3><p>本题的题意是希望考察大数的计算，因为int数组有可能会有益出，所以用字符串可以保证一定不会溢出。但是呢，由于规定的返回值是int数组，所以其实从返回值上来看，是一定不会溢出的，比较矛盾。这里给出思路二只是学习一下如何用字符串处理大数即可，不用特别纠结溢出这件事上。和思路一一样，先求出数字范围，然后从1开始打印到最大的数字，只不过这里用的是字符串去处理。</p>
+<h3 id="2-2-思路二"><a href="#2-2-思路二" class="headerlink" title="2.2 思路二"></a>2.2 思路二</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本题的题意是希望考察大数的计算，因为int数组有可能会有益出，所以用字符串可以保证一定不会溢出。但是呢，由于规定的返回值是int数组，所以其实从返回值上来看，是一定不会溢出的，比较矛盾。这里给出思路二只是学习一下如何用字符串处理大数即可，不用特别纠结溢出这件事上。和思路一一样，先求出数字范围，然后从1开始打印到最大的数字，只不过这里用的是字符串去处理。</p>
 <ul>
 <li>时间复杂度：O(10^n)。</li>
 <li>空间复杂度：O(10^n)。</li>
@@ -2887,6 +2887,304 @@
         <tag>服务器</tag>
         <tag>树莓派</tag>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数组-单词距离</title>
+    <url>/2022/05/27/wordDistance/</url>
+    <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于数组中单词距离的题目，且听我细细道来。</p>
+<span id="more"></span>
+
+<h1 id="数组-单词距离"><a href="#数组-单词距离" class="headerlink" title="数组 - 单词距离"></a>数组 - 单词距离</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有个内含单词的超大文本文件，给定任意两个<strong>不同的</strong>单词，找出在这个文件中这两个单词的最短距离(相隔单词数)。如果寻找过程在这个文件中会重复多次，而每次寻找的单词不同，你能对此优化吗?</p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<p>输入：words = [“I”,”am”,”a”,”student”,”from”,”a”,”university”,”in”,”a”,”city”]</p>
+<p>​            word1 = “a”</p>
+<p>​            word2 = “student”</p>
+<p>输出：1</p>
+<p>解释：第一次出现的角标为2的”a”与”student”距离最近，距离为 1。</p>
+</blockquote>
+<p><strong>提示：</strong></p>
+<blockquote>
+<ol>
+<li>words.length &lt;= 100000</li>
+</ol>
+</blockquote>
+<h2 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h2><h3 id="2-1-思路一"><a href="#2-1-思路一" class="headerlink" title="2.1 思路一"></a>2.1 思路一</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;暴力遍历，首先遍历给定的单词列表，查找并记录第一个单词和第二个单词在单词列表中出现的位置。然后计算第一个单词出现的位置和第二个单词出现的每一次的位置进行计算距离。每次计算后和当前结果进行对比，保留最小值。</p>
+<h3 id="2-2-思路二"><a href="#2-2-思路二" class="headerlink" title="2.2 思路二"></a>2.2 思路二</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;初始化第一个单词和第二个单词出现的位置为-1，证明目前该单词还没有出现在单词列表中。遍历单词列表，每当遇到和第一个单词或者第二个单词相等的单词，就更新该单词出现的下标。如果两个单词出现的下标大于等于0，则代表两个单词都在单词列表中出现过，此时计算两个单词的间隔距离，并更新当前最小距离。</p>
+<p><strong>复杂度：</strong></p>
+<ul>
+<li>时间复杂度： <strong>O(n)</strong> 。其中 n 是数组 words 的长度。需要遍历数组一次计算 word1 和 word2 的最短距离，每次更新下标和更新最短距离的时间都是 O(1)。这里将字符串的长度视为常数。</li>
+<li>空间复杂度： <strong>O(1)</strong> 。</li>
+</ul>
+<h2 id="3-算法流程"><a href="#3-算法流程" class="headerlink" title="3. 算法流程"></a>3. 算法流程</h2><h3 id="3-1-思路一流程"><a href="#3-1-思路一流程" class="headerlink" title="3.1 思路一流程"></a>3.1 思路一流程</h3><ol>
+<li>两个单词的最长距离不会超过单词列表长度，所以初始化结果时可以设置成单词列表长度</li>
+<li>初始化保存第一个单词出现的下标的列表，初始化保存第二个单词出现的下标的列表</li>
+<li>遍历单词列表，如果当前单词和第一个单词相等，则将下标保存到第一个单词的下标列表中</li>
+<li>如果当前单词和第二个单词相等，则将下标保存到第二个单词的下标列表中</li>
+<li>嵌套遍历两个单词的下标列表，两两计算出现位置的距离，每次计算后和当前结果进行对比，保留最小值</li>
+<li>返回最终结果</li>
+</ol>
+<h3 id="3-2-思路二流程"><a href="#3-2-思路二流程" class="headerlink" title="3.2 思路二流程"></a>3.2 思路二流程</h3><ol>
+<li>两个单词的最长距离不会超过单词列表长度，所以初始化结果时可以设置成单词列表长度</li>
+<li>初始化第一个单词和第二个单词出现的位置 index1 = -1，index2 = -1</li>
+<li>遍历单词列表，如果有和第一个单词或者第二个单词相等的，则更新当前单词出现位置</li>
+<li>如果两个单词出现的下标大于等于0，此时计算两个单词的间隔距离，并更新当前最小距离</li>
+<li>返回最终结果。</li>
+</ol>
+<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><h3 id="4-1-思路一代码"><a href="#4-1-思路一代码" class="headerlink" title="4.1 思路一代码"></a>4.1 思路一代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">findClosest</span><span class="hljs-params">(String[] words, String word1, String word2)</span> </span>&#123;<br>    <span class="hljs-comment">// 两个单词的最长距离不会超过单词列表长度，所以初始化结果时可以设置成单词列表长度</span><br>    <span class="hljs-keyword">int</span> res = words.length;<br>    List&lt;Integer&gt; word1Index = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>    List&lt;Integer&gt; word2Index = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt; words.length;i++)&#123;<br>        <span class="hljs-keyword">if</span> (words[i].equals(word1))&#123;<br>            word1Index.add(i);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (words[i].equals(word2)) &#123;<br>            word2Index.add(i);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (Integer index1 : word1Index)&#123;<br>        <span class="hljs-keyword">for</span> (Integer index2: word2Index)&#123;<br>            res = Math.min(Math.abs(index2 - index1), res);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-2-思路二代码"><a href="#4-2-思路二代码" class="headerlink" title="4.2 思路二代码"></a>4.2 思路二代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">findClosest_2</span><span class="hljs-params">(String[] words, String word1, String word2)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> res = words.length;<br>    <span class="hljs-keyword">int</span> index1 = -<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">int</span> index2 = -<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt; words.length;i++)&#123;<br>        <span class="hljs-keyword">if</span> (words[i].equals(word1))&#123;<br>            index1 = i;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (words[i].equals(word2)) &#123;<br>            index2 = i;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (index1 &gt;= <span class="hljs-number">0</span> &amp;&amp; index2 &gt;= <span class="hljs-number">0</span>)&#123;<br>            res = Math.min(Math.abs(index2 - index1), res);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>题目LeetCode<a href="https://leetcode.cn/problems/find-closest-lcci/">链接</a>。</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>每日一题</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>字符串-删除最外层的括号</title>
+    <url>/2022/05/29/remove-outermost-parentheses/</url>
+    <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于字符串-删除最外层的括号的题目，且听我细细道来。</p>
+<span id="more"></span>
+
+<h1 id="字符串-删除最外层的括号"><a href="#字符串-删除最外层的括号" class="headerlink" title="字符串 - 删除最外层的括号"></a>字符串 - 删除最外层的括号</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有效括号字符串为空 <code>&quot;&quot;</code>、<code>&quot;(&quot; + A + &quot;)&quot;</code> 或 <code>A + B</code> ，其中 <code>A</code> 和 <code>B</code> 都是有效的括号字符串，<code>+</code> 代表字符串的连接。</p>
+<ul>
+<li>例如，<code>&quot;&quot;</code>，<code>&quot;()&quot;</code>，<code>&quot;(())()&quot;</code> 和 <code>&quot;(()(()))&quot;</code> 都是有效的括号字符串。</li>
+</ul>
+<p>如果有效字符串 <code>s</code> 非空，且不存在将其拆分为 <code>s = A + B</code> 的方法，我们称其为<strong>原语（primitive）</strong>，其中 <code>A</code> 和 <code>B</code> 都是非空有效括号字符串。</p>
+<p>给出一个非空有效字符串 s，考虑将其进行原语化分解，使得：s = P_1 + P_2 + … + P_k，其中 P_i 是有效括号字符串原语。</p>
+<p>对 s 进行原语化分解，删除分解中每个原语字符串的最外层括号，返回 s 。</p>
+<p><strong>示例一：</strong></p>
+<blockquote>
+<p><strong>输入：</strong>s = “(()())(())”</p>
+<p><strong>输出：</strong>“()()()”</p>
+<p><strong>解释：</strong>输入字符串为 “(()())(())”，原语化分解得到 “(()())” + “(())”，<br>删除每个部分中的最外层括号后得到 “()()” + “()” = “()()()”。</p>
+</blockquote>
+<p><strong>示例二：</strong></p>
+<blockquote>
+<p><strong>输入：</strong>s = “(()())(())(()(()))”</p>
+<p><strong>输出：</strong>“()()()()(())”</p>
+<p><strong>解释：</strong>输入字符串为 “(()())(())(()(()))”，原语化分解得到 “(()())” + “(())” + “(()(()))”，<br>删除每个部分中的最外层括号后得到 “()()” + “()” + “()(())” = “()()()()(())”。</p>
+</blockquote>
+<p><strong>示例三：</strong></p>
+<blockquote>
+<p><strong>输入：</strong>s = “()()”</p>
+<p><strong>输出：</strong>“”</p>
+<p><strong>解释：</strong>输入字符串为 “()()”，原语化分解得到 “()” + “()”，<br>删除每个部分中的最外层括号后得到 “” + “” = “”。</p>
+</blockquote>
+<p><strong>提示：</strong></p>
+<blockquote>
+<ol>
+<li>1 &lt;= s.length &lt;= 105</li>
+<li><code>s[i]</code> 为 <code>&#39;(&#39;</code> 或 <code>&#39;)&#39;</code></li>
+<li><code>s</code> 是一个有效括号字符串</li>
+</ol>
+</blockquote>
+<h2 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h2><h3 id="2-1-思路一"><a href="#2-1-思路一" class="headerlink" title="2.1 思路一"></a>2.1 思路一</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;遍历 s，并用一个栈来表示括号的深度。遇到<code>(</code>则将字符入栈，遇到<code>)</code> 则将栈顶字符出栈。栈从空到下一次空的过程，则是扫描了一个原语的过程。</p>
+<p>一个原语中，首字符和尾字符应该舍去，其他字符需放入结果字符串中。因此，在遇到<code>(</code>并将字符入栈后，如果栈的深度为 1，则不把字符放入结果；在遇到<code>)</code>并将栈顶字符出栈后，如果栈为空，则不把字符放入结果。</p>
+<p>其他情况下，需要把字符放入结果。代码对流程进行了部分优化，减少了判断语句。</p>
+<p><strong>复杂度：</strong></p>
+<ul>
+<li>时间复杂度：<strong>O(n)</strong> ，其中 n 是输入 s 的长度。仅需遍历 s 一次。</li>
+<li>空间复杂度：<strong>O(n)</strong> ，其中 n 是输入 s 的长度。需要使用栈，长度最大为 O(n)。</li>
+</ul>
+<h3 id="2-1-思路二"><a href="#2-1-思路二" class="headerlink" title="2.1 思路二"></a>2.1 思路二</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;遍历字符串s，用一个常量计数器来记录当前左括号<code>(</code>出现的次数，遇到右括号<code>)</code>，需要消耗一个左括号<code>(</code>代表匹配成功一个对括号，当计数器为0时，则代表扫描了一个原语的过程。</p>
+<p>一个原语中，首字符和尾字符应该舍去，其他字符需放入结果字符串中。所以当左括号的数量不大于0时，则代表一个原语的开始或者结束，那么当前括号不会添加到返回结果中。其他情况下将字符添加到返回结果中。</p>
+<p><strong>复杂度：</strong></p>
+<ul>
+<li>时间复杂度：<strong>O(n)</strong> ，其中 n 是输入 s 的长度。仅需遍历 s 一次。</li>
+<li>空间复杂度：<strong>O(n)</strong> ，其中 n 是输入 s 的长度。需要用数组暂时保存结果，并转换为字符串。部分语言支持字符串的修改，可以做到 O(1) 空间复杂度。</li>
+</ul>
+<h2 id="3-算法流程"><a href="#3-算法流程" class="headerlink" title="3. 算法流程"></a>3. 算法流程</h2><h3 id="3-1-思路一流程"><a href="#3-1-思路一流程" class="headerlink" title="3.1 思路一流程"></a>3.1 思路一流程</h3><ol>
+<li>初始化返回结果res，初始化一个栈用来存储中介过程。</li>
+<li>遍历字符串，取出当前位置的字符。</li>
+<li>如果当前字符是 <code>)</code>，弹出栈顶元素。</li>
+<li>如果当前栈不为空，则将当前元素添加到返回结果中。</li>
+<li>如果当前字符是 <code>(</code>，则将元素入栈。</li>
+<li>遍历完成之后，返回最终结果。</li>
+</ol>
+<h3 id="3-1-思路二流程"><a href="#3-1-思路二流程" class="headerlink" title="3.1 思路二流程"></a>3.1 思路二流程</h3><ol>
+<li>初始化返回结果和计数器<code>count=0</code>。</li>
+<li>遍历字符串，取出当前位置的字符。</li>
+<li>如果当前字符是 <code>)</code>，需要消耗一个左括号<code>(</code>来进行匹配，计数器减一。</li>
+<li>如果当前计数器大于0，则将当前字符添加到返回结果中。</li>
+<li>如果当前字符是 <code>(</code>，计数器加一。</li>
+<li>遍历完成之后，返回最终结果。</li>
+</ol>
+<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><h3 id="4-1-思路一代码"><a href="#4-1-思路一代码" class="headerlink" title="4.1 思路一代码"></a>4.1 思路一代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">removeOuterParentheses_1</span><span class="hljs-params">(String s)</span> </span>&#123;<br>    StringBuffer res = <span class="hljs-keyword">new</span> StringBuffer();<br>    Deque&lt;Character&gt; stack = <span class="hljs-keyword">new</span> ArrayDeque&lt;Character&gt;();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; s.length(); i++) &#123;<br>        <span class="hljs-keyword">char</span> c = s.charAt(i);<br>        <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;)&#x27;</span>) &#123;<br>            stack.pop();<br>        &#125;<br>        <span class="hljs-keyword">if</span> (!stack.isEmpty()) &#123;<br>            res.append(c);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;(&#x27;</span>) &#123;<br>            stack.push(c);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res.toString();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-1-思路二代码"><a href="#4-1-思路二代码" class="headerlink" title="4.1 思路二代码"></a>4.1 思路二代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">removeOuterParentheses</span><span class="hljs-params">(String s)</span> </span>&#123;<br>    StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();<br>    <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;s.length();i++)&#123;<br>        <span class="hljs-keyword">char</span> c = s.charAt(i);<br>        <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;)&#x27;</span>)&#123;<br>            count--;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (count &gt; <span class="hljs-number">0</span>)&#123;<br>            sb.append(c);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;(&#x27;</span>)&#123;<br>            count++;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> sb.toString();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>题目LeetCode<a href="https://leetcode.cn/problems/remove-outermost-parentheses/">链接</a></p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>每日一题</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树-从根到叶的二进制数之和</title>
+    <url>/2022/05/30/sum-of-root-to-leaf-binary-numbers/</url>
+    <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于从根到叶的二进制数之和的题目，且听我细细道来。</p>
+<span id="more"></span>
+
+<h1 id="树-从根到叶的二进制数之和"><a href="#树-从根到叶的二进制数之和" class="headerlink" title="树 - 从根到叶的二进制数之和"></a>树 - 从根到叶的二进制数之和</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给出一棵二叉树，其上每个结点的值都是 <code>0</code> 或 <code>1</code> 。每一条从根到叶的路径都代表一个从最高有效位开始的二进制数。</p>
+<ul>
+<li>例如，如果路径为 <code>0 -&gt; 1 -&gt; 1 -&gt; 0 -&gt; 1</code>，那么它表示二进制数 <code>01101</code>，也就是 <code>13</code> 。</li>
+</ul>
+<p>对树上的每一片叶子，我们都要找出从根到该叶子的路径所表示的数字。</p>
+<p>返回这些数字之和。题目数据保证答案是一个 <strong>32 位</strong> 整数。</p>
+<p><strong>示例一：</strong></p>
+<blockquote>
+<p>输入：root = [1,0,1,0,1,0,1]</p>
+<p>输出：22</p>
+<p>解释：根据输入按层构建树，然后根导叶子结点的二进制为：(100) + (101) + (110) + (111) = 4 + 5 + 6 + 7 = 22。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs mermaid">graph TB<br>A((1))--&gt;B((0))<br>A--&gt;C((1))<br>B--&gt;D((0))<br>B--&gt;E((1))<br>C--&gt;F((0))<br>C--&gt;G((1))<br></code></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p><strong>示例一：</strong></p>
+<blockquote>
+<p>输入：root = [0]</p>
+<p>输出：0</p>
+</blockquote>
+<p><strong>提示：</strong></p>
+<blockquote>
+<ol>
+<li>树中的节点数在 <code>[1, 1000]</code> 范围内</li>
+<li><code>Node.val</code> 仅为 <code>0</code> 或 <code>1</code></li>
+</ol>
+</blockquote>
+<h2 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h2><h3 id="2-1-思路一"><a href="#2-1-思路一" class="headerlink" title="2.1 思路一"></a>2.1 思路一</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先深度优先遍历，找到根节点到每一个叶子结点的路径。然后遍历所有路径，将当前路径值从二进制转成十进制，将转换过后的十进制相加求和。</p>
+<h2 id="3-算法流程"><a href="#3-算法流程" class="headerlink" title="3. 算法流程"></a>3. 算法流程</h2><h3 id="3-1-思路一流程"><a href="#3-1-思路一流程" class="headerlink" title="3.1 思路一流程"></a>3.1 思路一流程</h3><ol>
+<li><p>初始化返回结果<code>res=0</code>，初始化所有路径列表<code>pathList</code>和当前路径<code>path</code>。</p>
+</li>
+<li><p>深度优先遍历树</p>
+<ol>
+<li>如果当前节点为空或者当前节点左右子节点均为空，那么遍历当前路径，将路径上值拼接成一个二进制数。如果当前节点不为空但是左右子节点为空，在拼接路径时把当前节点的值也加进去。然后再将整个完整的二进制路径添加到路径列表中。</li>
+<li>如果当前节点不为空，将当前节点添加到当前路径中。</li>
+<li>如果当前节点的右子节点不为空，遍历右子树。</li>
+<li>如果当前节点的左子节点不为空，遍历左子树。</li>
+<li>左右子树遍历完之后，将当前节点从当前路径中删除。</li>
+</ol>
+</li>
+<li><p>找到所有路径之后，遍历路径列表，将每一个二进制路径转成十进制值加到返回结果中。</p>
+</li>
+<li><p>返回最终结果。</p>
+</li>
+</ol>
+<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><h3 id="4-1-思路一代码"><a href="#4-1-思路一代码" class="headerlink" title="4.1 思路一代码"></a>4.1 思路一代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">sumRootToLeaf</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> res=<span class="hljs-number">0</span>;<br>    List&lt;String&gt; pathList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>    List&lt;TreeNode&gt; path = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>    dfs(root, pathList, path);<br>    <span class="hljs-keyword">for</span> (String str : pathList)&#123;<br>        <span class="hljs-keyword">int</span> t=str.length()-<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;str.length();i++)&#123;<br>            <span class="hljs-keyword">int</span> c = str.charAt(i)-<span class="hljs-string">&#x27;0&#x27;</span>;<br>            res += c * Math.pow(<span class="hljs-number">2</span>,t);<br>            t--;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(TreeNode root, List&lt;String&gt; pathList, List&lt;TreeNode&gt; path)</span></span>&#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-keyword">null</span> || (root.right == <span class="hljs-keyword">null</span> &amp;&amp; root.left == <span class="hljs-keyword">null</span>))&#123;<br>        StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();<br>        <span class="hljs-keyword">for</span> (TreeNode treeNode:path)&#123;<br>            sb.append(treeNode.val);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (root != <span class="hljs-keyword">null</span>)&#123;<br>            sb.append(root.val);<br>        &#125;<br>        pathList.add(sb.toString());<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    path.add(root);<br>    <span class="hljs-keyword">if</span> (root.right != <span class="hljs-keyword">null</span>)<br>        dfs(root.right, pathList, path);<br>    <span class="hljs-keyword">if</span> (root.left != <span class="hljs-keyword">null</span>)<br>        dfs(root.left, pathList, path);<br>    path.remove(path.size()-<span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>题目LeetCode<a href="https://leetcode.cn/problems/sum-of-root-to-leaf-binary-numbers/">链接</a>。</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>每日一题</tag>
+        <tag>树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>验证IP地址</title>
+    <url>/2022/05/29/validate-ip-address/</url>
+    <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日一题，提升自己。今天分享一道关于验证IP地址的题目，且听我细细道来。</p>
+<span id="more"></span>
+
+<h1 id="验证IP地址"><a href="#验证IP地址" class="headerlink" title="验证IP地址"></a>验证IP地址</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给定一个字符串queryIP。如果是有效的 IPv4 地址，返回 “IPv4” ；如果是有效的 IPv6 地址，返回 “IPv6” ；如果不是上述类型的 IP 地址，返回 “Neither” 。</p>
+<p>有效的IPv4地址 是 “x1.x2.x3.x4” 形式的IP地址。 其中 0 &lt;= x<del>i</del>&lt;= 255 且 x<del>i</del> 不能包含 前导零。</p>
+<p>例如:“192.168.1.1”、 “192.168.1.0” 为有效IPv4地址， “192.168.01.1” 为无效IPv4地址; “192.168.1.00” 、 “<a href="mailto:&#49;&#x39;&#50;&#x2e;&#x31;&#54;&#56;&#64;&#49;&#x2e;&#49;">&#49;&#x39;&#50;&#x2e;&#x31;&#54;&#56;&#64;&#49;&#x2e;&#49;</a>” 为无效IPv4地址。</p>
+<p>一个有效的IPv6地址是一个格式为“x1:x2:x3:x4:x5:x6:x7:x8” 的IP地址，其中: 1 &lt;= x<del>i</del>.length &lt;= 4, xi是一个 十六进制字符串 ，可以包含数字、小写英文字母( ‘a’ 到 ‘f’ )和大写英文字母( ‘A’ 到 ‘F’ )。,在xi中允许前导零。</p>
+<p>例如 “2001:0db8:85a3:0000:0000:8a2e:0370:7334” 和 “2001:db8:85a3:0:0:8A2E:0370:7334” 是有效的 IPv6 地址，而 “2001:0db8:85a3::8A2E:037j:7334” 和 “02001:0db8:85a3:0000:0000:8a2e:0370:7334” 是无效的 IPv6 地址。</p>
+<p><strong>示例一：</strong></p>
+<blockquote>
+<p>输入：queryIP = “172.16.254.1”</p>
+<p>输出：”IPv4”</p>
+<p>解释：有效的 IPv4 地址，返回 “IPv4”</p>
+</blockquote>
+<p><strong>示例二：</strong></p>
+<blockquote>
+<p>输入：queryIP = “2001:0db8:85a3:0:0:8A2E:0370:7334”</p>
+<p>输出：”IPv6”</p>
+<p>解释：有效的 IPv6 地址，返回 “IPv6”</p>
+</blockquote>
+<p><strong>示例三：</strong></p>
+<blockquote>
+<p>输入：queryIP = “256.256.256.256”</p>
+<p>输出：”Neither”</p>
+<p>解释：既不是 IPv4 地址，又不是 IPv6 地址</p>
+</blockquote>
+<p><strong>提示：</strong></p>
+<blockquote>
+<ol>
+<li>queryIP 仅由英文字母，数字，字符 ‘<code>.</code>‘ 和 ‘<code>:</code>‘ 组成。</li>
+</ol>
+</blockquote>
+<h2 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h2><h3 id="2-1-思路一"><a href="#2-1-思路一" class="headerlink" title="2.1 思路一"></a>2.1 思路一</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们首先查找给定的字符串 queryIP 中是否包含符号 <code>.</code>。如果包含，那么我们需要判断其是否为 IPv4 地址；如果不包含，我们则判断其是否为 IPv6 地址。</p>
+<p>对于IPv4而言，它包含四个由<code>.</code>分割的部分组成，且不能以<code>.</code>开头或者结尾。首先以<code>.</code>将其分割，判断是否是四个部分；然后以此判断每一个部分是否合法。IPv4的每一个部分的长度为1～3之间，全部是由数字组成，且最每部分的数字不包含前导0，范围在[0,255]之间。</p>
+<p>对于IPv6而言，它包含八个由<code>:</code>分割的部分组成，且不能以<code>:</code>开头或者结尾。首先以<code>:</code>将其分割，判断是否是八个部分；然后以此判断每一个部分是否合法。IPv6的每一个部分的长度为1～4之间，是由数字[1,9]、字母[a,f]和[A,F]组成。</p>
+<p><strong>复杂度：</strong></p>
+<ul>
+<li>时间复杂度：<strong>O(n)</strong> ，其中 n 是字符串 queryIP 的长度。我们只需要遍历字符串常数次。</li>
+<li>空间复杂度：<strong>O(1)</strong> 。</li>
+</ul>
+<h2 id="3-算法流程"><a href="#3-算法流程" class="headerlink" title="3. 算法流程"></a>3. 算法流程</h2><h3 id="3-1-思路一流程"><a href="#3-1-思路一流程" class="headerlink" title="3.1 思路一流程"></a>3.1 思路一流程</h3><ol>
+<li><p>queryIP 长度小于1，直接返回 Neither</p>
+</li>
+<li><p>查找 queryIP 中是否包含符号 <code>.</code>。</p>
+</li>
+<li><p>如果包含<code>.</code>，则按照IPv4规则处理</p>
+<ol>
+<li>首先判断 queryIP 不能以<code>.</code>开头或者结尾，否则返回 Neither。</li>
+<li>将 queryIP 以 <code>.</code> 分割，分割后的的部分不是 4 个部分，返回 Neither。</li>
+<li>然后遍历切割后的每一部分，长度在[1,3]之间，且不含前导0。否则返回 Neither。</li>
+<li>判断每一部分中的每一个字符是否是在[0,9]之间，否则返回 Neither。</li>
+<li>最后判断当前部分数字不能大于255，否则返回 Neither。</li>
+<li>满足上述所有条件，返回IPv4。</li>
+</ol>
+</li>
+<li><p>如果不包含<code>.</code>，则按照IPv6规则处理</p>
+<ol>
+<li>首先判断 queryIP 不能<code>:</code>开头或者结尾，否则返回 Neither。</li>
+<li>将 queryIP 以 <code>:</code> 分割，分割后的的部分不是 8 个部分，返回 Neither。</li>
+<li>然后遍历切割后的每一部分，长度在[1,4]之间，否则返回 Neither。</li>
+<li>判断每一部分中的每一个字符是否是在[0,9]或者[a,f]或者[A,F]之间，否则返回 Neither。</li>
+<li>满足上述所有条件，返回IPv6。</li>
+</ol>
+</li>
+</ol>
+<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><h3 id="4-1-思路一代码"><a href="#4-1-思路一代码" class="headerlink" title="4.1 思路一代码"></a>4.1 思路一代码</h3><p><strong>Java</strong>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">validIPAddress</span><span class="hljs-params">(String queryIP)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (queryIP.length() &lt; <span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (queryIP.indexOf(<span class="hljs-string">&#x27;.&#x27;</span>) &gt; <span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-keyword">if</span> (queryIP.charAt(<span class="hljs-number">0</span>) == <span class="hljs-string">&#x27;.&#x27;</span> || queryIP.charAt(queryIP.length()-<span class="hljs-number">1</span>) == <span class="hljs-string">&#x27;.&#x27;</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>        &#125;<br>        String[] split = queryIP.split(<span class="hljs-string">&quot;\\.&quot;</span>);<br>        <span class="hljs-keyword">if</span> (split.length != <span class="hljs-number">4</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (String str : split)&#123;<br>            <span class="hljs-keyword">if</span> (str.length() &lt; <span class="hljs-number">1</span> || str.length() &gt; <span class="hljs-number">3</span> || (str.length() &gt; <span class="hljs-number">1</span> &amp;&amp; str.charAt(<span class="hljs-number">0</span>) == <span class="hljs-string">&#x27;0&#x27;</span>))&#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>            &#125;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;str.length();i++)&#123;<br>                <span class="hljs-keyword">char</span> c = str.charAt(i);<br>                <span class="hljs-keyword">if</span> (!(c &gt;= <span class="hljs-string">&#x27;0&#x27;</span> &amp;&amp; c &lt;= <span class="hljs-string">&#x27;9&#x27;</span>))&#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (Integer.parseInt(str) &gt; <span class="hljs-number">255</span>)&#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;IPv4&quot;</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">if</span> (queryIP.charAt(<span class="hljs-number">0</span>) == <span class="hljs-string">&#x27;:&#x27;</span> || queryIP.charAt(queryIP.length()-<span class="hljs-number">1</span>) == <span class="hljs-string">&#x27;:&#x27;</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>        &#125;<br>        String[] split = queryIP.split(<span class="hljs-string">&quot;:&quot;</span>);<br>        <span class="hljs-keyword">if</span> (split.length != <span class="hljs-number">8</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (String str : split)&#123;<br>            <span class="hljs-keyword">if</span> (str.length() &lt; <span class="hljs-number">1</span> || str.length() &gt; <span class="hljs-number">4</span>)&#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>            &#125;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;str.length();i++)&#123;<br>                <span class="hljs-keyword">char</span> c = str.charAt(i);<br>                <span class="hljs-keyword">if</span> (!(c &gt;= <span class="hljs-string">&#x27;0&#x27;</span> &amp;&amp; c &lt;= <span class="hljs-string">&#x27;9&#x27;</span>) &amp;&amp; !(c &gt;= <span class="hljs-string">&#x27;a&#x27;</span> &amp;&amp; c &lt;= <span class="hljs-string">&#x27;f&#x27;</span>) &amp;&amp; !(c &gt;= <span class="hljs-string">&#x27;A&#x27;</span> &amp;&amp; c &lt;= <span class="hljs-string">&#x27;F&#x27;</span>))&#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Neither&quot;</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;IPv6&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>题目LeetCode<a href="https://leetcode.cn/problems/validate-ip-address/">链接</a>。</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>每日一题</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
 </search>
